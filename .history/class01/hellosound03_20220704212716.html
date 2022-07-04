@@ -13,16 +13,15 @@
     <script>
         var freq = 200;
         var duration = 1;
-        var vol = 0.05;
+        var vol = 0.5;
 
 
         function createElem() {
-            console.log("volumen " + vol)
+            console.log("hello")
             let h1Elem = document.createElement("h1");
             let text = document.createTextNode("Hello Sound at: " + freq + " Hz! and " + duration.toFixed(2) + " ''");
             h1Elem.appendChild(text);
             document.body.appendChild(h1Elem);
-            h1Elem.style.opacity = vol;
             playOsc();
 
         }
@@ -41,7 +40,7 @@
             osc.start();
             freq = Math.round(Math.random() * 1000);
             duration = (Math.random() * 2000);
-            vol = Math.random() / 2;
+            vol = (Math.random() * 1000);
 
 
 
