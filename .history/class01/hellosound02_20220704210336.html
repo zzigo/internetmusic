@@ -12,7 +12,7 @@
         const context = new AudioContext(),
             osc = new OscillatorNode(context),
             amp = new GainNode(context, {
-                gain: 0.01
+                gain: 0.5
             });
         osc.connect(amp).connect(context.destination);
         osc.start();

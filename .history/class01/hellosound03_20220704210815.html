@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <style>
+        body {
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>dynamic creation of html elements</p>
+    <script>
+        function createElem() {
+            console.log("hola")
+            let h1Elem = document.createElement("h1");
+            let text = document.createTextNode("Hello!" + playOsc());
+            h1Elem.appendChild(text);
+            document.body.appendChild(h1Elem);
+            ;
+        }
+        document.body.addEventListener("click", createElem);
+
+
+        function playOsc() {
+
+            //sound
+            const context = new AudioContext(),
+                osc = new OscillatorNode(context),
+                amp = new GainNode(context, {
+                    gain: 0.01
+                });
+            osc.connect(amp).connect(context.destination);
+            osc.start();
+            var freq = Math.random() * 1000;
+            osc.frequency.value = freq;
+            osc.stop(1);
+            return freq;
+        }
+    </script>
+</body>
+
+</html>
