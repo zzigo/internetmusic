@@ -167,15 +167,15 @@
 
     <h2>INTERNET MUSIC GALLERY</h2>
     <div id="myBtnContainer">
-        <button class="btn active" onclick="filterSelection('all')"> all</button>
-        <button class="btn" onclick="filterSelection('tonejs')"> tonejs</button>
-        <button class="btn" onclick="filterSelection('canvas')"> canvas</button>
-        <button class="btn" onclick="filterSelection('webaudioapi')"> webaudioapi</button>
+        <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+        <button class="btn" onclick="filterSelection('tonejs')"> Nature</button>
+        <button class="btn" onclick="filterSelection('canvas')"> Cars</button>
+        <button class="btn" onclick="filterSelection('webaudioapi')"> People</button>
     </div>
 
     <div class="row">
         <div class="column tonejs">
-            <div class="thumbnail" onclick="location.href='./class01/hellosound03.html';">
+            <div class="thumbnail">
                 <!-- <img src="/w3images/mountains.jpg" alt="Mountains" style="width:100%"> -->
                 <iframe src="./class01/hellosound03.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
 
@@ -184,8 +184,8 @@
             </div>
         </div>
 
-        <div class="column webaudioapi">
-            <div class="thumbnail" onclick="location.href='./class02-tonejs/tonejs01.html';">
+        <div class="column waaudioapi">
+            <div class="thumbnail">
                 <!-- <img src="/w3images/mountains.jpg" alt="Mountains" style="width:100%"> -->
                 <iframe src="./class02-tonejs/tonejs01.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
 
@@ -205,28 +205,6 @@
     </div>
 
     <script>
-        const sites = [{
-                name: "Hello Sound",
-                url: "./class01/hellosound03.html",
-                comment: "Inits with css and WAApi",
-                img: ""
-            },
-            {
-                name: "Theremin",
-                url: "./class02-tonejs/tonejs01.html",
-                comment: "Initial theremin"
-            }
-        ];
-
-
-        for (var i = 0; i < sites.length; i++) {
-            console.log(sites[i].name);
-        }
-
-
-
-
-
         filterSelection("all")
 
         function filterSelection(c) {
