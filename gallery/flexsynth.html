@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WA-HelloSynth</title>
+
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.35/Tone.js"></script> 
+		 
+	<style>
+		body {background-color: black;font-family: monospace;}
+		.box {display: flex;flex-flow:row wrap;height: auto;min-height: 100vh;align-items:stretch;}
+		.object {flex-grow: 1;min-width: 25%;border: solid white;margin: 10px;}
+		p { margin: 10px;width:50%;color: grey;font-size:3em;} 
+</style>
+  </head>
+  <body>
+<div class="box">
+<div class="object"  onclick="synth1()"><p>FM1</p></div>
+<div class="object"  onclick="helloTone()"><p>M</p></div>
+<div class="object"  onclick="helloMelody()"><p>3</p></div>
+<div class="object"  onclick="measuredTime()"><p>measured</p></div>
+<div class="object"  onclick="membrane()"><p>membrane</p></div>
+<div class="object"  onclick="schedy()"><p>scheduled</p></div>
+<div class="object"  onclick="fx1()"><p>fx1</p></div>
+<div class="object"  onclick="fx2()"><p>fx2</p></div>
+</div>
+	<script>
+
+//create instrument
+createButton("Osc1",oscG, 'a', "sine", 100);
+
+
+//helloTone
+function helloTone () {
+	//create a synth and connect it to the main output (your speakers)
+const synth = new Tone.Synth().toDestination();
+//play a middle 'C' for the duration of an 8th note
+synth.triggerAttackRelease("C4", "16n");
+}
+
+//helloMelody
+function helloMelody () {
+const synth = new Tone.Synth().toDestination();
+const now = Tone.now()
+synth.triggerAttackRelease("C4", "16t", now)
+synth.triggerAttackRelease("F4", "16t", now + 0.2)
+synth.triggerAttackRelease("F#4", "16t", now + 0.4)
+synth.triggerAttackRelease("B4", "8t", now + 0.6)
+synth.triggerAttackRelease("D5", "64t", now + 0.7)
+synth.triggerAttackRelease("F5", "64t", now + 0.8)
+synth.triggerAttackRelease("Ab5", "64t", now + 0.9)
+synth.triggerAttackRelease("Db6", "64t", now + 1)
+synth.triggerAttackRelease("D6", "64t", now + 1.1)
+}
+
+
+// FM Synth
+function synth1() {
+
+    // Create a synth and connect it to the master output
+    const synth = new Tone.FMSynth({
+			'modulationIndex' : 10,
+            'harmonicity' : 5,
+			'envelope' : {
+				'attack' : 0.1,
+				'decay' : 0.5
+			},
+			'modulation' : {
+				'type' : 'triangle'
+			},
+			'modulationEnvelope' : {
+				'attack' : 0.5,
+				'decay' : 0.01
+			}
+		}).toDestination();
+
+    // Play a middle 'C' for the duration of two seconds
+    synth.triggerAttackRelease('C3', '2');
+}
+
+
+function measuredTime() {Math
+
+    const synth = new Tone.AMSynth().toMaster();
+
+    // Play C2 for a duration of a 4th note
+    synth.triggerAttackRelease('C4', '8n');
+
+    // Play E4 for a duration of 2nd note but starting a 4th note later
+    synth.triggerAttackRelease('E4', '2n', Tone.Time('4n'));
+
+    // Play F2 for a duration of 4th note but starting even later
+    synth.triggerAttackRelease('F2', '4n', Tone.Time('4n') + Tone.Time('8n'));
+}
+
+function schedy() {
+    const synth = new Tone.PluckSynth().toMaster();
+
+    // this function is called right before the scheduled time
+    function triggerSynth(time) {
+    	// the time is the sample-accurate time of the event
+    	synth.triggerAttackRelease('C1', '2n', time);
+    }
+
+    // schedule a few notes
+    Tone.Transport.schedule(triggerSynth, 0);
+    Tone.Transport.schedule(triggerSynth, 1);
+    Tone.Transport.schedule(triggerSynth, 2);
+
+    // set the transport to repeat
+    Tone.Transport.loopEnd = '1m';
+    Tone.Transport.loop = true;
+
+    // start the transport
+    Tone.Transport.toggle();
+}
+
+function membrane() {
+
+    const synth = new Tone.MembraneSynth().toMaster();
+
+    //create a loop
+    const loop = new Tone.Loop(function(time) {
+    	synth.triggerAttackRelease("C1", "8n", time); 
+        console.log('The loop call!');
+    }, "4n");
+
+    //play the loop between 0-2m on the transport
+    loop.start(0).stop('2m');
+    Tone.Transport.toggle();
+}
+
+function fx1() {
+
+    // Create three effects
+    const distortion = new Tone.Distortion(0.6);
+    const tremolo = new Tone.Tremolo().start();
+    const feedbackDelay = new Tone.FeedbackDelay("8n", 0.5).toMaster();
+
+    // Create a synth and 'chain' the effects, then play a chord
+    const polySynth = new Tone.PolySynth(4, Tone.Synth).chain(distortion, tremolo, feedbackDelay, Tone.Master);
+
+    polySynth.triggerAttackRelease(['C5', 'E1'], '1m');
+}
+
+function fx2() {
+
+    const reverb = new Tone.Reverb().toMaster();
+    const plucky = new Tone.PluckSynth().toMaster();
+
+	reverb.generate().then(() => {
+        plucky.connect(reverb);
+        plucky.triggerAttack("C4");
+	});
+}
+
+
+document.addEventListener('keydown',keyboard);
+
+function keyboard(e) {
+	 switch(e.code){
+    case 'KeyQ': helloTone();console.log('KeyJ'); break;
+		case 'KeyW': helloMelody();break;
+		case 'KeyE': synth1();break;
+		case 'KeyA': fx1();break;
+		case 'KeyW': measuredTime();break;
+		case 'KeyE': schedy();break;
+		case 'KeyA': membrane();break;
+}
+}
+
+
+</script>
+  
+  </body>
