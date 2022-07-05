@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Simple Synthesis - Amplitude Modulation</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script
+    type="text/javascript"
+    src="/js/lib/dummy.js"
+    
+  ></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+  
+<!--   OSCILLOSCOPE LIB -->
+      <script>
+        var Oscilloscope = function(audioContext, analyser, width, height){
+	this.width = width;
+	this.height = height;
+	this.bufferLength = 2048;
+	this.dataArray = new Uint8Array(this.bufferLength);
+
+	this.analyser = analyser;
+	this.analyser.minDecibels = -90;
+	this.analyser.maxDecibels = -10;
+	this.analyser.smoothingTimeConstant = 0.85;
+	this.init();
+}
+
+Oscilloscope.prototype.init = function(){
+	this.oscilloscope = document.getElementById('oscilloscope');
+	this.oscilloscope.width = this.width;
+	this.oscilloscope.height = this.height;
+	this.oContext = this.oscilloscope.getContext('2d');
+	this.draw();
+};
+
+Oscilloscope.prototype.grid = function(){
+	var p = 25;
+
+	for (var x = 0; x <= this.width; x += 25) {
+	    this.oContext.moveTo(x, 0);
+	    this.oContext.lineTo(x, this.height + p);
+	}
+
+	for (var y = 0; y <= this.height; y += 25) {
+	    this.oContext.moveTo(0, y );
+	    this.oContext.lineTo(this.width, y);
+	}
+
+	this.oContext.strokeStyle = "#333";
+	this.oContext.stroke();
+	this.oContext.lineWidth = 0.5;
+}
+
+Oscilloscope.prototype.draw = function(){
+	this.analyser.getByteTimeDomainData(this.dataArray);
+	this.oContext.fillStyle = 'rgba(0,0,0,1.0)';
+	this.oContext.fillRect(0,0,this.oscilloscope.width,this.oscilloscope.height);
+	this.grid();
+	this.oContext.lineWidth = 1;
+	this.oContext.strokeStyle = 'rgba(0,255,0,1.0)';
+
+	this.oContext.beginPath();
+
+	var sliceWidth = this.oscilloscope.width * 1.0 / this.bufferLength;
+	var x = 0;
+
+	for (var i = 0; i < this.bufferLength; i++) {
+		var v = this.dataArray[i] / 128.0;
+		var y = v * this.oscilloscope.height / 2;
+
+		if(i === 0){
+			this.oContext.moveTo(x, y);
+		}	else {
+			this.oContext.lineTo(x, y);
+		}
+
+		x += sliceWidth;
+	}
+	this.oContext.lineTo(this.width, this.height/2);
+	this.oContext.stroke();
+	var drawer = requestAnimationFrame(this.draw.bind(this));
+};
+// https://developer.apple.com/library/safari/documentation/AudioVideo/Conceptual/HTML-canvas-guide/CreatingChartsandGraphs/CreatingChartsandGraphs.html
+  
+  </script>
+
+  <style id="compiled-css" type="text/css">
+      body {
+    background-color: rgb(250, 250, 250);
+}
+button {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    font-family: monospace;
+    line-height: 20px;
+    width: 255px;
+    margin-bottom: 5px;
+    clear: both;
+}
+input[type=radio] {
+    float: right;
+}
+span, input[type=number] {
+    background-color: white;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+    display: inline-block;
+    width: 70px;
+    line-height: 16px;
+    text-align: center;
+    font-weight: bold;
+    padding: 1px 5px;
+    float: right;
+}
+select {
+    float: right;
+}
+hr {
+    border-color: rgba(200, 200, 200, 0.1);
+}
+.preset.active {
+    font-weight: bold;
+}
+#controller {
+    overflow: hidden;
+}
+#controller svg {
+    position: relative;
+    top: -55px;
+    pointer-events: none;
+}
+@media (min-width: 640px) {
+    #controller svg {
+        top: -125px;
+    }
+}
+.key {
+    cursor: pointer;
+    pointer-events: fill;
+}
+.key:hover, .key.active {
+    fill: #00ADEE;
+}
+    /* EOS */
+  </style>
+
+  <script id="insert"></script>
+
+
+</head>
+<body>
+    <canvas id="oscilloscope"></canvas>
+<button class='start'>start</button>
+<button class='stop' disabled>stop</button>
+<br>
+<button class='preset' data-preset='a'>a</button>
+<button class='preset' data-preset='b'>b</button>
+<button class='preset' data-preset='c'>c</button>
+<button class='preset' data-preset='d'>d</button>
+<button class='preset' data-preset='e'>e</button>
+<button class='preset' data-preset='f'>f</button>
+<button class='preset' data-preset='g'>g</button>
+<button class='preset' data-preset='h'>h</button>
+<button class='preset' data-preset='i'>i</button>
+<button class='preset' data-preset='j'>j</button>
+<button class='preset' data-preset='k'>k</button>
+<button class='preset' data-preset='l'>l</button>
+<button class='preset' data-preset='m'>m</button>
+<button class='preset' data-preset='random'>random</button>
+
+<div class="tracking-controls">
+  <label for='carrier-tracking'>Carrier Tracking
+    <input class='tc carrier-tracking' type='radio' name='tracking' />
+  </label>
+  <label for='modulator-tracking'>Modulator Tracking
+    <input class='tc modulator-tracking' type='radio' name='tracking' />
+  </label>
+  <label for='cm-tracking'>Carrier &amp; Modulator Tracking
+    <input class='tc cm-tracking' type='radio' name='tracking' checked />
+  </label>
+</div>
+<br>
+<hr>
+<label for='carrierF'>carrier-freq
+  <input class='carrier-f' type="number" min="0" max="20000" step="1.00" value="218">
+</label>
+<label for='carrierWaveform'>carrier-waveform
+  <select name="carrierWaveform" class="cw">
+    <option value="sine">sine</option>
+    <option value="square">square</option>
+    <option value="sawtooth">sawtooth</option>
+    <option value="triangle">triangle</option>
+  </select>
+</label>
+<br>
+<hr>
+<label for='modulatorF'>modulator-freq
+  <input class='modulator-f' type="number" min="0" max="20000" step="1.00" value="478">
+</label>
+<label for='modulatorWaveform'>modulator-waveform
+  <select name="modulatorWaveform" class="mw">
+    <option value="sine">sine</option>
+    <option value="square">square</option>
+    <option value="sawtooth">sawtooth</option>
+    <option value="triangle">triangle</option>
+  </select>
+</label>
+<label for='modulatorG'>modulator-gain
+  <input class='modulator-g' type="number" min="0" max="5" step="0.025" value="1">
+</label>
+<br>
+<hr>
+<label for='masterG'>master-gain
+  <input class='master-g' type="number" min="0" max="1" step="0.025" value="0.5">
+</label>
+
+
+
+    <script>
+
+var iOS = /iPad|iPhone|iPod/.test(navigator.platform); //detect platform
+
+//GLOBAL VAR
+var startBtn = document.querySelector('.start'),
+    stopBtn = document.querySelector('.stop'),
+    carrierFInput = document.querySelector('.carrier-f'),
+    modulatorFInput = document.querySelector('.modulator-f'),
+    modulatorGInput = document.querySelector('.modulator-g'),
+    masterGInput = document.querySelector('.master-g'),
+    carrierType = document.querySelector('.cw'),
+    modulatorType = document.querySelector('.mw'),
+    carrierTracking = document.querySelector('.carrier-tracking'),
+    modulatorTracking = document.querySelector('.modulator-tracking'),
+    CMTracking = document.querySelector('.cm-tracking')
+    presetBtn = document.querySelectorAll('.preset'),
+    allKeys = document.querySelectorAll('#kboard > g > path');
+
+
+// PRESET VAR PROPERTIES
+var presets = {
+    a: {
+        cf: 218,
+        mf: 478,
+        cw: 'sine',
+        mw: 'sine',
+        modg: 1,
+        mg: 0.5
+    },
+    b: {
+        cf: 505,
+        mf: 7,
+        cw: 'sine',
+        mw: 'sawtooth',
+        modg: 1.95,
+        mg: 0.3
+    },
+    c: {
+        cf: 79,
+        mf: 41,
+        cw: 'sine',
+        mw: 'sawtooth',
+        modg: 1.75,
+        mg: 0.5
+    },
+    d: {
+        cf: 218,
+        mf: 2,
+        cw: 'triangle',
+        mw: 'square',
+        modg: 1.5,
+        mg: 0.8
+    },
+    e: {
+        cf: 163,
+        mf: 41,
+        cw: 'sawtooth',
+        mw: 'sawtooth',
+        modg: 1.175,
+        mg: 0.5
+    },
+    f: {
+        cf: 83,
+        mf: 41,
+        cw: 'sawtooth',
+        mw: 'square',
+        modg: 1,
+        mg: 0.75
+    },
+    g: {
+        cf: 98,
+        mf: 393,
+        cw: 'square',
+        mw: 'sawtooth',
+        modg: 1,
+        mg: 0.5
+    },
+    h: {
+        cf: 100,
+        mf: 151,
+        cw: 'square',
+        mw: 'square',
+        modg: 0.85,
+        mg: 0.75
+    },
+    i: {
+        cf: 747,
+        mf: 172,
+        cw: 'sine',
+        mw: 'square',
+        modg: 0.925,
+        mg: 0.5
+    },
+    j: {
+        cf: 79,
+        mf: 87,
+        cw: 'square',
+        mw: 'square',
+        modg: 1.75,
+        mg: 0.275
+    },
+    k: {
+        cf: 71,
+        mf: 214,
+        cw: 'triangle',
+        mw: 'sine',
+        modg: 1,
+        mg: 0.5
+    },
+    l: {
+        cf: 1223,
+        mf: 1257,
+        cw: 'sawtooth',
+        mw: 'sawtooth',
+        modg: 1,
+        mg: 0.5
+    },
+    m: {
+        cf: 198,
+        mf: 100,
+        cw: 'sine',
+        mw: 'triangle',
+        modg: 1,
+        mg: 0.5
+    }
+};
+
+// AUDIOCONTEXT
+var audioContext = new(window.AudioContext || window.webkitAudioContext)(),
+    carrier = audioContext.createOscillator(),
+    modulator = audioContext.createOscillator(),
+    carrierGain = audioContext.createGain(),
+    modulatorGain = audioContext.createGain(),
+		convolver = audioContext.createConvolver(),
+		convolverGain = audioContext.createGain(),
+    master = audioContext.createGain(),
+    now = audioContext.currentTime;
+
+//AUDIO MATRIX
+carrier.connect(carrierGain);
+modulator.connect(modulatorGain);
+modulatorGain.connect(carrierGain.gain);
+carrierGain.connect(convolver);
+convolver.connect(master);
+carrierGain.connect(master);
+
+
+convolverGain.gain.value= 1;
+
+
+//wHAT IS THE ACTIVE KEY?
+var activeKeys = {};
+
+//REP: OSCILLOSCOPE
+var contentWidth = document.body.offsetWidth;
+var contentHeight= document.body.offsetHeigth;
+var analyser = audioContext.createAnalyser();
+var oscilloscope = new Oscilloscope(audioContext, analyser, contentWidth, 150);
+
+
+//INIT - DRAW
+carrier.start(0);
+modulator.start(0);
+presetter('a');
+
+// BINDINGS - 
+startBtn.onclick = playSound;
+stopBtn.onclick = stopSound;
+
+// choose preset on button click
+addEventListenerBySelector('.preset', 'click', function (e) {
+    var t = e.target,
+        p = t.dataset.preset;
+    presetter(p);
+    CMTracking.checked = true;
+    deactivateKeys(allKeys);
+});
+// set carrier frequency
+carrierFInput.oninput = function () {
+    carrier.frequency.value = this.value;
+    carrier.frequency.cancelScheduledValues(0);
+    carrier.frequency.setValueAtTime(this.value, now);
+}
+// set modulator frequency
+modulatorFInput.oninput = function () {
+    modulator.frequency.value = this.value;
+    modulator.frequency.cancelScheduledValues(0);
+    modulator.frequency.setValueAtTime(this.value, now);
+}
+// set modulator gain
+modulatorGInput.oninput = function () {
+    modulatorGain.gain.value = this.value;
+    modulatorGain.gain.cancelScheduledValues(0);
+    modulatorGain.gain.setValueAtTime(this.value, now);
+}
+// set master gain
+masterGInput.oninput = function () {
+    changeMaster(this.value);
+}
+// set carrier type
+carrierType.onchange = function () {
+    changeCarrierType(this.value);
+}
+// set modulator type
+modulatorType.onchange = function () {
+    changeModulatorType(this.value);
+}
+
+
+//FUNCTION DEFINITION
+
+function changeMaster(vol) {
+    master.gain.value = vol;
+    masterGInput.value = vol;
+    master.gain.cancelScheduledValues(0);
+    master.gain.setValueAtTime(vol, now);
+}
+
+function playSound() {
+    // start with preset 'a' values
+    presetter('a');
+    master.connect(audioContext.destination);
+    master.connect(oscilloscope.analyser);
+    stopBtn.disabled = false;
+    startBtn.disabled = true;
+    audioContext.resume();
+}
+
+function stopSound() {
+    master.gain.value = 0;
+    master.disconnect(audioContext.destination);
+    master.disconnect(oscilloscope.analyser);
+    stopBtn.disabled = true;
+    startBtn.disabled = false;
+    audioContext.suspend();
+    deactivateKeys(allKeys);
+}
+
+function changeCarrierType(type) {
+    carrier.type = type;
+}
+
+function changeModulatorType(type) {
+    modulator.type = type;
+}
+
+// EG functions
+function envGenOn(audioParam) {
+    var now = now,
+        masterG = masterGInput.value;
+
+    audioParam.cancelScheduledValues(0);
+    audioParam.setValueAtTime(0, now);
+    audioParam.linearRampToValueAtTime(masterG, now + 0.005);
+}
+
+function envGenOff(audioParam) {
+    var now = now;
+    audioParam.cancelScheduledValues(0);
+    audioParam.setValueAtTime(audioParam.value, now);
+    audioParam.linearRampToValueAtTime(0, now + 0.005);
+}
+
+// presets
+function presetter(preset) {
+    var p;
+
+    if (typeof preset === 'object') {
+        p = preset;
+    } else if (preset === 'random') {
+        p = randomPreset();
+    } else {
+        p = presets[preset];
+    }
+
+    master.gain.cancelScheduledValues(0);
+    master.gain.setValueAtTime(p.mg, now);
+    
+		// change values
+    carrier.type = p.cw;
+    modulator.type = p.mw;
+
+    carrier.frequency.value = p.cf;
+    carrier.frequency.cancelScheduledValues(0);
+    carrier.frequency.setValueAtTime(p.cf, now);
+
+    modulator.frequency.value = p.mf;
+    modulator.frequency.cancelScheduledValues(0);
+    modulator.frequency.setValueAtTime(p.mf, now);
+
+    modulatorGain.gain.value = p.modg;
+    modulatorGain.gain.cancelScheduledValues(0);
+    modulatorGain.gain.setValueAtTime(p.modg, now);
+
+    master.gain.value = p.mg;
+    master.gain.cancelScheduledValues(0);
+    master.gain.setValueAtTime(p.mg, now);
+    // display values
+    carrierType.value = p.cw;
+    modulatorType.value = p.mw;
+
+    carrierFInput.value = p.cf;
+    modulatorFInput.value = p.mf;
+    modulatorGInput.value = p.modg;
+
+    masterGInput.value = p.mg;
+
+    // global reference
+    window.currentPreset = p;
+}
+
+function randomPreset() {
+    var type = ['sine', 'square', 'sawtooth', 'triangle'],
+        typeIndex1 = Math.floor(Math.random() * 4),
+        typeIndex2 = Math.floor(Math.random() * 4),
+        car = Math.random() * 1500,
+        mod = Math.random() * 1500;
+
+    return {
+        cf: car,
+        mf: mod,
+        cw: type[typeIndex1],
+        mw: type[typeIndex2],
+        modg: 1,
+        mg: 0.5
+    };
+}
+
+// set preset again on tracking change
+addEventListenerBySelector('.tc', 'click', function (e) {
+    presetter(window.currentPreset);
+    deactivateKeys(allKeys);
+});
+
+
+
+// qwerty keyboard functions
+var keyboard = document.getElementById('controller');
+var k = document.getElementsByClassName('key');
+
+if (!iOS){
+	keyboard.addEventListener('mousedown', keynote);
+	keyboard.addEventListener('mouseup', keynote);
+} else {
+    keyboard.addEventListener('touchstart', keynote);
+}
+
+function keynote(e) {
+    if (e.target.classList[0] != 'key') return;
+
+    var keyClasses = e.target.classList,
+        midiNote = keyClasses[searchIndex(keyClasses, "key[0-9]+")].replace('key', '');
+
+    if (!iOS){
+    	switch (e.type) {
+        	case 'mousedown':
+            tracking(midiNote);
+            envGenOn(master.gain);
+            keyClasses.add('active');
+                
+            break;
+
+        	case 'mouseup':
+            tracking(midiNote);
+            envGenOff(master.gain);
+            keyClasses.remove('active');
+                
+            break;
+    	}
+    } else {
+       	switch (e.type) {
+        	case 'touchstart':
+            tracking(midiNote);
+            envGenOn(master.gain);
+            deactivateKeys(allKeys);
+            keyClasses.add('active');
+
+            break;
+
+    	}
+    }
+}
+
+// utilities
+function frequencyFromNote(note) {
+    return 440 * Math.pow(2, (+note - 69) / 12);
+}
+
+function modValue(preset, note) {
+		var note = +note;
+    /*
+		ratio = carfreq/modfreq
+		scaling = 1/ratio
+		modfreq = carfreq*scaling
+	*/
+    var ratio = preset.cf / preset.mf, scaling = 1 / ratio;
+    return (frequencyFromNote(note) * scaling < 0) ? preset.mf : frequencyFromNote(note) * scaling;
+}
+
+function tracking(note) {
+    var now = now,
+        modVal, note = +note;
+
+    if (carrierTracking.checked) {
+        carrier.frequency.cancelScheduledValues(0);
+        carrier.frequency.setValueAtTime(frequencyFromNote(note), now);
+        carrierFInput.value = frequencyFromNote(note);
+
+    } else if (modulatorTracking.checked) {
+        modulator.frequency.cancelScheduledValues(0);
+        modulator.frequency.setValueAtTime(frequencyFromNote(note), now);
+        modulatorFInput.value = frequencyFromNote(note);
+
+    } else if (CMTracking.checked) {
+        modVal = modValue(window.currentPreset, note);
+
+        carrier.frequency.cancelScheduledValues(0);
+        carrier.frequency.setValueAtTime(frequencyFromNote(note), now);
+        carrierFInput.value = frequencyFromNote(note);
+
+        modulator.frequency.cancelScheduledValues(0);
+        modulator.frequency.setValueAtTime(modVal, now);
+        modulatorFInput.value = modVal;
+    }
+}
+
+function addEventListenerBySelector(selector, event, fn) {
+    var list = document.querySelectorAll(selector);
+    for (var i = 0, len = list.length; i < len; i++) {
+        list[i].addEventListener(event, fn, false);
+    }
+}
+
+function isEmptyObj(obj) {
+    return Object.keys(obj).length === 0;
+}
+
+// ios enable sound output
+window.addEventListener('touchstart', function () {
+    //create empty buffer
+    var buffer = audioContext.createBuffer(1, 1, 22050);
+    var source = audioContext.createBufferSource();
+    source.buffer = buffer;
+    source.connect(audioContext.destination);
+    source.start(0);
+}, false);
+// svg
+function svgnote(midiNote, velocity) {
+    // ignore notes outside of our svg keyboard range
+    if (midiNote >= 48 && midiNote <= 72) {
+        var keyClass = "key" + midiNote,
+            key = document.querySelector('.' + keyClass),
+            keyClassList = key.classList;
+        (velocity) ? keyClassList.add('active') : keyClassList.remove('active');
+    }
+}
+// find items in list
+function searchIndex(list, value) {
+    value = new RegExp(value);
+    for (var i in list) {
+        if (list[i].match(value)) {
+            return i;
+        }
+    }
+    return 0;
+}
+// deactivateKeys
+function deactivateKeys(elems){
+    [].forEach.call(elems, function(el) {
+        el.classList.remove("active");
+    });
+}
+
+
+  //]]></script>
+
+  <script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+      window.parent.parent.postMessage(["resultsFrame", {
+        height: document.body.getBoundingClientRect().height,
+        slug: "13b0rwqj"
+      }], "*")
+    }
+
+    // always overwrite window.name, in case users try to set it manually
+    window.name = "result"
+  </script>
+
+
+</body>
+</html>
+
+//
