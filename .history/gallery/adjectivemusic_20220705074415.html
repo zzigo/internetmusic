@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>replit</title>
+
+    <style>
+        html,
+        body,
+        h1 {
+            height: 100%;
+            width: 100%;
+        }
+
+
+        body {
+            transition: background-color 0.3s ease-in;
+            font-family: "Times New Roman", Times, serif;
+            background-color: #ff002b;
+            overflow: hidden;
+            font-size: 12px;
+        }
+
+        @media (min-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+        }
+
+        @media (min-width: 640px) {
+            body {
+                font-size: 16px;
+            }
+        }
+
+        .word,
+        .word2 {
+            font-family: "Times New Roman", Times, serif;
+            font-style: italic;
+            bold;
+            letter-spacing: 0.05em;
+            color: white;
+            padding: 0.5em;
+            font-size: 28px;
+        }
+
+        svg {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            top: -1rem;
+            -webkit-animation: pop-out 2s ease-in-out infinite;
+            animation: pop-out 2s ease-in-out infinite;
+        }
+
+
+        /* anim */
+
+        @-webkit-keyframes pop-out {
+            0% {
+                transform: scale3d(0, 0, 1);
+                opacity: 1;
+            }
+
+            25% {
+                transform: scale3d(3, 3, 1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale3d(3, 3, 1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pop-out {
+            0% {
+                transform: scale3d(0, 0, 1);
+                opacity: 1;
+            }
+
+            25% {
+                transform: scale3d(2, 2, 1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale3d(3, 3, 1);
+                opacity: 0;
+            }
+        }
+
+        a,
+        a:visited {
+            color: inherit;
+        }
+
+        /* paragraph */
+
+
+        p {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            line-height: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.75);
+            background-color: #222222;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <script>
+        // ✅ read file ASYNCHRONOUSLY
+        function getData(file, type) { //this will read file and send information to other function
+            var xmlhttp;
+
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    var lines = xmlhttp.responseText; //*here we get all lines from text file*
+
+                    if (type == 1) {
+                        words = intoArray(lines); //here we call function with parameter "lines*"                   
+                    } else
+                        wordsMus = intoArray(lines);
+                }
+            }
+            xmlhttp.open("GET", file, true);
+            xmlhttp.send();
+        }
+
+        function intoArray(lines) {
+            // splitting all text data into array "\n" is splitting data from each new line
+            //and saving each new line as each element*
+            var lineArr = lines.split('\n');
+            return lineArr;
+            //just to check if it works output lineArr[index] as below
+            // document.write(lineArr[2]);         
+        }
+
+
+        var body, svg, word, words, wordsMus;
+        body = document.getElementById("body");
+        svg = document.getElementById("svg");
+
+        var file1 = "./inc/english-adjectives.txt";
+        var file2 = "./inc/music-adjectives.txt";
+
+        getData(file1, 1);
+        getData(file2, 2);
+
+
+        // in replace of beautifull $(document).ready(function () {
+        document.addEventListener("DOMContentLoaded", function (event) {
+
+            var hue = 350;
+
+            var animated = document.querySelector("svg");
+
+            animated.addEventListener("animationiteration", () => {
+                var wordDynMus = wordsMus[Math.floor(Math.random() * wordsMus.length)];
+                var wordDyn = words[Math.floor(Math.random() * words.length)] + ' ' + wordDynMus + '!';
+
+                document.querySelector(".word").textContent = wordDyn;
+                document.querySelector(".word2").textContent = wordDyn;
+
+                hue += 47;
+                document.querySelector("body").style.backgroundColor = "hsl(" + hue + ", 100%, 50%)";
+            });
+
+            // update the background color
+
+
+
+            // 
+
+        });
+    </script>
+
+    <h1>
+        <svg role="img">
+            <title class="title">adjective + musical </title>
+            <text class="word" dominant-baseline="central" fill="#222" stroke="#222" stroke-linecap="round"
+                stroke-width="1.5%" text-anchor="middle" x="50%" y="50%">adjective + musical</text>
+            <text class="word2" dominant-baseline="central" fill="white" text-anchor="middle" x="50%" y="50%">adjective
+                + musical</text>
+        </svg>
+    </h1>
+</body>
+
+</html>

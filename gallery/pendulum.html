@@ -1,0 +1,314 @@
+<html>
+  <head>
+    <title>sketch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+    html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
+		   
+    
+    <!-- MIDI CUSTOM LIB -->
+    <script>
+        let midiOutput = null // universal var
+let midiPort = [];  
+
+
+const NOTE_ON = 0x90;
+const NOTE_OFF = 0x80;
+const NOTE_DURATION = 300;
+
+
+// STEP 1 Access to MIDIAccess 
+navigator.requestMIDIAccess()
+.then(function(midiAccess) {
+  const outputs = midiAccess.outputs.values();
+  console.log(outputs);
+  for(const output of outputs) {
+    console.log(output);
+    midiOutput = output;
+  }
+});
+
+
+function InitMidi(){
+  if(navigator.requestMIDIAccess){
+    navigator.requestMIDIAccess().then(
+      function(access){
+        console.log("MIDI ready.");
+				 out = access.outputs.values();
+				console.log("MIDI OUT is >>" + out);
+        setTimeout(function(){
+          var it=access.outputs.values();
+          for(var i=it.next();!i.done;i=it.next()){
+            var e=document.createElement("option");
+            e.innerHTML=i.value.name;
+            document.getElementById("midiport").appendChild(e);
+            midiPort.push(i.value);
+          }
+          if(midiPort.length>0)
+            SelectMidi(0);
+        },10);
+      },
+      function(){
+        console.log("MIDI is not available.");
+      }
+  );}
+};
+
+function playNoteMidi(note,dur)
+	{
+		// console.log(note)
+		  midiOutput.send([NOTE_ON, note, 0x7f]);
+  // setTimeout(playNoteMidi,dur);
+	}
+
+
+function SelectMidi(n){
+ console.log("Select Port:"+n+":"+(n>=0?midiPort[n].name:"none"));
+console.log(midiPort);
+  document.getElementById("midiport").selectedIndex=n+1;
+  if(currentPort>=0)
+    midiPort[currentPort].removeEventListener("midimessage",MidiOut);
+  currentPort=n;
+  if(currentPort>=0){
+    midiPort[currentPort].addEventListener("midimessage",MidiOut);
+  }
+}
+
+
+function MidiOut(note){
+
+	 if(navigator.requestMIDIAccess){
+    navigator.requestMIDIAccess().then(
+      function(access){
+	var noteOnMessage = [0x90, 60, 0x7f];    // note on, middle C, full velocity
+  var output = access.outputs.get(currentPort);
+  output.send( noteOnMessage );  //omitting the timestamp means send immediately.
+  output.send( [0x80, 60, 0x40], window.performance.now() + 1000.0 ); // Inlined array creation- note off, middle C,
+                                                               // release velocity = 64, timestamp = now + 1000ms.
+			}
+			  );}
+}
+
+
+
+    </script>
+
+    
+    <!-- sound libraries --> 
+    <script src="https://cdn.jsdelivr.net/npm/@tonaljs/tonal/browser/tonal.min.js"></script>
+    <script src="https://unpkg.com/tone@14.7.58/build/Tone.js"></script>
+    
+    <!-- MAIN SCRIPT -->
+    <script>
+// Inspired by
+// Memo Atken's Simple Harmonic Motion series
+
+let masterVolume = -9; // in decibel.
+let ready = false;
+
+let pendulums = [];
+
+let scale;
+
+let mixer;
+
+var currentPort=-1;
+var out = 0;
+
+//------------------------------------------------------------
+// Create a new canvas to match the browser size
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+}
+
+//------------------------------------------------------------
+// On window resize, update the canvas size
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+//------------------------------------------------------------
+// Main render loop
+function draw() {
+  background(0);
+
+  if (ready) {
+    for (let p of pendulums) {
+      p.run();
+      translate(0, height / (pendulums.length+1));
+    }
+  } else {
+    fill(255);
+    noStroke();
+    textAlign(CENTER, CENTER);
+    text("CLICK TO START", width / 2, height / 2);
+  }
+}
+
+//------------------------------------------------------------
+function mousePressed() {
+  if (!ready) {
+    initializeAudio();
+		  InitMidi(); //version 1
+		 	// midiconfig(); //version 2
+		// playNoteC()
+		
+
+    ready = true;
+		
+  }
+}
+
+//------------------------------------------------------------
+function initializeAudio() {
+  Tone.Master.volume.value = masterVolume;
+
+  mixer = new Tone.Gain();
+
+  let reverb = new Tone.Reverb({
+    wet: 0.5, // half dry, half wet mix
+    decay: 30 // decay time in seconds
+  });
+
+  // setup the audio chain:
+  // mixer -> reverb -> Tone.Master
+  // note that the synth object inside each pendulum get
+  // connected to the mixer, so our final chain will look like:
+  // synth(s) -> mixer -> reverb -> Tone.Master
+  mixer.connect(reverb);
+  reverb.toDestination();
+
+  // quick way to get more notes: just glue 3 scales together
+  // other 'flavours' to try:
+  // major
+  // minor
+  // major pentatonic
+  // the modes (eg: dorian, phrygian, etc..)
+  // look at Tonal.ScaleType.names() to see a list of all supported
+  // names
+
+  let flavour = "minor pentatonic";
+  scale = Tonal.Scale.get("C3 " + flavour).notes;
+  scale = scale.concat(Tonal.Scale.get("C4 " + flavour).notes);
+  scale = scale.concat(Tonal.Scale.get("C5 " + flavour).notes);
+
+  // optional but fun: shuffle the scale array to mixup the notes
+  //Tonal.Collection.shuffle(scale);
+
+  // create as many pendulums as we have notes in the scale[] array
+  for (let i = 0; i < scale.length; i++) {
+    pendulums[i] = new Pendulum(0.85 + i * (1 / 60), scale[i]);
+  }
+}
+
+//------------------------------------------------------------
+class Pendulum {
+  // runs when we call "= new Pendulum()"
+  constructor(freq, note) {
+    this.freq = freq * 0.2;
+    this.note = note;
+
+    this.lfo = new Tone.LFO(this.freq);
+    this.lfo.start(1); // creating a delayed start time by 1
+    this.meter = new Tone.Meter();
+    this.meter.normalRange = true; // 0-1
+    this.lfo.connect(this.meter);
+
+    this.synth = new Tone.Synth();
+    this.synth.connect(mixer);
+
+    this.prevPos = 0;
+  }
+
+  // Arbitrary name here. We could have called this function 'update'
+  // or 'swing' or whatever.
+  run() {
+    let pos = 0.5 - this.meter.getValue(0); // -> -0.5 ~ 0.5
+    
+    let border = max(100, (width-300)/2);
+    // console.log(pos); 
+    let x = map(pos, -0.5, 0.5, border, width - border);
+
+    let left = pos > 0 && this.prevPos < 0; // && --> AND
+    let right = pos < 0 && this.prevPos > 0;
+    if (left || right) {
+      // || ---> OR
+      // trigger a note
+      this.synth.triggerAttackRelease(this.note, "8n");
+			
+			// console.log(this.note);
+			
+			/// MIDI NOTE OUT
+			var midinote = Tone.Midi(this.note).toMidi()
+			  // playNote(midinote,100);
+		playNoteMidi(midinote,100)
+    }
+		
+    this.prevPos = pos;
+
+    // drawing code --> this could go in a separate function if we
+    // wanted to, but I didn't bother in this case.
+    fill(255);
+    stroke(255);
+    line(x, 50, width / 2, 0);
+    ellipse(x, 50, 25, 25);
+  }
+}
+
+
+// function midiconfig() {
+
+// 	let midiOutput = null;
+// 	navigator.requestMIDIAccess()
+// 	.then (function(access) {
+// 		const outputs = Array.from(access.outputs.values());
+// 		console.log(outputs);
+// 	})
+// }
+
+
+
+
+// function MidiIn(e){
+//   if(synth){
+//     switch(e.data[0]&0xf0){
+//     case 0x90:
+//       kb.setNote(e.data[2]?1:0,e.data[1]);
+//       break;
+//     case 0x80:
+//       kb.setNote(0,e.data[1]);
+//     }
+//     e.data[1]=e.data[1]+curOct*12;
+//     synth.send(e.data,0);
+//   }
+// }
+
+
+/////PLAYGROUND
+
+
+
+// 	function midiOut2( midiAccess, portID ) {
+//   var noteOnMessage = [0x90, 60, 0x7f];    // note on, middle C, full velocity
+//   var output = midiAccess.outputs.get(portID);
+//   output.send( noteOnMessage );  //omitting the timestamp means send immediately.
+//   output.send( [0x80, 60, 0x40], window.performance.now() + 1000.0 ); // Inlined array creation- note off, middle C,
+//                                                                       // release velocity = 64, timestamp = now + 1000ms.
+// }
+    </script>
+  </head>  
+  <body>
+		<p style="font-family:Arial">midiout <select id="midiport" onchange="SelectMidi(this.selectedIndex-1)"><option>--</option></select></p> 
+
+		
+	</body>
+</html>
