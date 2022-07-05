@@ -166,12 +166,17 @@
 
 
     <h2>INTERNET MUSIC GALLERY</h2>
+    <h3> a gallery of web experimentes developed around the WebAudio skill at the Multimedia Master of the Haute école de Musique de Genève</h3>
+  <br>
+    <br>
     <div id="myBtnContainer">
         <button class="btn active" onclick="filterSelection('all')"> all</button>
         <button class="btn" onclick="filterSelection('tonejs')"> tonejs</button>
         <button class="btn" onclick="filterSelection('visual')"> visual</button>
         <button class="btn" onclick="filterSelection('webaudioapi')"> webaudioapi</button>
         <button class="btn" onclick="filterSelection('semantic')"> semantic</button>
+        <button class="btn" onclick="filterSelection('scores')"> scores</button>
+
 
     </div>
 
@@ -219,6 +224,15 @@
 
                 <h4>Theremin</h4>
                 <p>Interaction with canvas and WAApi</p>
+            </div>
+        </div>
+        
+                <div class="column scores">
+            <div class="thumbnail" onclick="location.href='./gallery/collider.html';">
+                <iframe src="./gallery/collider.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+
+                <h4>Collider (2016)</h4>
+                <p>A nonlinear dynamic score</p>
             </div>
         </div>
 
