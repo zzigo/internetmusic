@@ -57,59 +57,9 @@ note:1.  So ML involves a number of steps, the first step is to import our data 
 5.  Next we need to **train the model**. So we feed it our training data. On this step our model will then look for the patterns in the data, so next we can ask it to make predictions. Coming back to our motet recognition exanple, giving a header of few pitches (a partial theme of a exposition), our model can predict potential continuities based on its train. Of course, this prediction is not always accurate.
 6.  This measurement of the prediction is the **evaluation and improvement** stage, and in many algorythms you will find a measure of this accuracy called _**temperature**._
 ---
-## Nothing, Forever
----
-[Nothing,Forever]
 
-Procedurally generated sitcom
-Mismatch Media, Skyler Hartle , Brian Habersberger
-
-1. A computer broadcasts AI-generated spoof _Seinfeld_ episodes for eternity.
-2. "experimental forms of television shows, video games, and more, through generative... and other machine learning technologies."
----
-```embed
-title: 'watchmeforever - Nothing Forever goes meta'
-image: 'https://clips-media-assets2.twitch.tv/UHx-sNfdGG08c9d-o0eW0A/AT-cm|UHx-sNfdGG08c9d-o0eW0A-social-preview.jpg'
-description: 'Watch watchmeforever’s clip titled “Nothing Forever goes meta”'
-url: 'https://m.twitch.tv/watchmeforever/clip/EnthusiasticBrainyTrollOMGScoots-190YbTxz136jR5bQ'
-```
-
+##  Forevere
 
 note: 'https://m.twitch.tv/watchmeforever'
 
 ---
-```
-
-
-# Text Generation
-## murf.ai
-
-AI voices and youtube video extractor.
- turns your text into a human-sounding voice. This tool can also be used to create audiobooks in addition to changing the book’s voice.
-
-## texti
-```embed
-title: 'Texti'
-image: 'https://lh3.googleusercontent.com/0xoJYzfD-PEU4hWIJ7phcVwbum0GH-LLv0qA5WGrgARCy25Qz7nsIgICZanceKFdGzqYflwNgbJNCHyFTMJpvCTD3AE=w128-h128-e365-rj-sc0x00ffffff'
-description: 'An AI that will cooperate with you to boost your copywriting skills.'
-url: 'https://chrome.google.com/webstore/detail/texti/hdfpikgminknioaacfllhjjjhifoemhk'
-```
-
----
-# Image Processing
-
-```embed
-title: 'Runway - Everything you need to make anything you want.'
-image: 'https://d3phaj0sisr2ct.cloudfront.net/site/images/og-card-v3.png'
-description: 'Explore more than 30+ AI powered creative tools to ideate, generate and edit content like never before.'
-url: 'https://runwayml.com/'
-```
-
-
-### vall-e
-https://valle-demo.github.io/
-### stability AI - Stable Diffusion
-### Metaphysic
-	fake tom cruise
-	abba
-	elvis
