@@ -12,10 +12,15 @@
 
 https://www.midjourney.com/
 [Dall-E](https://huggingface.co/spaces/dalle-mini/dalle-mini)
+
 [StyleGan3](https://github.com/NVlabs/stylegan3)
+
 [Parti - Pathways Autoregressive Text-to-Image model](https://github.com/google-research/parti)
+
 [Runway](https://runwayml.com/) - Explore more than 30+ AI powered creative tools to ideate, generate and edit content like never before.
+
 [vall-e](https://valle-demo.github.io/)
+
 [stability AI] - Stable Diffusion
 
 
