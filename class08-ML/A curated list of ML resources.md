@@ -8,16 +8,25 @@
 
 [Midi to Voice](https://github.com/mathigatti/midi2voice)
 [Interactive Wav2Lip Demo](https://bhaasha.iiit.ac.in/lipsync/)
+
+[melobytes](https://melobytes.com/)
 ## image processing
 
 https://www.midjourney.com/
+
 [Dall-E](https://huggingface.co/spaces/dalle-mini/dalle-mini)
+
 [StyleGan3](https://github.com/NVlabs/stylegan3)
+
 [Parti - Pathways Autoregressive Text-to-Image model](https://github.com/google-research/parti)
+
 [Runway](https://runwayml.com/) - Explore more than 30+ AI powered creative tools to ideate, generate and edit content like never before.
 [vall-e](https://valle-demo.github.io/)
 [stability AI] - Stable Diffusion
 
+https://stablediffusionweb.com/
+https://laion.ai/
+https://haveibeentrained.com/
 
 ## video processing
 
