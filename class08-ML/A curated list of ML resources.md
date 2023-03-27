@@ -21,7 +21,9 @@ https://www.midjourney.com/
 [Parti - Pathways Autoregressive Text-to-Image model](https://github.com/google-research/parti)
 
 [Runway](https://runwayml.com/) - Explore more than 30+ AI powered creative tools to ideate, generate and edit content like never before.
+
 [vall-e](https://valle-demo.github.io/)
+
 [stability AI] - Stable Diffusion
 
 https://stablediffusionweb.com/
