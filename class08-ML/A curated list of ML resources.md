@@ -10,6 +10,11 @@
 [Interactive Wav2Lip Demo](https://bhaasha.iiit.ac.in/lipsync/)
 
 [melobytes](https://melobytes.com/)
+
+
+MusicLM , a model generating music from text descriptions.
+https://google-research.github.io/seanet/musiclm/examples/
+
 ## image processing
 
 https://www.midjourney.com/
@@ -34,6 +39,9 @@ https://haveibeentrained.com/
 
 https://wonderdynamics.com/  - An AI tool that automatically animates, lights and composes CG characters into a live-action scene
 
+gen-2 - by runwayml
+https://research.runwayml.com/gen2
+
 ## text generation
 
 [ChatGPT](https://chat.openai.com/chat)
@@ -52,9 +60,22 @@ https://wonderdynamics.com/  - An AI tool that automatically animates, lights an
 [isipalma/Tutorial-Chatterbot](https://github.com/isipalma/Tutorial-Chatterbot)
 [ChatterBot](https://github.com/gunthercox/ChatterBot)
 
+## 3d assests
+
+[MotionDiffuse](https://mingyuan-zhang.github.io/projects/MotionDiffuse.html)
 
 # Works
 
 [Hexorcismos with MelGan-VC](https://hexorcismos.bandcamp.com/album/-) - an album made with AI by Herxocism
 
 [Nothing,Forever - goes meta](https://m.twitch.tv/watchmeforever/clip/EnthusiasticBrainyTrollOMGScoots-190YbTxz136jR5bQ)  Procedurally generated sitcom , Mismatch Media, Skyler Hartle , Brian Habersberger. A computer broadcasts AI-generated spoof _Seinfeld_ episodes for eternity. "experimental forms of television shows, video games, and more, through generative ... and other machine learning technologies.
+
+[The Infinite Conversation](https://infiniteconversation.com/) Will this technology lead to a massive proliferation of sub-optimal-quality content? Should we simply distrust anything we see online? As new tools are developed to help identify generated content, I recommend maintaining a skeptical stance, particularly when the source/channel of information doesn't seem reliable and when the claims seem preposterous or outrageous.
+
+Ultimately, I don't see this as a technical problem, but as a human one. We all share a duty to educate the coming generations about the new paradigm while focusing on forming compassionate individuals who would not misuse these awesome powers.
+
+As an AI optimist, I remain hopeful that we will be able to regulate ourselves, and that we will take experiments such as the Infinite Conversation for what they are: a playful way to help us imagine what our favorite people would do, if we had unlimited access to their minds. Art and Philosophy, here exemplified by Bavarian director Werner Herzog and Slovenian philosopher Slavoj Žižek, can guide us while navigating these treacherous waters.
+
+# vst for audio production
+
+### - smart:EQ 3
