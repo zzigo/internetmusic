@@ -11,6 +11,11 @@
 
 [melobytes](https://melobytes.com/)
 
+### so-vits-svc voice clonation
+[svc voice processing](https://colab.research.google.com/drive/1128nhe0empM7u4uo5hbZx5lqjgjG1OSf#scrollTo=oFr2MWaQfR6X)
+[svc - hudding face voice models  catalog](https://huggingface.co/QuickWick/Music-AI-Voices/tree/main)
+[svc - model training](https://colab.research.google.com/drive/1r9pmTyVepvRn4pohadPEizKY0zoA9E2x?usp=sharing)
+[svc - github](https://github.com/svc-develop-team/so-vits-svc)
 
 MusicLM , a model generating music from text descriptions.
 https://google-research.github.io/seanet/musiclm/examples/
@@ -56,9 +61,16 @@ https://research.runwayml.com/gen2
 [texti](https://chrome.google.com/webstore/detail/texti/hdfpikgminknioaacfllhjjjhifoemhk) - An AI that will cooperate with you to boost your copywriting skills.
 
 
+
+
 ## chatbot
 [isipalma/Tutorial-Chatterbot](https://github.com/isipalma/Tutorial-Chatterbot)
 [ChatterBot](https://github.com/gunthercox/ChatterBot)
+
+[open assistant](https://open-assistant.io) 
+
+[humata](https://app.humata.ai/) - add pdf and regerate the chatbot- corpus.
+
 
 ## 3d assests
 
@@ -79,3 +91,4 @@ As an AI optimist, I remain hopeful that we will be able to regulate ourselves, 
 # vst for audio production
 
 ### - smart:EQ 3
+

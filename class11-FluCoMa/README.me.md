@@ -18,7 +18,7 @@ descriptor-based taxonomy
 
 component replacement
 
-bybridisation by concatenation
+hybridisation by concatenation
 
 pattern recognition at component  level 
 
@@ -61,4 +61,22 @@ note: descriptor driven playback :::
 
 ---
 
+FLUCOMA PATH REVIEW
 
+## for reaper
+/Users/[user]/Library/Application Support/REAPER/Scripts/ReaCoMa-2.0
+## for max
+
+/Users/zztt/Documents/Max 8/Packages/FluidCorpusManipulation
+
+## for command line
+just install the .dmg on the 
+/usr/local/bin
+
+---
+
+three families
+
+1. slicing
+2. layers
+3. objects

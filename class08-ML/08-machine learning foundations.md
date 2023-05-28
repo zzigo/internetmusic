@@ -63,3 +63,15 @@ note:1.  So ML involves a number of steps, the first step is to import our data 
 note: 'https://m.twitch.tv/watchmeforever'
 
 ---
+
+## GPT-4
+
+what to know about gpt-4
+
+1. is a large-scale multimodal **model** which accepts images and text inputs and produce text outputs.
+2. It exhibits human-level performance on various professional and academic benchmarks
+3. Is a transformer-based model pre-trained to predict the next token in a document.
+4. The post-training alignment process results in improved performance on measures of factuality and adherence to desired behaviour.
+5. This Fine-tuned usess Reinforcement Learning from Human Feedback (RLHF)
+
+---
