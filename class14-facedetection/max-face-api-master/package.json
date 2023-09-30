@@ -1,8 +1,0 @@
-{
-  "name": "face_api",
-  "version": "0.0.0",
-  "dependencies": {
-    "express": "^4.18.2",
-    "ws": "^7.2.3"
-  }
-}
