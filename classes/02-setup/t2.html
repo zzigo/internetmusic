@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simple piano 2</title>
+
+<style>
+body {background-color: black;font-family: monospace;height: 100%; overflow: hidden;}
+.box {display: flex;flex-wrap:wrap;height: auto;min-height: 100vh;align-items:stretch;}
+.audio-button {font-size:5vw;color:white;background:black;flex-grow: 1;min-width: 25%;border: solid white;margin: 10px;}
+.txt{ color:yellow;margin:30px; position:fixed;bottom:0;left:0px;width:100%;font-size:1.5vw;} 
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0;  } }
+.highlight { background-color: red;animation:fadeOut 1s; transition: opacity 0.2s;}
+</style>
+</head>
+<body>
+    <h1>piano</h1>
+    <div class="box">
+            <p class="txt">press ctrl+option+ the key before each notename</p>
+
+        <button  class="audio-button" accesskey="a" data-audio="C1.mp3">a:C1</button>
+        <button  class="audio-button" accesskey="s" data-audio="C2.mp3">s:C2</button>
+        <button  class="audio-button" accesskey="d" data-audio="C3.mp3">d:C3</button>
+        <button  class="audio-button" accesskey="f" data-audio="C5.mp3">f:C5</button>
+        <button  class="audio-button" accesskey="g" data-audio="C6.mp3">g:C6</button>
+        <button  class="audio-button" accesskey="h" data-audio="C7.mp3">h:C7</button>
+        <button  class="audio-button" accesskey="j" data-audio="C8.mp3">j:C8</button>         
+    </div>
+    
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.27/Tone.js"></script>
+    <script>
+        const buttons = document.querySelectorAll('.audio-button');
+
+        // Initialize Tone.js
+        Tone.start();
+
+        buttons.forEach((button, index) => {
+            button.addEventListener('click', function() {
+
+                // SYNTH VERSION
+                const note = index + 60; // MIDI note number
+                const synth = new Tone.Synth().toDestination();
+                synth.triggerAttackRelease(Tone.Midi(note).toFrequency(), '4n');
+
+                //AUDIO VERSION
+                // const audioSrc = this.getAttribute('data-audio');
+                // const player = new Tone.Player(audioSrc).toDestination();
+                // player.start();
+
+                // Highlight the clicked button for 2 seconds
+                this.classList.add('highlight');
+                setTimeout(() => {
+                    this.classList.remove('highlight');
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "uuid": "ohk88khsecaw7wrv2h01a",
+  "gates": {
+    "aHR0cHM6Ly9lZGl0b3IucDVqcy5vcmcvenppZ28vc2tldGNoZXMvWm5hNlFRZ1dR": {
+      "id": "aHR0cHM6Ly9lZGl0b3IucDVqcy5vcmcvenppZ28vc2tldGNoZXMvWm5hNlFRZ1dR",
+      "title": "p5",
+      "icon": "<svg viewBox=\"0 0 100 100\"><image href=\"https://fetch-favicon.fly.dev/favicon/aHR0cHM6Ly9lZGl0b3IucDVqcy5vcmcvenppZ28vc2tldGNoZXMvWm5hNlFRZ1dR\" height=\"100\" width=\"100\" /></svg>",
+      "hasRibbon": true,
+      "position": "right",
+      "profileKey": "open-gate",
+      "url": "https://editor.p5js.org/zzigo/sketches/Zna6QQgWQ",
+      "zoomFactor": 1,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
+    }
+  }
+}

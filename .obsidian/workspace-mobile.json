@@ -1,0 +1,141 @@
+{
+  "main": {
+    "id": "c11b820ecc8155a8",
+    "type": "split",
+    "children": [
+      {
+        "id": "4069813f25a3a6bc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2a3b12c371a0b8ff",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "maps/internet music tree.canvas",
+                "viewState": {
+                  "x": 1191.6954612005857,
+                  "y": -71.71888726207901,
+                  "zoom": -2.4012418549652907
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2d1358bb90eb8bf1",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "ea2623c71e1fc155",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "21d64ab84e593e15",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "e96e7a458874fec0",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true
+          }
+        }
+      },
+      {
+        "id": "c28b1027e48b2466",
+        "type": "leaf",
+        "state": {
+          "type": "bookmarks",
+          "state": {}
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "c6409c2d49d8587a",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "c2ad7147f591d726",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "maps/internet music tree.canvas",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "a37087d2d82800ca",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "maps/internet music tree.canvas",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "999660fa32e272e5",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "maps/internet music tree.canvas"
+          }
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "workspaces:Manage workspace layouts": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
+    }
+  },
+  "active": "2a3b12c371a0b8ff",
+  "lastOpenFiles": []
+}
