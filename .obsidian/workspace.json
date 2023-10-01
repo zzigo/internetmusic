@@ -13,9 +13,9 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "classes/01-intro/01-intro.md",
-                "mode": "source",
-                "source": false
+                "file": "technologies/server.md",
+                "mode": "preview",
+                "source": true
               }
             }
           }
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 333.5
+    "width": 200
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "classes/01-intro/01-intro.md",
+                "file": "technologies/server.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "classes/01-intro/01-intro.md",
+                "file": "technologies/server.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "classes/01-intro/01-intro.md"
+                "file": "technologies/server.md"
               }
             }
           },
@@ -171,32 +171,35 @@
   },
   "active": "6ea38e8c6cade1d5",
   "lastOpenFiles": [
+    "technologies/tonejs.md",
+    "technologies/web audio API.md",
+    "technologies/blockchain.md",
+    "technologies/metaverses.md",
+    "technologies/internet.md",
+    "0-in/code MOC.md",
+    "code/variable.md",
+    "classes/01-intro/01-intro.md",
     "technologies/digital paradigms.md",
     "maps/internet music map.canvas",
     "maps/internet technologies.canvas",
-    "classes/01-intro/01-intro.md",
     "tpl/t-class.md",
     "classes/02-setup/02-setup.md",
     "tpl/t-code.md",
-    "code/variable.md",
     "code/01-player-scrub/index.html",
     "classes/02-setup/t1.html",
     "classes/02-setup/t2.html",
-    "0-in/code MOC.md",
     "0-in/imi MOC.md",
     "tpl",
     "conflict-files-obsidian-git.md",
     "maps/internet music tree.canvas",
     "technologies/web midi API.md",
     "technologies/randomness.md",
-    "technologies/web audio API.md",
     "technologies/electron.md",
     "maps/web structure.canvas",
     "technologies/chrome.md",
     "technologies/PaaP.md",
     "technologies/APIs.md",
     "technologies/digital garden.md",
-    "technologies/tonejs.md",
     "technologies/cybernetics.md",
     "technologies/data crawling.md",
     "technologies/js.md",
@@ -209,8 +212,6 @@
     "classes/01-intro.md",
     "img/hem-logo.png",
     "img/hem-logo 1.png",
-    "technologies/Client.md",
-    "technologies/client.md",
-    "technologies/node.js.md"
+    "technologies/Client.md"
   ]
 }
