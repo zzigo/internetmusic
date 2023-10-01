@@ -39,6 +39,18 @@
             }
           },
           {
+            "id": "a1b9163796959011",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "conflict-files-obsidian-git.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "4419d47ed684e6b0",
             "type": "leaf",
             "state": {
@@ -75,7 +87,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       },
       {
         "id": "8db8fdfc3d018243",
@@ -172,7 +184,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "maps/internet technologies.canvas",
+                "file": "conflict-files-obsidian-git.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -189,7 +201,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "maps/internet technologies.canvas",
+                "file": "conflict-files-obsidian-git.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -212,7 +224,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "maps/internet technologies.canvas"
+                "file": "conflict-files-obsidian-git.md"
               }
             }
           },
@@ -256,10 +268,11 @@
       "open-gate:p5": false
     }
   },
-  "active": "49a16355f6489050",
+  "active": "a1b9163796959011",
   "lastOpenFiles": [
-    "maps/internet music tree.canvas",
     "maps/internet technologies.canvas",
+    "conflict-files-obsidian-git.md",
+    "maps/internet music tree.canvas",
     "technologies/web midi API.md",
     "technologies/randomness.md",
     "technologies/web audio API.md",
@@ -296,7 +309,6 @@
     "technologies/client.md",
     "technologies/node.js.md",
     "maps/web structure.md",
-    "technologies/css.md",
-    "technologies/html.md"
+    "technologies/css.md"
   ]
 }
