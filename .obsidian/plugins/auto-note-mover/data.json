@@ -4,9 +4,9 @@
   "statusBar_trigger_indicator": true,
   "folder_tag_pattern": [
     {
-      "folder": "classes",
-      "tag": "#class",
-      "pattern": ""
+      "folder": "tpl",
+      "tag": "",
+      "pattern": "t-"
     }
   ],
   "use_regex_to_check_for_excluded_folder": false,

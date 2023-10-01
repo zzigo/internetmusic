@@ -19,13 +19,13 @@ body {background-color: black;font-family: monospace;height: 100%; overflow: hid
     <div class="box">
             <p class="txt">press ctrl+option+ the key before each notename</p>
 
-        <button  class="audio-button" accesskey="a" data-audio="C1.mp3">a:C1</button>
-        <button  class="audio-button" accesskey="s" data-audio="C2.mp3">s:C2</button>
-        <button  class="audio-button" accesskey="d" data-audio="C3.mp3">d:C3</button>
-        <button  class="audio-button" accesskey="f" data-audio="C5.mp3">f:C5</button>
-        <button  class="audio-button" accesskey="g" data-audio="C6.mp3">g:C6</button>
-        <button  class="audio-button" accesskey="h" data-audio="C7.mp3">h:C7</button>
-        <button  class="audio-button" accesskey="j" data-audio="C8.mp3">j:C8</button>         
+        <button  class="audio-button" accesskey="a" data-audio="./classes/02-setup/C1.mp3">a:C1</button>
+        <button  class="audio-button" accesskey="s" data-audio="./C2.mp3">s:C2</button>
+        <button  class="audio-button" accesskey="d" data-audio="./C3.mp3">d:C3</button>
+        <button  class="audio-button" accesskey="f" data-audio="./C5.mp3">f:C5</button>
+        <button  class="audio-button" accesskey="g" data-audio="./C6.mp3">g:C6</button>
+        <button  class="audio-button" accesskey="h" data-audio="./C7.mp3">h:C7</button>
+        <button  class="audio-button" accesskey="j" data-audio="./C8.mp3">j:C8</button>         
     </div>
     
  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.27/Tone.js"></script>
@@ -33,15 +33,52 @@ body {background-color: black;font-family: monospace;height: 100%; overflow: hid
         const buttons = document.querySelectorAll('.audio-button');
 
         // Initialize Tone.js
-        Tone.start();
+       
+          // REVERB
+                // convolution
+                // const reverb = new Tone.Convolver({url: 'reverb-impulse-response.mp3'}).toDestination();
+                let delayTime= 0.5;
+                let panValue = 0;
+                let volumeValue = 0.5;
 
-        buttons.forEach((button, index) => {
+                const reverb = new Tone.Reverb();
+                const delay = new Tone.FeedbackDelay({delayTime: delayTime,feedback:0.81});
+                const pan = new Tone.Panner();
+                const volume = new Tone.Volume(volumeValue).toDestination();
+
+                 Tone.start();
+
+
+                // PATCHER
+                delay.connect(reverb); //connect effects in series
+                reverb.connect(pan);
+                pan.connect(volume);
+               
+
+
+                buttons.forEach((button, index) => {
             button.addEventListener('click', function() {
+// 
+                delayTime = Math.random() * 0.9 + 0.1;
+                panValue = Math.random() * 2 - 1;
+                volumeValue = Math.random() / 1.3;
+
+                //mix
+                console.log (delayTime + " vol:" + volumeValue);
+                delay.delayTime.setValueAtTime(delayTime, Tone.now());
+                pan.pan.value =panValue; //random pan between -1 1 (LR)
+                volume.volume.value = volumeValue;
 
                 // SYNTH VERSION
-                const note = index + 60; // MIDI note number
-                const synth = new Tone.Synth().toDestination();
+                const minNote = 60;
+                const maxNote = 72;
+                const note = index + Math.floor(Math.random()  * (maxNote - minNote + 1)) + minNote; // MIDI note number
+                const synth = new Tone.Synth().connect(delay);
+                // synth.chain(delay, reverb, pan, volume, Tone.Destination);
                 synth.triggerAttackRelease(Tone.Midi(note).toFrequency(), '4n');
+
+                // Randomize volume between -12 dB and 12 dB
+               
 
                 //AUDIO VERSION
                 // const audioSrc = this.getAttribute('data-audio');

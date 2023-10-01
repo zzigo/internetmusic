@@ -141,5 +141,30 @@
       "key": "R"
     }
   ],
-  "obsidian-advanced-slides:reload-advanced-slides-preview": []
+  "obsidian-advanced-slides:reload-advanced-slides-preview": [],
+  "command-palette:open": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "O"
+    }
+  ],
+  "switcher:open": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "P"
+    }
+  ],
+  "editor:toggle-source": [
+    {
+      "modifiers": [
+        "Alt",
+        "Shift"
+      ],
+      "key": "E"
+    }
+  ]
 }

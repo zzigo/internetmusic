@@ -4,12 +4,10 @@ tags:
 unit: 2
 date: 231002
 ---
-| ![\|50](https://i.imgur.com/N8z2xP4.png) |     |                     |
-| ---------------------------------------- | --- | -------------------:|
-| <grid >
+|![\|50](https://i.imgur.com/N8z2xP4.png) | | |
+|-|:-|-:|
+|**class 02**|Sep 29th, 2023|*internet music 23/24*|
 
-</grid>                                        |     | internet music 2324 |
-### class 02
 # engines on
 ---
 
@@ -20,5 +18,14 @@ tools
 languages
 	html
 	css
+		body
+		flex
+		class
+		id
+		font-size vw px 
 	js
+		var
+ref
+		
+		
 	

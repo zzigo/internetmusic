@@ -4,115 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "03bd1a78ec21a3c9",
-        "type": "tabs",
-        "dimension": 75.27075812274369,
-        "children": [
-          {
-            "id": "2ed69dcb4d5c6fea",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "maps/internet technologies.canvas",
-                "viewState": {
-                  "x": -10.235090409501083,
-                  "y": -24.888612433714556,
-                  "zoom": -1.0037413646194597
-                }
-              }
-            }
-          },
-          {
-            "id": "49a16355f6489050",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "maps/internet technologies.canvas",
-                "viewState": {
-                  "x": -420,
-                  "y": 559.5,
-                  "zoom": -1.077456140079996
-                }
-              }
-            }
-          },
-          {
-            "id": "a1b9163796959011",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "conflict-files-obsidian-git.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "4419d47ed684e6b0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "technologies/web midi API.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "881e6f2aecb9b1ee",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "technologies/randomness.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "c76bd6399f93deaa",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "technologies/digital garden.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          }
-        ],
-        "currentTab": 2
-      },
-      {
         "id": "8db8fdfc3d018243",
         "type": "tabs",
-        "dimension": 24.729241877256317,
         "children": [
-          {
-            "id": "a7006b0e9518b497",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "classes/01-intro/01-intro.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
           {
             "id": "6ea38e8c6cade1d5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "technologies/digital paradigms.md",
+                "file": "classes/01-intro/01-intro.md",
                 "mode": "source",
                 "source": false
               }
@@ -168,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 333.5
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -184,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "classes/01-intro/01-intro.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -201,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "classes/01-intro/01-intro.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -224,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "conflict-files-obsidian-git.md"
+                "file": "classes/01-intro/01-intro.md"
               }
             }
           },
@@ -268,9 +169,22 @@
       "open-gate:p5": false
     }
   },
-  "active": "a1b9163796959011",
+  "active": "6ea38e8c6cade1d5",
   "lastOpenFiles": [
+    "technologies/digital paradigms.md",
+    "maps/internet music map.canvas",
     "maps/internet technologies.canvas",
+    "classes/01-intro/01-intro.md",
+    "tpl/t-class.md",
+    "classes/02-setup/02-setup.md",
+    "tpl/t-code.md",
+    "code/variable.md",
+    "code/01-player-scrub/index.html",
+    "classes/02-setup/t1.html",
+    "classes/02-setup/t2.html",
+    "0-in/code MOC.md",
+    "0-in/imi MOC.md",
+    "tpl",
     "conflict-files-obsidian-git.md",
     "maps/internet music tree.canvas",
     "technologies/web midi API.md",
@@ -283,32 +197,20 @@
     "technologies/APIs.md",
     "technologies/digital garden.md",
     "technologies/tonejs.md",
-    "classes/01-intro/01-intro.md",
-    "technologies/digital paradigms.md",
     "technologies/cybernetics.md",
     "technologies/data crawling.md",
     "technologies/js.md",
-    "classes/02-setup/02-setup.md",
-    "img/t-class.md",
-    "classes/02-setup/t2.html",
-    "classes/02-setup/t1.html",
     "classes/02-setup/t copy.html",
     "classes/02-setup/C8.mp3",
     "classes/02-setup/C7.mp3",
     "classes/02-setup/C6.mp3",
     "classes/02-setup/C5.mp3",
     "classes/02-setup/C4.mp3",
-    "classes/02-setup/C3.mp3",
-    "classes/02-setup/C2.mp3",
-    "classes/02-setup.md",
     "classes/01-intro.md",
     "img/hem-logo.png",
     "img/hem-logo 1.png",
     "technologies/Client.md",
-    "0-in/imi MOC.md",
     "technologies/client.md",
-    "technologies/node.js.md",
-    "maps/web structure.md",
-    "technologies/css.md"
+    "technologies/node.js.md"
   ]
 }

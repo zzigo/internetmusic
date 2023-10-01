@@ -1,11 +1,11 @@
 ---
-theme: moon
 tags: class
 ---
-| ![\|50](https://i.imgur.com/N8z2xP4.png) |     |                   |
-| ----------------------------------------- | --- | -----------------:|
-|||internet music 2324|
-### class 01
+|![\|50](https://i.imgur.com/N8z2xP4.png) | | |
+|-|:-|-:|
+|**class 01**|Sep 29th, 2023|*internet music 23/24*|
+
+
 # intro to IM
 ---
 
@@ -40,6 +40,8 @@ e("networking performance")--> =f("data crawling");
 ## origins of the algorythmic thinking
 
 ---
+
+## logarithms
 
 In 1614, John Napier proposes a new mathematical method, called the logarithm, in a work called Mirifici Logarithmorum Canonis Descriptio
 
@@ -93,6 +95,10 @@ https://editor.p5js.org/zzigo/sketches/Zna6QQgWQ
 
 *  <span style="color:#03D9DD">mnemonics</span> as an automation and exsomatization of memory.
 *  <span style="color:#ffff00">ratio</span> (the transformation of an analog domain, the pitch into a quantizated domain, the spiral and the scale).
+
+---
+
+[[internet technologies.canvas|internet technologies]]
 
 ---
 
@@ -189,7 +195,7 @@ pop culture appropriation
 
 ---
 
-https://www.youtube.com/watch?v=fsgWUq0fdKk
+<iframe title="Total Eclipse of the Heart Literal Video Version" src="https://www.youtube.com/embed/fsgWUq0fdKk?feature=oembed" height="150" width="200" allowfullscreen="" allow="fullscreen" style="aspect-ratio: 1.33333 / 1; width: 100%; height: 100%;"></iframe>
 
 ---
 
