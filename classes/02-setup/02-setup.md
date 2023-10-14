@@ -8,7 +8,7 @@ theme: moon
 
 | ![\|50](https://i.imgur.com/N8z2xP4.png) |                |                        |
 | ---------------------------------------- |:-------------- | ----------------------:|
-| **class 02**                             | Sep 29th, 2023 | *internet music 23/24* |
+| **class 02**                             | Oct 14th, 2023 | *internet music 23/24* |
 
 ---
 
