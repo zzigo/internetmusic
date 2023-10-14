@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tone.js Play Pitch</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #playButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.58/Tone.js"></script>
+    <button id="playButton">Play Pitch</button>
+    <script>
+        // Create a synth
+        const synth = new Tone.Synth().toDestination();
+
+        // Define the pitch you want to play
+        const pitchToPlay = 'C4';
+
+        // Add a click event listener to the button
+        document.getElementById('playButton').addEventListener('click', () => {
+            // Trigger the synth to play the specified pitch
+            synth.triggerAttackRelease(pitchToPlay, '4n'); // '4n' is the duration of the note (quarter note)
+        });
+    </script>
+</body>
+</html>

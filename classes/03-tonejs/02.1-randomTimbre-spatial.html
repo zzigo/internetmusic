@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tone.js Play Pitch with Random Timbre and Effects</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #playButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.58/Tone.js"></script>
+    <button id="playButton">Play Random Timbre</button>
+    <script>
+        // Set the master volume to 0.5
+        Tone.Master.volume.value = -46; // -6 dB is equivalent to 0.5 volume
+
+        // Create an FM synth
+        const synth = new Tone.FMSynth().toDestination();
+
+        // Create a long reverb effect
+        const reverb = new Tone.Freeverb({
+            roomSize: 1, // Adjust the room size as desired (larger values for longer reverb)
+            dampening: 5000, // Adjust the dampening as desired
+        }).toDestination();
+
+        // Connect the synth to the reverb
+        synth.connect(reverb);
+
+        // Add a click event listener to the button
+        document.getElementById('playButton').addEventListener('click', () => {
+            // Set a random modulation index (controls timbre)
+            const randomModulationIndex = Math.random() * 100;
+
+            // Apply the random modulation index to the synth
+            synth.modulationIndex.value = randomModulationIndex;
+
+            // Play a random pitch
+            const pitchToPlay = 'C4'; // You can change this to any desired pitch
+            const randomDuration = '4n'; // Duration of the note (quarter note)
+
+            // Trigger the synth to play the specified pitch
+            synth.triggerAttackRelease(pitchToPlay, randomDuration);
+        });
+
+        // Add a keyboard event listener to trigger the button with the spacebar
+        document.addEventListener('keydown', (event) => {
+            if (event.key === ' ' || event.key === 'Spacebar') {
+                // Prevent the default spacebar scrolling behavior
+                event.preventDefault();
+
+                // Trigger the button click when spacebar is pressed
+                document.getElementById('playButton').click();
+            }
+        });
+    </script>
+</body>
+</html>

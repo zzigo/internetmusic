@@ -13,24 +13,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "classes/02-setup/02-setup.md",
+                "file": "classes/02-setup/class-02-setup.md",
                 "mode": "source",
-                "source": true
+                "source": false
               }
-            }
-          }
-        ]
-      },
-      {
-        "id": "8032d17ea746c897",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "1f1330a2d277090b",
-            "type": "leaf",
-            "state": {
-              "type": "reveal-preview-view",
-              "state": {}
             }
           }
         ]
@@ -83,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 331.5
+    "width": 358.5
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -99,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "classes/02-setup/02-setup.md",
+                "file": "classes/02-setup/class-02-setup.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "classes/02-setup/02-setup.md",
+                "file": "classes/02-setup/class-02-setup.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "classes/02-setup/02-setup.md"
+                "file": "classes/02-setup/class-02-setup.md"
               }
             }
           },
@@ -185,28 +171,35 @@
   },
   "active": "6ea38e8c6cade1d5",
   "lastOpenFiles": [
+    "classes/07-threejs/three-pos-synth.html",
+    "classes/07-threejs/threejs03.html",
+    "classes/02-setup/0200.1-fmKeys.html",
+    "classes/07-threejs",
+    "classes/02-setup/0205-hover-synth-vis-poly.html",
+    "classes/02-setup/0200-pianoKeys.html",
+    "classes/02-setup/0204-hover-synth-vis.html",
+    "classes/02-setup/0203-hover-synth-poly-doppler.html",
+    "classes/02-setup/class-02-setup.md",
+    "classes/02-setup/0202-hover-synth.html",
+    "classes/02-setup/0201-hover.html",
+    "classes/03-tonejs/class03-tonejs.md",
+    "classes/03-tonejs/test5.html",
+    "classes/01-intro/01-intro.md",
     "0-in/imi MOC.md",
     "references/patatap.md",
     "code/variable.md",
     "0-in/code MOC.md",
-    "classes/02-setup/02-setup.md",
-    "classes/02-setup/test.html",
     "technologies/server.md",
     "technologies/tonejs.md",
     "technologies/web audio API.md",
     "technologies/blockchain.md",
     "technologies/metaverses.md",
     "technologies/internet.md",
-    "classes/01-intro/01-intro.md",
     "technologies/digital paradigms.md",
     "maps/internet music map.canvas",
     "maps/internet technologies.canvas",
     "tpl/t-class.md",
     "tpl/t-code.md",
-    "code/01-player-scrub/index.html",
-    "classes/02-setup/t1.html",
-    "classes/02-setup/t2.html",
-    "tpl",
     "conflict-files-obsidian-git.md",
     "maps/internet music tree.canvas",
     "technologies/web midi API.md",
@@ -218,13 +211,6 @@
     "technologies/APIs.md",
     "technologies/digital garden.md",
     "technologies/cybernetics.md",
-    "technologies/data crawling.md",
-    "technologies/js.md",
-    "classes/02-setup/t copy.html",
-    "classes/02-setup/C8.mp3",
-    "classes/02-setup/C7.mp3",
-    "classes/02-setup/C6.mp3",
-    "classes/02-setup/C5.mp3",
     "img/hem-logo.png",
     "img/hem-logo 1.png"
   ]

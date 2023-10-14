@@ -10,6 +10,7 @@ theme: moon
 | ---------------------------------------- |:-------------- | ----------------------:|
 | **class 02**                             | Oct 14th, 2023 | *internet music 23/24* |
 
+# JS SETUP
 ---
 
 ### github and obsidian
