@@ -729,12 +729,6 @@ since in music/sound we work a lot with numbers, this is good to know.
 
 ---
 
-### Let's practice
-
-Download the exercises from git with `git clone https://github.com/laurens-in/WebAudioIntro-Exercises` 
-
----
-
 ### DOM API
 
 The DOM API is important to interact with the `html` on our page. We will need this to create interactive experiences.
@@ -814,8 +808,4 @@ input.value = 0.5;
 ```
 
 ---
-
-### Let's practice
-
-You can do `exercise 2` now.
 

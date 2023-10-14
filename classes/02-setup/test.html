@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+
+<style>
+.audio-button {width: 100px;heigh:40px;background-color: blueviolet;}
+
+</style>
+
+
+</head>
+<body>
+    
+    <div class="box">
+        <button class="audio-button" accesskey="a" onclick="playAudio('audio1')"> C1 </button>
+   
+    </div>
+    
+<audio id="audio1" src="C1.mp3"></audio>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.27/Tone.js"></script>
+
+
+<script>
+// function playAudio (audioId) {
+//  let audio = document.getElementById(audioId);
+//     if (audio.paused) {
+//         audio.play();
+//     } else {
+//         audio.currentTime = 0;
+//     }
+// }
+
+
+ const buttons = document.querySelectorAll('.audio-button');
+
+ buttons.forEach ((button, index)=> {
+    button.addEventListener('click', function() {
+ })
+
+ const synth = new Tone.Synth().toDestination();
+ synth.triggerAttackRelease ("A4","2n");
+
+ })
+
+</script>
+
+</body>
+</html>

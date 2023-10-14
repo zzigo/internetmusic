@@ -13,10 +13,24 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "technologies/server.md",
-                "mode": "preview",
+                "file": "classes/02-setup/02-setup.md",
+                "mode": "source",
                 "source": true
               }
+            }
+          }
+        ]
+      },
+      {
+        "id": "8032d17ea746c897",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1f1330a2d277090b",
+            "type": "leaf",
+            "state": {
+              "type": "reveal-preview-view",
+              "state": {}
             }
           }
         ]
@@ -69,7 +83,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 331.5
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -85,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "technologies/server.md",
+                "file": "classes/02-setup/02-setup.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "technologies/server.md",
+                "file": "classes/02-setup/02-setup.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +139,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "technologies/server.md"
+                "file": "classes/02-setup/02-setup.md"
               }
             }
           },
@@ -171,6 +185,8 @@
   },
   "active": "6ea38e8c6cade1d5",
   "lastOpenFiles": [
+    "classes/02-setup/test.html",
+    "technologies/server.md",
     "technologies/tonejs.md",
     "technologies/web audio API.md",
     "technologies/blockchain.md",
@@ -209,9 +225,7 @@
     "classes/02-setup/C6.mp3",
     "classes/02-setup/C5.mp3",
     "classes/02-setup/C4.mp3",
-    "classes/01-intro.md",
     "img/hem-logo.png",
-    "img/hem-logo 1.png",
-    "technologies/Client.md"
+    "img/hem-logo 1.png"
   ]
 }
