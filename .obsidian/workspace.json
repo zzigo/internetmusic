@@ -20,6 +20,20 @@
             }
           }
         ]
+      },
+      {
+        "id": "3bddc6d8509b8fc4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c40f698c2667a476",
+            "type": "leaf",
+            "state": {
+              "type": "reveal-preview-view",
+              "state": {}
+            }
+          }
+        ]
       }
     ],
     "direction": "vertical"
@@ -69,7 +83,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 358.5
+    "width": 241.5
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -171,6 +185,9 @@
   },
   "active": "6ea38e8c6cade1d5",
   "lastOpenFiles": [
+    "classes/03-tonejs/class03-tonejs.md",
+    "maps/internet music map.canvas",
+    "classes/02-setup/class-02-setup.md",
     "classes/07-threejs/three-pos-synth.html",
     "classes/07-threejs/threejs03.html",
     "classes/02-setup/0200.1-fmKeys.html",
@@ -179,11 +196,8 @@
     "classes/02-setup/0200-pianoKeys.html",
     "classes/02-setup/0204-hover-synth-vis.html",
     "classes/02-setup/0203-hover-synth-poly-doppler.html",
-    "classes/02-setup/class-02-setup.md",
     "classes/02-setup/0202-hover-synth.html",
     "classes/02-setup/0201-hover.html",
-    "classes/03-tonejs/class03-tonejs.md",
-    "classes/03-tonejs/test5.html",
     "classes/01-intro/01-intro.md",
     "0-in/imi MOC.md",
     "references/patatap.md",
@@ -196,7 +210,6 @@
     "technologies/metaverses.md",
     "technologies/internet.md",
     "technologies/digital paradigms.md",
-    "maps/internet music map.canvas",
     "maps/internet technologies.canvas",
     "tpl/t-class.md",
     "tpl/t-code.md",

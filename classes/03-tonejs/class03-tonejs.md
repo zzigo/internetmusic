@@ -23,6 +23,46 @@ theme: moon
 
 ---
 
+
+# DOM 
+Document Object Model
+
+---
+
+![](https://www.conceptdraw.com/solution-park/resource/images/solutions/dom-tree/SOFTWARE-DEVELOPMENT-DOM-Tree-DOM-Hierarchy-in-HTML88.png)
+---
+
+note: all HTML share properties
+
+---
+
+properties
+
+---
+
+ methods
+
+---
+
+.querySelector
+
+note: we prefer .querySelector to maje the callback because is more standard with CSS.
+
+---
+.addEventListener
+
+note: 
+is a tree going up listener, you can start even witL:
+
+---
+```js
+document.addEventListener("click, (e) => {
+console.log(e.target);
+e.stopPropagation(); // allows to resume the properties to one.
+})
+```
+
+---
 ### Tone.js backbone
 
 
