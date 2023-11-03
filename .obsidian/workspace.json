@@ -11,11 +11,9 @@
             "id": "6ea38e8c6cade1d5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "html-view",
               "state": {
-                "file": "classes/02-setup/class-02-setup.md",
-                "mode": "source",
-                "source": false
+                "file": "classes/03-tonejs/00-hellotone.html"
               }
             }
           }
@@ -69,7 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 241.5
+    "width": 298.5
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -85,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "classes/02-setup/class-02-setup.md",
+                "file": "classes/03-tonejs/00-hellotone.html",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +100,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "classes/02-setup/class-02-setup.md",
+                "file": "classes/03-tonejs/00-hellotone.html",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +123,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "classes/02-setup/class-02-setup.md"
+                "file": "classes/03-tonejs/00-hellotone.html"
               }
             }
           },
@@ -172,18 +170,19 @@
   "active": "6ea38e8c6cade1d5",
   "lastOpenFiles": [
     "classes/03-tonejs/class03-tonejs.md",
-    "maps/internet music map.canvas",
+    "classes/03-tonejs/test5.html",
+    "classes/03-tonejs/00-hellotone.html",
+    "classes/03-tonejs/01-randomPitch.html",
+    "classes/03-tonejs/02-randomTimbre.html",
+    "classes/03-tonejs/02.1-randomTimbre-spatial.html",
+    "classes/03-tonejs/02.2-randomTimbre-doppler.html",
+    "classes/03-tonejs/02.3-randomTimbrePitch.html",
+    "classes/03-tonejs/03-randomMelodyNewtonBack.html",
+    "classes/03-tonejs/04-randomMelody-key.html",
+    "classes/03-tonejs/05-fx-convolve.html",
+    "classes/03-tonejs/PositionalAudio/README.md",
     "classes/02-setup/class-02-setup.md",
-    "classes/07-threejs/three-pos-synth.html",
-    "classes/07-threejs/threejs03.html",
-    "classes/02-setup/0200.1-fmKeys.html",
-    "classes/07-threejs",
-    "classes/02-setup/0205-hover-synth-vis-poly.html",
-    "classes/02-setup/0200-pianoKeys.html",
-    "classes/02-setup/0204-hover-synth-vis.html",
-    "classes/02-setup/0203-hover-synth-poly-doppler.html",
-    "classes/02-setup/0202-hover-synth.html",
-    "classes/02-setup/0201-hover.html",
+    "maps/internet music map.canvas",
     "classes/01-intro/01-intro.md",
     "0-in/imi MOC.md",
     "references/patatap.md",
@@ -209,7 +208,6 @@
     "technologies/PaaP.md",
     "technologies/APIs.md",
     "technologies/digital garden.md",
-    "technologies/cybernetics.md",
     "img/hem-logo.png",
     "img/hem-logo 1.png"
   ]
