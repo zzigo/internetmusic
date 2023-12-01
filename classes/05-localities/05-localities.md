@@ -86,5 +86,12 @@ note:**WebSocket** is a computer [communications protocol](https://en.wikipedi
 Miraweb provides a responsive, websocket-based portal into your Max patch from any compatible browser. Just define a region of your Max UI to control, using the mira.frame object and point a browser to the provided URL to start interacting with the patch. Since it works in any browser with websocket support, you can use it with Android devices, iPhones, various laptops and multitouch-enabled computers on your home network. In our testing, we were delighted by how effortless and responsive it was. You’ll have to try it to believe it.
 Xebra.js
 content to just open a Max UI up to multi-platform browsers, our team is also opening up the websocket-driven technology used to do the heavy lifting in Miraweb. With [Xebra.js](https://github.com/Cycling74/xebra.js), our Open Source (MIT License) Javascript client library for communication with a Max patch, you can create your own event-based custom web interfaces. We’ve included lots of useful examples to get started, including [Miraweb](https://github.com/Cycling74/miraweb) itself, and [the API is fully documented](https://cycling74.github.io/xebra.js/). To put it more simply, Xebra.js lets you connect your own websites and web applications to a remote Max patch.
+---
+
+##  everything that can be done on desktop computers it will transfer into the browser
 
 ---
+1
+
+---
+
