@@ -13,8 +13,35 @@
             "state": {
               "type": "html-view",
               "state": {
-                "file": "classes/03-tonejs/00-hellotone.html"
+                "file": "classes/07-threejs/threejs01.html"
               }
+            }
+          },
+          {
+            "id": "d6844dc63b70ae50",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "classes/05-localities/05-localities.md",
+                "mode": "source",
+                "source": true
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      },
+      {
+        "id": "350f1e2893389d7c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f5477202273b9e25",
+            "type": "leaf",
+            "state": {
+              "type": "reveal-preview-view",
+              "state": {}
             }
           }
         ]
@@ -67,7 +94,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 298.5
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -83,7 +111,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "classes/03-tonejs/00-hellotone.html",
+                "file": "classes/05-localities/05-localities.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +128,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "classes/03-tonejs/00-hellotone.html",
+                "file": "classes/05-localities/05-localities.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +151,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "classes/03-tonejs/00-hellotone.html"
+                "file": "classes/05-localities/05-localities.md"
               }
             }
           },
@@ -167,19 +195,21 @@
       "open-gate:p5": false
     }
   },
-  "active": "6ea38e8c6cade1d5",
+  "active": "d6844dc63b70ae50",
   "lastOpenFiles": [
     "classes/03-tonejs/class03-tonejs.md",
-    "classes/03-tonejs/test5.html",
-    "classes/03-tonejs/00-hellotone.html",
-    "classes/03-tonejs/01-randomPitch.html",
-    "classes/03-tonejs/02-randomTimbre.html",
-    "classes/03-tonejs/02.1-randomTimbre-spatial.html",
-    "classes/03-tonejs/02.2-randomTimbre-doppler.html",
-    "classes/03-tonejs/02.3-randomTimbrePitch.html",
-    "classes/03-tonejs/03-randomMelodyNewtonBack.html",
-    "classes/03-tonejs/04-randomMelody-key.html",
-    "classes/03-tonejs/05-fx-convolve.html",
+    "classes/05-localities/05-localities.md",
+    "bash.md",
+    "classes/07-threejs/threejs01.html",
+    "repo/jiwon",
+    "jiwon",
+    "untitled folder",
+    "repo/tom",
+    "repo/ariadna",
+    "ariadna",
+    "tom",
+    "repo",
+    "classes/07-threejs/three-pos-synth.html",
     "classes/03-tonejs/PositionalAudio/README.md",
     "classes/02-setup/class-02-setup.md",
     "maps/internet music map.canvas",
@@ -207,7 +237,6 @@
     "technologies/chrome.md",
     "technologies/PaaP.md",
     "technologies/APIs.md",
-    "technologies/digital garden.md",
     "img/hem-logo.png",
     "img/hem-logo 1.png"
   ]

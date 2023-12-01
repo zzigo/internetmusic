@@ -20,22 +20,28 @@
 </head>
 <body>
 
-    HELLO 
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.58/Tone.js"></script>
-    <button id="playButton">Play Pitch</button>
-    <script>
-        // Create a synth
-        const synth = new Tone.Synth().toDestination();
 
-        // Define the pitch you want to play
-        const pitchToPlay = 'C4';
 
-        // Add a click event listener to the button
-        document.getElementById('playButton').addEventListener('click', () => {
-            // Trigger the synth to play the specified pitch
-            synth.triggerAttackRelease(pitchToPlay, '4n'); // '4n' is the duration of the note (quarter note)
-        });
+    <!-- create button -->
+
+<button id="playButton"> PLAY PITCH</button>
+
+<script>
+
+  const synth = new Tone.Synth().toDestination();
+
+    const pitchToPlay = 'A3';
+
+document.getElementById('playButton').addEventListener( 'click',  
+ () => {synth.triggerAttackRelease (pitchToPlay, '16n')});
+
+// call the button that we created in the html section 
+//     use this button to play a pitch in the Tone.js/synth
+
+
+
     </script>
 </body>
 </html>
