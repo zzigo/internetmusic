@@ -21,11 +21,9 @@
             "id": "d6844dc63b70ae50",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "html-view",
               "state": {
-                "file": "classes/05-localities/05-localities.md",
-                "mode": "source",
-                "source": true
+                "file": "classes/05-localities/xebra1.html"
               }
             }
           }
@@ -94,8 +92,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 363.5
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -111,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "classes/05-localities/05-localities.md",
+                "file": "classes/05-localities/xebra1.html",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -128,7 +125,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "classes/05-localities/05-localities.md",
+                "file": "classes/05-localities/xebra1.html",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -151,7 +148,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "classes/05-localities/05-localities.md"
+                "file": "classes/05-localities/xebra1.html"
               }
             }
           },
@@ -197,8 +194,8 @@
   },
   "active": "d6844dc63b70ae50",
   "lastOpenFiles": [
-    "classes/03-tonejs/class03-tonejs.md",
     "classes/05-localities/05-localities.md",
+    "classes/03-tonejs/class03-tonejs.md",
     "bash.md",
     "classes/07-threejs/threejs01.html",
     "repo/jiwon",
