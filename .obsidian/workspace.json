@@ -4,45 +4,43 @@
     "type": "split",
     "children": [
       {
-        "id": "8db8fdfc3d018243",
+        "id": "679c62da8afd7402",
         "type": "tabs",
         "children": [
           {
-            "id": "6ea38e8c6cade1d5",
-            "type": "leaf",
-            "state": {
-              "type": "html-view",
-              "state": {
-                "file": "classes/07-threejs/threejs01.html"
-              }
-            }
-          },
-          {
-            "id": "d6844dc63b70ae50",
-            "type": "leaf",
-            "state": {
-              "type": "html-view",
-              "state": {
-                "file": "classes/05-localities/xebra1.html"
-              }
-            }
-          }
-        ],
-        "currentTab": 1
-      },
-      {
-        "id": "350f1e2893389d7c",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "f5477202273b9e25",
+            "id": "d8e99aa070947b0f",
             "type": "leaf",
             "state": {
               "type": "reveal-preview-view",
               "state": {}
             }
+          },
+          {
+            "id": "39c733cf2056d5fa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "classes/05-localities/xebra snippets.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "f1b4fb9b28faa579",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "upload-test luciano.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -71,7 +69,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#remove",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -92,7 +90,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 363.5
+    "width": 269.5
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -108,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "classes/05-localities/xebra1.html",
+                "file": "upload-test luciano.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -125,7 +123,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "classes/05-localities/xebra1.html",
+                "file": "upload-test luciano.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -148,7 +146,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "classes/05-localities/xebra1.html"
+                "file": "upload-test luciano.md"
               }
             }
           },
@@ -189,52 +187,62 @@
       "obsidian-advanced-slides:Show Slide Preview": false,
       "workspaces:Manage workspace layouts": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "open-gate:p5": false
+      "open-gate:p5": false,
+      "obsidian-textgenerator-plugin:Generate Text!": false,
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "d6844dc63b70ae50",
+  "active": "f1b4fb9b28faa579",
   "lastOpenFiles": [
-    "classes/05-localities/05-localities.md",
-    "classes/03-tonejs/class03-tonejs.md",
     "bash.md",
-    "classes/07-threejs/threejs01.html",
-    "repo/jiwon",
-    "jiwon",
-    "untitled folder",
-    "repo/tom",
-    "repo/ariadna",
-    "ariadna",
-    "tom",
-    "repo",
-    "classes/07-threejs/three-pos-synth.html",
-    "classes/03-tonejs/PositionalAudio/README.md",
-    "classes/02-setup/class-02-setup.md",
+    "upload-test luciano.md",
+    "classes/05-localities/xebra snippets.md",
+    "TCP.md",
+    "classes/05-localities/miraweb/packages/xebra.js/examples/06-p5js/web/boid 2.js",
+    "classes/05-localities/miraweb/src/js/objects/base 2.js",
+    "classes/05-localities/miraweb/src/js/objects/number 2.js",
+    "classes/05-localities/miraweb/src/js/objects/slider 2.js",
+    "classes/05-localities/miraweb/packages/xebra.js/src/lib/resource 2.js",
+    "classes/05-localities/miraweb/packages/xebra.js/src/nodes/resourceObjectMixin 2.js",
+    "classes/05-localities/miraweb/src/js/lib/pixiEventInput 2.js",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/09-arbitrarymessages 2.md",
+    "classes/05-localities/miraweb/src/js/lib/colorLabel 2.js",
+    "classes/05-localities/miraweb/src/js/actions/focus 2.js",
+    "classes/05-localities/miraweb/src/js/actions/popover 2.js",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/07-resources 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/img/01-fanfare 2.png",
+    "classes/05-localities/miraweb/packages/xebra.js/examples/05-resources/README 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/examples/07-tunneling/README 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/examples/02-threejs/README 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/examples/06-p5js/README 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/examples/01-quickstart/README 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/examples/03-dump/README 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/04-statetree 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/img/02-miraweb_launch 2.png",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/img/01-patcher 2.png",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/img/02-websocket 2.png",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/img/02-miraweb_ip 2.png",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/02-connecting 2.md",
+    "classes/05-localities/miraweb/src/assets/miraweb_logo 2.png",
+    "classes/05-localities/miraweb/src/assets/multitouch-touch 2.png",
+    "classes/05-localities/miraweb/src/assets/hatching-vertical 2.svg",
+    "classes/05-localities/miraweb/src/misc/README 2.md",
+    "classes/05-localities/miraweb/src/assets/c74_logo 2.png",
+    "classes/05-localities/miraweb/packages/xebra.js/examples/08-physics/README 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/examples/09-d3js/README 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/10-customobjects 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/01-quickstart 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/img/02-miraweb 2.png",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/05-scriptingname 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/08-motion 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/06-valuevsdistance 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/examples/README 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/README 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/examples/04-dat.gui/README 2.md",
+    "classes/05-localities/miraweb/packages/xebra.js/tutorials/03-objects 2.md",
     "maps/internet music map.canvas",
-    "classes/01-intro/01-intro.md",
-    "0-in/imi MOC.md",
-    "references/patatap.md",
-    "code/variable.md",
-    "0-in/code MOC.md",
-    "technologies/server.md",
-    "technologies/tonejs.md",
-    "technologies/web audio API.md",
-    "technologies/blockchain.md",
-    "technologies/metaverses.md",
-    "technologies/internet.md",
-    "technologies/digital paradigms.md",
     "maps/internet technologies.canvas",
-    "tpl/t-class.md",
-    "tpl/t-code.md",
-    "conflict-files-obsidian-git.md",
     "maps/internet music tree.canvas",
-    "technologies/web midi API.md",
-    "technologies/randomness.md",
-    "technologies/electron.md",
-    "maps/web structure.canvas",
-    "technologies/chrome.md",
-    "technologies/PaaP.md",
-    "technologies/APIs.md",
-    "img/hem-logo.png",
-    "img/hem-logo 1.png"
+    "maps/web structure.canvas"
   ]
 }

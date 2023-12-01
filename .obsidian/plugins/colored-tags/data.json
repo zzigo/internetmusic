@@ -11,7 +11,8 @@
     "social": 5,
     "class": 6,
     "js": 7,
-    "javascript": 8
+    "javascript": 8,
+    "remove": 9
   },
   "_version": 2
 }
