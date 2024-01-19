@@ -11,15 +11,8 @@
             "id": "2a3b12c371a0b8ff",
             "type": "leaf",
             "state": {
-              "type": "canvas",
-              "state": {
-                "file": "maps/internet music tree.canvas",
-                "viewState": {
-                  "x": 1191.6954612005857,
-                  "y": -71.71888726207901,
-                  "zoom": -2.4012418549652907
-                }
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -74,6 +67,16 @@
           "type": "bookmarks",
           "state": {}
         }
+      },
+      {
+        "id": "d82fe07afe25e8ce",
+        "type": "leaf",
+        "state": {
+          "type": "all-properties",
+          "state": {
+            "sortOrder": "frequency"
+          }
+        }
       }
     ],
     "currentTab": 0
@@ -88,7 +91,6 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "maps/internet music tree.canvas",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -105,7 +107,6 @@
         "state": {
           "type": "outgoing-link",
           "state": {
-            "file": "maps/internet music tree.canvas",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           }
@@ -116,9 +117,7 @@
         "type": "leaf",
         "state": {
           "type": "outline",
-          "state": {
-            "file": "maps/internet music tree.canvas"
-          }
+          "state": {}
         }
       }
     ],
@@ -126,6 +125,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "open-gate:p5": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
