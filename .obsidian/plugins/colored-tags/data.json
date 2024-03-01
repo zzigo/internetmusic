@@ -1,8 +1,14 @@
 {
-  "chroma": 16,
-  "lightness": 87,
-  "palette": 16,
-  "seed": 0,
+  "palette": {
+    "seed": 0,
+    "selected": "adaptive-soft",
+    "custom": "e12729-f37324-f8cc1b-72b043-007f4e"
+  },
+  "mixColors": true,
+  "transition": true,
+  "accessibility": {
+    "highTextContrast": false
+  },
   "knownTags": {
     "imi": 1,
     "browser": 2,
@@ -14,7 +20,16 @@
     "javascript": 8,
     "remove": 9,
     "glossary": 10,
-    "excalidraw": 11
+    "excalidraw": 11,
+    "midjourney": 12,
+    "pikalabs": 13,
+    "runwayml": 14,
+    "magnific": 15,
+    "conc": 16,
+    "concept": 17,
+    "code": 18,
+    "tparadigms": 19,
+    "practices": 20
   },
-  "_version": 2
+  "_version": 3
 }

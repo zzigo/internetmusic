@@ -1,5 +1,5 @@
 {
-  "version": "0.5.13",
+  "version": "0.6.13",
   "endpoint": "https://api.openai.com/v1",
   "models": {},
   "api_key": "",
@@ -13,6 +13,7 @@
   "outputToBlockQuote": false,
   "freeCursorOnStreaming": false,
   "allowJavascriptRun": false,
+  "experiment": false,
   "promptsPath": "textgenerator/prompts",
   "prefix": "\n\n",
   "tgSelectionLimiter": "^\\*\\*\\*",
@@ -47,7 +48,13 @@
     "text-extractor-tool": true,
     "stop-stream": true,
     "custom-instruct": true,
-    "reload": true
+    "reload": true,
+    "batch-generate-in-right-click-files-menu": true,
+    "tg-block-processor": true
+  },
+  "advancedOptions": {
+    "generateTitleInstructEnabled": false,
+    "generateTitleInstruct": "Generate a title for the current document (do not use * \" \\ / < > : | ? .):\n{{substring content 0 255}}"
   },
   "autoSuggestOptions": {
     "isEnabled": false,
@@ -56,6 +63,10 @@
     "triggerPhrase": "  ",
     "stop": ".",
     "showStatus": true
+  },
+  "slashSuggestOptions": {
+    "isEnabled": false,
+    "triggerPhrase": "/"
   },
   "extractorsOptions": {
     "PDFExtractor": true,
