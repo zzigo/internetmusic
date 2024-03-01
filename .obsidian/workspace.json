@@ -37,8 +37,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1-classes/09-machine learning/ML resources.md",
-                "mode": "source",
+                "file": "1-classes/09-machine learning/pdfchat.py.md",
+                "mode": "preview",
                 "source": true
               }
             }
@@ -122,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1-classes/09-machine learning/ML resources.md",
+                "file": "1-classes/09-machine learning/pdfchat.py.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1-classes/09-machine learning/ML resources.md",
+                "file": "1-classes/09-machine learning/pdfchat.py.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1-classes/09-machine learning/ML resources.md"
+                "file": "1-classes/09-machine learning/pdfchat.py.md"
               }
             }
           },
@@ -221,8 +221,9 @@
   },
   "active": "dca9d57757635c7d",
   "lastOpenFiles": [
-    "1-classes/09-machine learning/README.md.md",
     "1-classes/09-machine learning/ML resources.md",
+    "1-classes/09-machine learning/pdfchat.py.md",
+    "1-classes/09-machine learning/README.md.md",
     "1-classes/09-machine learning/LLM.md",
     "4-maps/machine learning.canvas",
     "4-maps/js spec.canvas",
@@ -261,7 +262,6 @@
     "2-technologies/web audio API.md",
     "2-technologies/variable.md",
     "2-technologies/tonejs.md",
-    "2-technologies/TCP.md",
     "3-imi/01-player-scrub/index.html",
     "1-classes/09-machine learning",
     "1-classes/08-threejs/threejs03.html",
