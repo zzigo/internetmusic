@@ -57,12 +57,18 @@
     "generateTitleInstruct": "Generate a title for the current document (do not use * \" \\ / < > : | ? .):\n{{substring content 0 255}}"
   },
   "autoSuggestOptions": {
+    "customInstructEnabled": false,
+    "customInstruct": "continue the follwing text:\n{{query}}",
     "isEnabled": false,
+    "allowInNewLine": false,
     "delay": 300,
     "numberOfSuggestions": 5,
     "triggerPhrase": "  ",
     "stop": ".",
-    "showStatus": true
+    "showStatus": true,
+    "customProvider": false,
+    "inlineSuggestions": false,
+    "overrideTrigger": " "
   },
   "slashSuggestOptions": {
     "isEnabled": false,
@@ -87,7 +93,7 @@
     }
   },
   "LLMProviderOptionsKeysHashed": {
-    "OpenAI Chat (Langchain).api_key": "__@#key_prefix#@__sk-aQCVzoduvDsMjhqQk1r3T3BlbkFJArz55uXX6MkacmB0MObh"
+    "OpenAI Chat (Langchain).api_key": "__@#key_prefix#@__sk-Jw1jjaFtX6eno7F0znT7T3BlbkFJcU2Qg7UwhCd33vas9za0"
   },
-  "api_key_encrypted": "__@#key_prefix#@__sk-aQCVzoduvDsMjhqQk1r3T3BlbkFJArz55uXX6MkacmB0MObh"
+  "api_key_encrypted": "__@#key_prefix#@__sk-Jw1jjaFtX6eno7F0znT7T3BlbkFJcU2Qg7UwhCd33vas9za0"
 }

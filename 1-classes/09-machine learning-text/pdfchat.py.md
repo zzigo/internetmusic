@@ -1,6 +1,6 @@
 ```python
-
-!pip3 install pdf2image python-poppler Pillow pytesseract openai
+!brew install xpdf
+!pip3 install pdf2image python-poppler poppler-utils Pillow pytesseract openai
 
 import pdf2imag
 from PIL import Image

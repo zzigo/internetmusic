@@ -18,9 +18,10 @@
   "emoji-shortcodes",
   "auto-note-mover",
   "obsidian-html-plugin",
-  "obsidian-textgenerator-plugin",
   "obsidian-excalidraw-plugin",
   "css-snippets",
   "canvas-mindmap",
-  "canvas-presentation"
+  "canvas-presentation",
+  "obsidian-textgenerator-plugin",
+  "lilypond"
 ]

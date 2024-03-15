@@ -4,9 +4,9 @@ tags:
 unit: 8
 date: 231002
 ---
-|![\|50](https://i.imgur.com/N8z2xP4.png) | | |
-|-|:-|-:|
-|**class 08**|Feb 2nd, 2024|*internet music 23/24*|
+| ![\|50](https://i.imgur.com/N8z2xP4.png) |               |                        |
+| ---------------------------------------- | :------------ | ---------------------: |
+| **class 08**                             | Feb 2nd, 2024 | *internet music 23/24* |
 
 
 # Machine Learning

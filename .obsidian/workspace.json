@@ -37,9 +37,45 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1-classes/09-machine learning/pdfchat.py.md",
+                "file": "1-classes/09-machine learning-text/pdfchat.py.md",
                 "mode": "preview",
                 "source": true
+              }
+            }
+          },
+          {
+            "id": "1fcdfe7798358c03",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "lilypond example.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "13cd3d6bfac31219",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "lilypond example.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "ccc45ad15669d03b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "lilypond 3.md",
+                "mode": "source",
+                "source": false
               }
             }
           },
@@ -56,7 +92,21 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
+      },
+      {
+        "id": "9e3ffd9df4dd0033",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "959f3bfbf629f773",
+            "type": "leaf",
+            "state": {
+              "type": "reveal-preview-view",
+              "state": {}
+            }
+          }
+        ]
       }
     ],
     "direction": "vertical"
@@ -122,7 +172,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1-classes/09-machine learning/pdfchat.py.md",
+                "file": "lilypond example.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +189,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1-classes/09-machine learning/pdfchat.py.md",
+                "file": "lilypond example.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +212,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1-classes/09-machine learning/pdfchat.py.md"
+                "file": "lilypond example.md"
               }
             }
           },
@@ -214,16 +264,27 @@
       "obsidian-advanced-slides:Show Slide Preview": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
+      "open-gate:p5": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
-      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
-      "open-gate:p5": false
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "dca9d57757635c7d",
+  "active": "1fcdfe7798358c03",
   "lastOpenFiles": [
-    "1-classes/09-machine learning/ML resources.md",
-    "1-classes/09-machine learning/pdfchat.py.md",
-    "1-classes/09-machine learning/README.md.md",
+    "lilypond 3.md",
+    "2-technologies/randomness.md",
+    "2-technologies/nft.md",
+    "2-technologies/variable.md",
+    "2-technologies/www.md",
+    "1-classes/12-scores/react.md",
+    "1-classes/11-machine learning-sound/README.me.md",
+    "1-classes/10-machine learning-image/README.md.md",
+    "1-classes/09-machine learning-text/README.md.md",
+    "1-classes/09-machine learning-text/ML resources.md",
+    "1-classes/10-machine learning-image",
+    "lilypond example.md",
+    "py2.md",
+    "1-classes/09-machine learning-text/pdfchat.py.md",
     "1-classes/09-machine learning/LLM.md",
     "4-maps/machine learning.canvas",
     "4-maps/js spec.canvas",
@@ -252,25 +313,14 @@
     "practices/digital paradigms.md",
     "2-technologies/data crawling.md",
     "practices/data crawling.md",
-    "practices/digital garden.md",
-    "2-technologies/nft.md",
-    "2-technologies/bash.md",
-    "tpl/t-code.md",
-    "tpl/t-class.md",
-    "2-technologies/www.md",
-    "2-technologies/web midi API.md",
-    "2-technologies/web audio API.md",
-    "2-technologies/variable.md",
-    "2-technologies/tonejs.md",
     "3-imi/01-player-scrub/index.html",
-    "1-classes/09-machine learning",
+    "1-classes/09-machine learning-text",
     "1-classes/08-threejs/threejs03.html",
     "1-classes/08-threejs/threejs02.html",
     "1-classes/08-threejs/threejs01.html",
     "1-classes/08-threejs/threejs-youtube.html",
     "1-classes/08-threejs/three-pos-synth.html",
     "1-classes/07-live coding/tominst.html",
-    "1-classes/07-live coding/tominstallation/index.html",
     "maps/internet music tree.canvas",
     "maps/web structure.canvas"
   ]
