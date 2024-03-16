@@ -9,7 +9,7 @@ date: 231002
 | **class 08**                             | Feb 2nd, 2024 | *internet music 23/24* |
 
 
-# Machine Learning
+# Machine Learning - text
 
 
 ---

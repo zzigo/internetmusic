@@ -8,7 +8,7 @@ date: 240330
 | ![\|50](https://i.imgur.com/N8z2xP4.png) |                  |                        |
 | ---------------------------------------- | :--------------- | ---------------------: |
 | **class 11**                             | March 30th, 2024 | *internet music 23/24* |
-# ML sound
+# # Machine Learning - sound
 ---
 ## Wave2Midi2Wave [Hawthorne 2018]
 

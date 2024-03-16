@@ -77,3 +77,11 @@ note:These algorithms can be used for various regression tasks such as predictin
 
 
 ---
+
+## mediapipe-touchdesigner 
+
+https://github.com/torinmb/mediapipe-touchdesigner?tab=readme-ov-file
+
+A GPU Accelerated, self-contained, [MediaPipe](https://developers.google.com/mediapipe) Plugin for TouchDesigner that runs on Mac and PC with no installation. This project currently supports all MediaPipe vision models except Interactive Segmentation and Image Embedding.
+
+![](https://i.imgur.com/iajFvqI.png)
