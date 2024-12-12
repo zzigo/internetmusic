@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive 3D Ball</title>
+  <style>
+    body { margin: 0; }
+    canvas { display: block; }
+    #startScreen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.8); color: white; text-align: center; padding-top: 50px; z-index: 999; }
+    button { background-color: #444; color: white; font-size: 20px; padding: 10px 20px; margin: 20px; border: none; cursor: pointer; }
+    button:hover { background-color: #555; }
+  </style>
+</head>
+<body>
+
+  <div id="startScreen">
+    <h1>Welcome! Choose a Version</h1>
+    <button id="startButton">Start Version 1</button>
+    <button id="startButton2">Start Version 2</button>
+    <button id="startButton3">Start Version 3</button>
+  </div>
+
+  <!-- <h1>Controller</h1>
+  <div>
+    <label for="rotation-axis">Rotation Axis:</label>
+    <select id="rotation-axis">
+      <option value="x">X</option>
+      <option value="y">Y</option>
+      <option value="z">Z</option>
+    </select>
+    <label for="rotation-angle">Angle (radians):</label>
+    <input id="rotation-angle" type="number" step="0.1" value="0.1">
+    <button id="rotate-button">Rotate</button>
+  </div>
+  <div>
+    <label for="volume">Volume:</label>
+    <input id="volume" type="range" min="0" max="1" step="0.01" value="0.5">
+  </div> -->
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.35/Tone.min.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/controls/OrbitControls.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/postprocessing/EffectComposer.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/postprocessing/UnrealBloomPass.min.js"></script> -->
+
+  <!-- Main JS for Version 1 -->
+  <script id="main-js" type="module" src="/src/main.js" style="display: none;"></script>
+  <!-- Main JS for Version 2 (will be loaded when needed) -->
+  <script id="main2-js" type="module" src="/src/main2.js" style="display: none;"></script> 
+  <script id="main3-js" type="module" src="/src/main3.js" style="display: none;"></script> 
+
+
+
+  <script>
+
+
+    // Get the buttons
+const startButton = document.getElementById('startButton');
+const startButton2 = document.getElementById('startButton2');
+const startButton3 = document.getElementById('startButton3');
+
+// Get the start screen div
+const startScreen = document.getElementById('startScreen');
+
+// Function to start Version 1 (main.js)
+startButton.addEventListener('click', () => {
+  // Hide the start screen
+  startScreen.style.display = 'none';
+  
+  // Load and start main.js
+  document.getElementById('main-js').style.display = 'block'; // Show main.js script
+  document.getElementById('main2-js').style.display = 'none'; // Hide main2.js script
+  document.getElementById('main3-js').style.display = 'none'; // Hide main2.js script
+
+});
+
+// Function to start Version 2 (main2.js)
+startButton2.addEventListener('click', () => {
+  // Hide the start screen
+  startScreen.style.display = 'none';
+  
+  // Load and start main2.js
+  document.getElementById('main2-js').style.display = 'block'; // Show main2.js script
+  document.getElementById('main3-js').style.display = 'none'; // Hide main.js script
+  document.getElementById('main-js').style.display = 'none'; // Hide main.js script
+});
+
+
+// Function to enter full screen
+function enterFullScreen() {
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+    document.documentElement.mozRequestFullScreen();
+  } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
+    document.documentElement.webkitRequestFullscreen();
+  } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+    document.documentElement.msRequestFullscreen();
+  }
+}
+
+// socket 
+//const ws = new WebSocket('ws://localhost:8080');
+
+//ws.onopen = () => console.log('WebSocket connected');
+//ws.onclose = () => console.log('WebSocket disconnected');
+
+//document.getElementById('rotate-button').addEventListener('click', () => {
+ // const axis = document.getElementById('rotation-axis').value;
+ // const angle = parseFloat(document.getElementById('rotation-angle').value);
+ // ws.send(JSON.stringify({ type: 'rotate', axis, angle }));
+//});
+
+//document.getElementById('volume').addEventListener('input', (event) => {
+ // const volume = parseFloat(event.target.value);
+ // ws.send(JSON.stringify({ type: 'volume', volume }));
+//});
+
+
+// Function to exit full screen
+function exitFullScreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) { // Firefox
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { // IE/Edge
+    document.msExitFullscreen();
+  }
+}
+
+// Function to toggle full-screen on ESC key press
+function toggleFullScreenOnEsc(event) {
+  if (event.key === 'Escape') {
+    if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+      enterFullScreen(); // Enter full-screen mode
+    } else {
+      exitFullScreen(); // Exit full-screen mode
+    }
+  }
+}
+
+// Add event listener for the ESC key
+window.addEventListener('keydown', toggleFullScreenOnEsc);
+
+// Global variable to hold presets
+let presets = [];
+
+// Load all presets from preset.json file
+async function loadPresets() {
+  presets = await loadPresetFile('./preset.json');
+}
+
+// Function to apply a specific preset
+function applyPresetByIndex(index) {
+  const preset = presets[index];
+  applyPreset(preset, cube, ball, collisionSynth, whooshingSynth, sunsetProgress);
+}
+
+// Listen for '1' and '2' key presses to switch between presets
+window.addEventListener('keydown', (event) => {
+  if (event.key === '1' && presets.length > 0) {
+    applyPresetByIndex(0); // Apply the first preset (index 0)
+  } else if (event.key === '2' && presets.length > 1) {
+    applyPresetByIndex(1); // Apply the second preset (index 1)
+  }
+});
+
+// Apply a random preset on page load
+async function applyRandomPreset() {
+  await loadPresets(); // Load all presets
+  const randomIndex = Math.floor(Math.random() * presets.length);
+  applyPresetByIndex(randomIndex);
+}
+
+
+// Adjust Viewport on Resize
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  composer.setSize(window.innerWidth, window.innerHeight);
+});
+  </script>
+
+</body>
+</html>

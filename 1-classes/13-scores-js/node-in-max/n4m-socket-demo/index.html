@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>n4m-socket-demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+      html { font-size: 100%; line-height: 1.5; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font-family: sans-serif; padding: 5%; }
+      form { background: #000; margin-top: 1em; padding: .5em; width: 100%; }
+      form input { font-size: 1em; border: 0; padding: .5em; width: 79%; margin-right: .5%; }
+      form button { font-size: 1em; width: 20%; background: rgb(130, 224, 255); border: none; padding: .5em; }
+      @media (min-width: 40em) {
+        html { font-size: 200%; }
+      }
+    </style>
+  </head>
+  <body>
+      <p>Try typing a message below and hitting enter or pressing <strong>Send</strong>. You should see your message in the Max patch.</p>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $(function () {
+        var socket = io();
+        $('form').submit(function(){
+          socket.emit('chat message', $('#m').val());
+          $('#m').val('');
+          return false;
+        });
+      });
+    </script>
+  </body>
+</html>

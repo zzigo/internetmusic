@@ -1,0 +1,62 @@
+[
+  {
+    "cube": {
+      "color": "#ff0000",
+      "intensity": 1.5,
+      "size": 4
+    },
+    "ball": {
+      "color": "#00ff00",
+      "intensity": 2
+    },
+    "collisionSynth": {
+      "oscillator": "sine",
+      "envelope": {
+        "attack": 0.1,
+        "decay": 0.2,
+        "sustain": 0.5,
+        "release": 0.3
+      }
+    },
+    "whooshingSynth": {
+      "noise": "pink",
+      "envelope": {
+        "attack": 0.05,
+        "decay": 0.1,
+        "sustain": 0.2,
+        "release": 0.2
+      }
+    },
+    "sunsetSpeed": 0.8
+  },
+  {
+    "cube": {
+      "color": "#0000ff",
+      "intensity": 1,
+      "size": 6
+    },
+    "ball": {
+      "color": "#ffff00",
+      "intensity": 1.5
+    },
+    "collisionSynth": {
+      "oscillator": "triangle",
+      "envelope": {
+        "attack": 0.2,
+        "decay": 0.3,
+        "sustain": 0.7,
+        "release": 0.4
+      }
+    },
+    "whooshingSynth": {
+      "noise": "white",
+      "envelope": {
+        "attack": 0.1,
+        "decay": 0.2,
+        "sustain": 0.3,
+        "release": 0.3
+      }
+    },
+    "sunsetSpeed": 1.2
+  }
+]

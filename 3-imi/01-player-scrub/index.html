@@ -1,0 +1,416 @@
+
+-
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="manifest" href="manifest.json">
+
+    <!-- content="width=device-width, initial-scale=1.0"> -->
+    <title>HEM WebAudio: hello-instrument theremin</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+
+            /* no select */
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+
+            /*
+     Introduced in Internet Explorer 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* to remove the top and left whitespace */
+        html,
+        body {
+            /* width: 100%;
+			height: 100%; */
+            font-family: Andale Mono;
+            font-size: 13px;
+            color: grey;
+            background: black;
+            overflow: hidden;
+            /* remove all wrappers */
+        }
+
+        /* just to be sure these are full screen*/
+
+
+
+        #console {
+            position: fixed;
+            bottom: 0;
+            rigth: 100;
+        }
+
+        #element {
+            position: fixed;
+            top: 0;
+            rigth: 0;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        /* To remove the scrollbars */
+    </style>
+</head>
+
+<body unselectable="on">
+    <canvas id="canvas" height="400" width="500"> </canvas>
+
+
+    <p id="console">mouse: </p>
+    <p id="element">click: </p>
+
+
+
+
+    <!-- <a href="t.html"> GO TO T</a> -->
+
+    <script>
+        // 1. detect the mouse.
+        // 2. trace the position with a cross.
+        // 3. make a theremin with the mouse position
+
+
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        context.onselectstart = function () {
+            return false;
+        } //avoid that the canvas text can be selected
+
+
+        // 3. make a theremin with the mouse position
+
+
+        //define variables
+
+        var context = new AudioContext(),
+            gainNode = context.createGain(),
+            mousedown = false,
+            oscillator = null;
+        pitch = 0;
+
+        gainNode.connect(context.destination);
+
+
+
+        //calculate frequency
+
+        var calculateFrequency = function (mouseXPosition) {
+            var minFrequency = 0,
+                maxFrequency = 200;
+            pitch = ((mouseXPosition / window.innerWidth) * maxFrequency) + minFrequency;
+            return pitch;
+        };
+
+        //calculate gain
+
+        var calculateGain = function (mouseYPosition) {
+            var minGain = 0,
+                maxGain = 1;
+
+            return 1 - ((mouseYPosition / window.innerHeight) * maxGain) + minGain;
+        };
+
+
+
+
+
+        //2.trace the position with a cross
+        var draw = function (x, y) {
+
+            const canvas = document.querySelector('#canvas');
+            canvas.width = document.body.clientWidth;
+            canvas.height = document.body.clientHeight;
+            canvasW = canvas.width;
+            canvasH = canvas.height;
+
+            if (!canvas.getContext) {
+                return;
+            }
+
+            //set lines troke and width
+
+
+
+            context.beginPath();
+
+            context.strokeStyle = 'green';
+            context.lineWidth = 3;
+            context.moveTo(0, y);
+            context.lineTo(canvas.width, y);
+            context.stroke();
+            context.closePath();
+
+            //set line yYstroke and width
+
+            context.strokeStyle = 'green';
+            context.lineWidth = 2;
+
+            context.moveTo(x, 0);
+            context.lineTo(x, canvas.height);
+            context.stroke();
+            context.closePath();
+
+
+            // console.log ([mousex, mousey]); //print data
+
+        }
+
+
+        //drawPitch
+        var drawPitch = function (f) {
+            context.font = '20em Arial';
+            context.textAlign = 'center';
+            context.fillStyle = 'rgb(100,100,200)';
+            context.globalAlpha = 0.1;
+            context.fillText(f, document.body.clientWidth / 2, 300);
+        }
+
+
+        //convert frequency to Note
+        var toNote = function (e) {
+            var scaleIndexToNote = [
+                'C',
+                'C#',
+                'D',
+                'D#',
+                'E',
+                'F',
+                'F#',
+                'G',
+                'G#',
+                'A',
+                'A#',
+                'B'
+            ];
+
+            var freq = this.eval(e);
+            var log = Math.log(freq / 440) / Math.LN2;
+            var noteNumber = Math.round(12 * log) + 57;
+            var octave = Math.floor(noteNumber / 12);
+            if (octave < 0) {
+                noteNumber += -12 * octave;
+            }
+            var noteName = scaleIndexToNote[noteNumber % 12];
+            return noteName + octave.toString();
+        };
+
+
+        //create oscillator
+
+        var createOscillator = function (e) {
+
+            var xPos = e.clientX,
+                yPos = e.clientY;
+
+            if (e.touches) {
+                xPos = e.touches[0].clientX;
+                yPos = e.touches[0].clientY;
+            }
+
+            mousedown =
+            true; //We can make sure that an oscillator is actively accepting frequency values by keeping track of whether the mouse has been clicked.
+
+            // draw(xPos,yPos);
+            // onScreenConsole(xPos,yPos);
+
+
+            oscillator = context.createOscillator();
+
+            // This will calculate the frequency based on the position of the mouse click, but it will do it fairly abruptly. We want our theremin to smoothly slide between frequencies. To do this, we use the Web Audio API’s automation methods. These methods allow us to schedule such changes at some future point in time, but, more importantly for us, it will transition the frequency to its new value smoothly. To automate the frequency change, we delete our previous line and write this:
+
+            oscillator.frequency.setTargetAtTime(calculateFrequency(xPos), context.currentTime, 0.001);
+
+
+            gainNode.gain.setTargetAtTime(calculateGain(yPos), context.currentTime, 0.0001);
+
+
+            oscillator.connect(gainNode);
+            oscillator.type = 'square';
+            oscillator.start(context.currentTime);
+        }
+
+
+        //stop oscillator
+
+        var stopOscillator = function () {
+            mousedown = false;
+
+            if (oscillator) {
+                oscillator.stop(context.currentTime);
+                oscillator.disconnect();
+            }
+        };
+
+
+        // change frequency
+
+        var changeFrequency = function (e) {
+            var xPos = e.clientX,
+                yPos = e.clientY;
+
+            if (e.touches) {
+                xPos = e.touches[0].clientX;
+                yPos = e.touches[0].clientY;
+
+
+
+            }
+
+            if (mousedown && oscillator) {
+                oscillator.frequency.setTargetAtTime(calculateFrequency(xPos), context.currentTime, 0.001);
+                gainNode.gain.setTargetAtTime(calculateGain(yPos), context.currentTime, 0.001);
+
+
+                draw(xPos, yPos);
+                onScreenConsole(xPos, yPos);
+                drawPitch(toNote(pitch));
+            }
+        };
+
+
+		// scrub
+		fetch("https://upload.wikimedia.org/wikipedia/en/d/dc/Strawberry_Fields_Forever_(Beatles_song_-_sample).ogg")
+  .then( resp => resp.arrayBuffer() )
+  .then( buf => context.decodeAudioData(buf) )
+  .then( prepareUI )
+  .catch( console.error );
+  
+function prepareUI( audioBuf ) {
+  let source;
+  slider.oninput = e => {
+    if( source ) { source.stop(0); }
+    source = context.createBufferSource();
+    source.buffer = audioBuf;
+    source.connect(context.destination);
+    const offset = slider.value * audioBuf.duration;
+    const duration = 0.1;
+    source.start(0, offset, duration);
+  };
+  slider.disabled = false;
+}
+        //connections
+
+        document.body.addEventListener('mousedown', function (e) {
+            createOscillator(e);
+            changeFrequency(e);
+
+
+        });
+
+        document.body.addEventListener('touchstart', function (e) {
+            createOscillator(e);
+            changeFrequency(e);
+        });
+
+        document.body.addEventListener('touchend', function () {
+            stopOscillator();
+        });
+
+        document.body.addEventListener('touchmove', function (e) {
+            changeFrequency(e);
+        });
+
+
+        document.body.addEventListener('mouseup', function () {
+            stopOscillator();
+        });
+
+
+        document.body.addEventListener('mousemove', function (e) {
+            changeFrequency(e);
+        });
+
+
+
+
+
+        function onScreenConsole(x, y) {
+            document.getElementById("console").innerHTML = parseInt(x) + " " + parseInt(y) + " | platform" + iOstext() +
+                " PITCH:" + Math.round(pitch) + " Hz";
+
+        }
+
+
+
+
+
+
+
+        //MOUSE EXPERIMENTS
+
+        var el = document.getElementById('element');
+        var numClicks = 0; // count the number of recent clicks
+        var lastClickTime = 0; // time of last click in milliseconds
+        var threshold = 50; // you need to set this to a reasonable value
+
+        function isDoubleClick() {
+            var r;
+            if (numClicks == 0) {
+                numClicks++; // first click never counts
+                r = false;
+            } else if (new Date().getTime() - lastClickTime > threshold) {
+                numClicks = 1; // too long time has passed since lsat click, reset the count
+                r = false;
+            } else {
+                numClicks++; // note: reset numClicks here if you want to treat triple-clicks and beyond differently
+                r = true;
+            }
+            lastClickTime = new Date().getTime();
+            return r;
+        }
+
+        var myClickFunction = function (event) {
+            if (isDoubleClick()) {
+                // your double-click code
+            } else {
+                // plain click code
+            }
+        }
+
+        // bind your own click function to the mouse click event
+        el.addEventListener("mouseclick", myClickFunction, false);
+
+
+        function iOS() {
+            return [
+                    'iPad Simulator',
+                    'iPhone Simulator',
+                    'iPod Simulator',
+                    'iPad',
+                    'iPhone',
+                    'iPod'
+                ].includes(navigator.platform)
+                // iPad on iOS 13 detection
+                ||
+                (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+        }
+
+        function iOstext() {
+            let platform = iOS();
+            if (platform) {
+                return " IPHONE"
+            } else {
+                return " BROWSER"
+            };
+        }
+    </script>
+
+</body>
+
+</html>

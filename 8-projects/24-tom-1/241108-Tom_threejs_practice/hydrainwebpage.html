@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>hydra inside a webpage</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/main.css" />
+    
+    <!-- import the latest version of hydra synth-->
+    <script src="https://unpkg.com/hydra-synth"></script>
+  </head>
+  <body>
+    <h1>hydra inside a webpage</h1>
+    <button onclick="osc(20).rotate(0, 0.1).modulate(osc()).out()"> oscillator </button>
+    <button onclick="useCamera()"> camera </button>
+    <button onclick="feedback()"> feedback </button>
+    <canvas id="myCanvas" width="400px" height="400px"></canvas>
+    <p>example of using <a href="https://hydra-editor.glitch.me">hydra</a> inside of an html site</p>
+      <p>for more info, see: <a href="https://github.com/ojack/hydra-synth">https://github.com/ojack/hydra-synth</a> 
+        or edit the <a href="https://glitch.com/edit/#!/hydra-webpage">source of this page</a></p>
+    <p>by <a href="https://ojack.github.io">olivia</a>
+    </p>
+    <script>
+      // create a new hydra-synth instance
+      var hydra = new Hydra({
+        canvas: document.getElementById("myCanvas"),
+        detectAudio: false
+      })
+       osc(10, 0.1, 0.8).rotate(0, 0.1).kaleid().color(-1, 1).out()
+      
+      // create functions to use with buttons
+      function useCamera() {
+        s0.initCam()
+        src(s0).color(-1, Math.random()*2, 1).colorama().out()
+      }
+      
+      function feedback() {
+        src(o1)
+          .layer(src(o0).mask(shape(4, 0.4, 0)))
+          .scrollX([0.005, -0.005])
+          .scrollY(0.005)
+          .out(o1)
+        
+        render(o1)
+      }
+      
+    </script>
+  </body>
+</html>

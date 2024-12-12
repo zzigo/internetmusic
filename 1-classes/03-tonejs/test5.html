@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tone.js Piano Emulation</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.58/Tone.js"></script>
+    <button id="playButton">Play Piano Sound</button>
+    <script>
+        const synth = new Tone.FMSynth({
+            harmonicity: 3, // Controls the harmonic content
+            modulationIndex: 12, // Controls the modulation depth
+            envelope: {
+                attack: 0.1, // Attack time
+                decay: 0.2, // Decay time
+                sustain: 0.6, // Sustain level
+                release: 2 // Release time
+            }
+        }).toDestination();
+
+        document.getElementById('playButton').addEventListener('click', () => {
+            const noteToPlay = 'C4'; // You can change the note
+            synth.triggerAttackRelease(noteToPlay, '8n');
+        });
+    </script>
+</body>
+</html>

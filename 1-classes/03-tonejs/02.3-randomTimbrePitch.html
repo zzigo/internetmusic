@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tone.js Play Pitch with Random Timbre, Effects, Envelopes, and Spatial Positioning</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #playButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.58/Tone.js"></script>
+    <button id="playButton">Play Random Timbre</button>
+    <script>
+        // Ensure Tone.js is initialized and ready
+        Tone.start().then(() => {
+            // Set the master volume to 0.5
+            Tone.Master.volume.value = -6; // -6 dB is equivalent to 0.5 volume
+
+            // Create an FM synth with custom envelope settings
+            const synth = new Tone.FMSynth({
+                envelope: {
+                    attack: 2, // 2 seconds fade-in
+                    decay: 2, // 2 seconds sustain
+                    sustain: 0.5, // Sustain level
+                    release: 5, // 5 seconds fade-out
+                },
+            }).toDestination();
+
+            // Create a long reverb effect
+            const reverb = new Tone.Freeverb({
+                roomSize: 0.5, // Adjust the room size as desired (larger values for longer reverb)
+                dampening: 5000, // Adjust the dampening as desired
+            }).toDestination();
+
+            // Connect the synth to the reverb
+            synth.connect(reverb);
+
+            // Create a panner for spatial positioning
+            const panner = new Tone.Panner().toDestination();
+
+            document.getElementById('playButton').addEventListener('click', () => {
+                // Set a random modulation index (controls timbre)
+                const randomModulationIndex = Math.random() * 100;
+                synth.modulationIndex.value = randomModulationIndex;
+
+                // Play a random pitch with a ±10 Hz variation
+                const basePitch = 261.63; // Middle C (C4) at 261.63 Hz
+                const pitchVariation = (Math.random() * 20) - 10; // ±10 Hz variation
+                const pitchToPlay = basePitch + pitchVariation;
+
+                // Set a random panning position (between -1 and 1)
+                const randomPanPosition = Math.random() * 2 - 1;
+                panner.pan.value = randomPanPosition;
+
+                // Connect the synth to the panner
+                synth.connect(panner);
+
+                // Trigger the synth to play the specified pitch with the custom envelope
+                synth.triggerAttackRelease(pitchToPlay, '8s'); // '8n' is the duration of the note (eighth note)
+
+                // Disconnect the synth from the panner after playing
+                synth.disconnect(panner);
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === ' ' || event.key === 'Spacebar') {
+                    event.preventDefault();
+                    document.getElementById('playButton').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+ 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A-Frame Scene with Dialogues</title>
+</head>
+<body>
+  <!-- A-Frame Scene -->
+  <a-scene>
+    <!-- Sky -->
+    <a-sky color="#87CEEB"></a-sky>
+
+    <!-- Floor -->
+    <a-plane color="#228B22" height="100" width="100" rotation="-90 0 0"></a-plane>
+
+    <!-- Character -->
+    <a-box id="character" position="0 1 0" color="#FF6347"></a-box>
+
+    <!-- Dialogue Texts -->
+    <a-text id="dialogue1" value="Welcome to our world!" position="2 2 -3" align="center" color="#FFFFFF" visible="false"></a-text>
+    <a-text id="dialogue2" value="Look around, there's much to see." position="-3 1.5 -4" align="center" color="#FFFFFF" visible="false"></a-text>
+    <a-text id="dialogue3" value="I'm here to guide you." position="4 2 -5" align="center" color="#FFFFFF" visible="false"></a-text>
+    <a-text id="dialogue4" value="Did you know you can interact?" position="-2 3 -6" align="center" color="#FFFFFF" visible="false"></a-text>
+    <a-text id="dialogue5" value="This is a beautiful space, isn't it?" position="1 1 -3" align="center" color="#FFFFFF" visible="false"></a-text>
+    <a-text id="dialogue6" value="Follow your curiosity!" position="-1 2 -7" align="center" color="#FFFFFF" visible="false"></a-text>
+    <a-text id="dialogue7" value="There are wonders hidden here." position="3 3 -5" align="center" color="#FFFFFF" visible="false"></a-text>
+    <a-text id="dialogue8" value="Imagine, explore, discover." position="-4 2.5 -3" align="center" color="#FFFFFF" visible="false"></a-text>
+    <a-text id="dialogue9" value="Everything here has a story." position="2 1.5 -4" align="center" color="#FFFFFF" visible="false"></a-text>
+    <a-text id="dialogue10" value="Farewell, until next time!" position="0 2 -6" align="center" color="#FFFFFF" visible="false"></a-text>
+  </a-scene>
+
+  <script type="module">
+    import 'aframe';
+
+    // JavaScript to control the dialogue display
+    const character = document.querySelector("#character");
+    const dialogues = Array.from({ length: 10 }, (_, i) =>
+      document.querySelector(`#dialogue${i + 1}`)
+    );
+
+    // Show each dialogue in sequence on character click
+    let currentDialogue = 0;
+    character.addEventListener("click", () => {
+      // Hide the previous dialogue
+      dialogues.forEach(dialogue => dialogue.setAttribute("visible", "false"));
+
+      // Show the next dialogue
+      dialogues[currentDialogue].setAttribute("visible", "true");
+
+      // Cycle to the next dialogue
+      currentDialogue = (currentDialogue + 1) % dialogues.length;
+
+      // Hide after 3 seconds
+      setTimeout(() => {
+        dialogues.forEach(dialogue => dialogue.setAttribute("visible", "false"));
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

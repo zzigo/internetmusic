@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IM repository</title>
+
+    <style>
+        /* Variables */
+        @thumbnail-width: 1440px;
+        @thumbnail-height: 900px;
+        @thumbnail-zoom: 0.25;
+
+        /* Basic CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Demo-specific styling */
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* This container helps the thumbnail behave as if it were an unscaled IMG element */
+        .column {
+            width: calc(@thumbnail-width * @thumbnail-zoom);
+            height: calc(@thumbnail-height * @thumbnail-zoom);
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+            background: #f9f9f9;
+        }
+
+        /* Image Icon for the Background */
+        .column::before {
+            position: absolute;
+            left: ~"calc(50% - 16px)";
+            top: ~"calc(50% - 18px)";
+            opacity: 0.2;
+            display: block;
+            -ms-zoom: 2;
+            -o-transform: scale(2);
+            -moz-transform: scale(2);
+            -webkit-transform: scale(2);
+            /* content: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiBoZWlnaHQ9IjMycHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxnIGlkPSJwaG90b18xXyI+PHBhdGggZD0iTTI3LDBINUMyLjc5MSwwLDEsMS43OTEsMSw0djI0YzAsMi4yMDksMS43OTEsNCw0LDRoMjJjMi4yMDksMCw0LTEuNzkxLDQtNFY0QzMxLDEuNzkxLDI5LjIwOSwwLDI3LDB6ICAgIE0yOSwyOGMwLDEuMTAyLTAuODk4LDItMiwySDVjLTEuMTAzLDAtMi0wLjg5OC0yLTJWNGMwLTEuMTAzLDAuODk3LTIsMi0yaDIyYzEuMTAyLDAsMiwwLjg5NywyLDJWMjh6IiBmaWxsPSIjMzMzMzMzIi8+PHBhdGggZD0iTTI2LDRINkM1LjQ0Nyw0LDUsNC40NDcsNSw1djE4YzAsMC41NTMsMC40NDcsMSwxLDFoMjBjMC41NTMsMCwxLTAuNDQ3LDEtMVY1QzI3LDQuNDQ3LDI2LjU1Myw0LDI2LDR6ICAgIE0yNiw1djEzLjg2OWwtMy4yNS0zLjUzQzIyLjU1OSwxNS4xMjMsMjIuMjg3LDE1LDIyLDE1cy0wLjU2MSwwLjEyMy0wLjc1LDAuMzM5bC0yLjYwNCwyLjk1bC03Ljg5Ni04Ljk1ICAgQzEwLjU2LDkuMTIzLDEwLjI4Nyw5LDEwLDlTOS40NCw5LjEyMyw5LjI1LDkuMzM5TDYsMTMuMDg3VjVIMjZ6IE02LDE0LjZsNC00LjZsOC4wNjYsOS4xNDNsMC41OCwwLjY1OEwyMS40MDgsMjNINlYxNC42eiAgICBNMjIuNzQsMjNsLTMuNDI4LTMuOTU1TDIyLDE2bDQsNC4zNzlWMjNIMjIuNzR6IiBmaWxsPSIjMzMzMzMzIi8+PHBhdGggZD0iTTIwLDEzYzEuNjU2LDAsMy0xLjM0MywzLTNzLTEuMzQ0LTMtMy0zYy0xLjY1OCwwLTMsMS4zNDMtMywzUzE4LjM0MiwxMywyMCwxM3ogTTIwLDhjMS4xMDIsMCwyLDAuODk3LDIsMiAgIHMtMC44OTgsMi0yLDJjLTEuMTA0LDAtMi0wLjg5Ny0yLTJTMTguODk2LDgsMjAsOHoiIGZpbGw9IiMzMzMzMzMiLz48L2c+PC9zdmc+"); */
+        }
+
+        /* This is a masking container for the zoomed iframe element */
+        .thumbnail {
+            background-color: white;
+            padding: 10px;
+            -ms-zoom: @thumbnail-zoom;
+            -moz-transform: scale(@thumbnail-zoom);
+            -moz-transform-origin: 0 0;
+            -o-transform: scale(@thumbnail-zoom);
+            -o-transform-origin: 0 0;
+            -webkit-transform: scale(@thumbnail-zoom);
+            -webkit-transform-origin: 0 0;
+        }
+
+        h3 {
+            padding: 10px;
+            font-style: italic;
+            font-size: 10px;
+            margin: 0 0.32em 0 0.32em;
+            color: grey;
+            text-align: center;
+        }
+
+        /* This is our screen sizing */
+        .thumbnail,
+        .thumbnail iframe {
+            width: @thumbnail-width;
+            height: @thumbnail-height;
+        }
+
+        /* This facilitates the fade-in transition instead of flicker. It also helps us maintain the illusion that this is an image, since some webpages will have a preloading animation or wait for some images to download */
+        .thumbnail iframe {
+            opacity: 0;
+            transition: all 300ms ease-in-out;
+        }
+
+        /* This pseudo element masks the iframe, so that mouse wheel scrolling and clicking do not affect the simulated "screenshot" */
+        .thumbnail:after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f1f1f1;
+            padding: 20px;
+            font-family: Arial;
+        }
+
+        /* Center website */
+        .main {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 50px;
+            word-break: break-all;
+        }
+
+        .row {
+            margin: 10px -16px;
+        }
+
+        /* Add padding BETWEEN each column */
+        .row,
+        .row>.column {
+            padding: 8px;
+        }
+
+        /* Create three equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 33.33%;
+            display: none;
+            /* Hide all elements by default */
+        }
+
+        /* Clear floats after rows */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+
+
+        /* The "show" class is added to the filtered elements */
+        .show {
+            display: block;
+        }
+
+        /* Style the buttons */
+        .btn {
+            border: none;
+            outline: none;
+            padding: 12px 16px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #ddd;
+        }
+
+        .btn.active {
+            background-color: #666;
+            color: white;
+        }
+    </style>
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma-rtl.min.css' integrity='sha512-zQwCzko7uofuMafJv7wahf3r1A8GC6lUaDlvoYXuoYggqD82RW2quUy7L97odQNcL8u/N8DJBOoIuiGAI2auBQ==' crossorigin='anonymous'/>
+
+</head>
+
+<body>
+
+
+    <h2>INTERNET MUSIC GALLERY</h2>
+    <h3> a gallery of web experiments developed during the WebAudio skill <br> at the Multimedia Master of the Haute
+        école de Musique de Genève</h3>
+    <br>
+    <br>
+    <div id="myBtnContainer">
+        <button class="btn active" onclick="filterSelection('all')"> all</button>
+        <button class="btn" onclick="filterSelection('tonejs')"> tonejs</button>
+        <button class="btn" onclick="filterSelection('visual')"> visual</button>
+        <button class="btn" onclick="filterSelection('webaudioapi')"> webaudioapi</button>
+        <button class="btn" onclick="filterSelection('semantic')"> semantic</button>
+        <button class="btn" onclick="filterSelection('scores')"> scores</button>
+        <button class="btn" onclick="filterSelection('mobile')"> mobile</button>
+
+
+
+    </div>
+
+    <div class="row">
+        <div class="column webaudioapi">
+            <div class="thumbnail" onclick="location.href='./class01/hellosound03.html';">
+                <!-- <img src="/w3images/mountains.jpg" alt="Mountains" style="width:100%"> -->
+                <iframe src="./class01/hellosound03.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+
+                <h4>Hello Sound</h4>
+                <p>Inits with css and WAApi.</p>
+            </div>
+        </div>
+
+        <div class="column tonejs">
+            <div class="thumbnail" onclick="location.href='./class02-tonejs/tonejs01.html';">
+                <iframe src="./class02-tonejs/tonejs01.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+
+                <h4>Tonejs Init</h4>
+                <p>Create a Tone.js oscillator</p>
+            </div>
+        </div>
+
+        <div class="column semantic">
+            <div class="thumbnail" onclick="location.href='./gallery/adjectivemusic.html';">
+                <iframe src="./gallery/adjectivemusic.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+
+                <h4>Adjective Music</h4>
+                <p>Play with dictionaries</p>
+            </div>
+        </div>
+
+        <div class="column webaudioapi">
+            <div class="thumbnail" onclick="location.href='./gallery/keyboard.html';">
+                <iframe src="./gallery/keyboard.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+
+                <h4>Sin Keyboard</h4>
+                <p>Simple Keyboard</p>
+            </div>
+        </div>
+
+        <div class="column webaudioapi">
+            <div class="thumbnail" onclick="location.href='./gallery/theremin.html';">
+                <iframe src="./gallery/theremin.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+
+                <h4>Theremin</h4>
+                <p>Interaction with canvas and WAApi</p>
+            </div>
+        </div>
+
+        <div class="column scores">
+            <div class="thumbnail" onclick="location.href='./gallery/collision.html';">
+                <iframe src="./gallery/collision.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+
+                <h4>Collision (2016)</h4>
+                <p>A nonlinear dynamic score</p>
+            </div>
+        </div>
+
+        <div class="column visual">
+            <div class="thumbnail" onclick="location.href='./gallery/pendulum.html';">
+                <iframe src="./gallery/pendulum.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>Pendulum</h4>
+                <p>p5 and tonejs together</p>
+            </div>
+        </div>
+
+        <div class="column webaudioapi">
+            <div class="thumbnail" onclick="location.href='./gallery/alienatedsynth.html';">
+                <iframe src="./gallery/alienatedsynth.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>Alienated Synth</h4>
+                <p>Music with little WAApi</p>
+            </div>
+        </div>
+
+        <div class="column visual">
+            <div class="thumbnail" onclick="location.href='./gallery/hydra01.html';">
+                <iframe src="./gallery/hydra01.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>Hydra Matrix</h4>
+                <p>Hydra code in a x4 matrix</p>
+            </div>
+        </div>
+
+        <div class="column tonejs">
+            <div class="thumbnail" onclick="location.href='./gallery/onebuttonapp.html';">
+                <iframe src="./gallery/onebuttonapp.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>One button app</h4>
+                <p>Oscillator with p5 visual</p>
+            </div>
+        </div>
+
+        <div class="column webaudioapi">
+            <div class="thumbnail" onclick="location.href='./gallery/modularmonosynth.html';">
+                <iframe src="./gallery/modularmonosynth.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>Modular mono synth</h4>
+                <p>A synth full made in WAApi</p>
+            </div>
+        </div>
+
+        <div class="column tonejs css">
+            <div class="thumbnail" onclick="location.href='./gallery/flexsynth.html';">
+                <iframe src="./gallery/flexsynth.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>Flex synth</h4>
+                <p>An adaptative interface made in flex</p>
+            </div>
+        </div>
+
+        <div class="column visual">
+            <div class="thumbnail" onclick="location.href='./gallery/tide.html';">
+                <iframe src="./gallery/tide.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>Tide by Jodi</h4>
+                <p>The historical netart piece from 1995</p>
+            </div>
+        </div>
+
+        <div class="column visual">
+            <div class="thumbnail" onclick="location.href='./gallery/agents.html';">
+                <iframe src="./gallery/agents.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>Agents</h4>
+                <p>Complex system made in p5</p>
+            </div>
+        </div>
+
+        <div class="column tonejs">
+            <div class="thumbnail" onclick="location.href='./gallery/tonejslive.html';">
+                <iframe src="./gallery/tonejslive.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>Tonejs live</h4>
+                <p>A live editor for tonejs loop</p>
+            </div>
+        </div>
+
+        <div class="column visual">
+            <div class="thumbnail" onclick="location.href='./gallery/p5animation.html';">
+                <iframe src="./gallery/p5animation.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>p5 animation</h4>
+                <p>A generative animation made in p5</p>
+            </div>
+        </div>
+
+        <div class="column mobile">
+            <div class="thumbnail" onclick="location.href='./gallery/mobile01.html';">
+                <iframe src="./gallery/mobile01.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>Mobile sensors</h4>
+                <p>An introduction to accelerometors(mobile only)</p>
+            </div>
+        </div>
+
+        <div class="column tonejs">
+            <div class="thumbnail" onclick="location.href='./gallery/studio01.html';">
+                <iframe src="./gallery/studio01.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>Studio 01</h4>
+                <p>Audiovisual studio 1 for js</p>
+            </div>
+        </div>
+
+        <div class="column mobile">
+            <div class="thumbnail" onclick="location.href='./gallery/mobile02.html';">
+                <iframe src="./gallery/mobile02.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>Flashlight study</h4>
+                <p>A piece for flashlight and sound (mobile onliy)</p>
+            </div>
+        </div>
+
+        <div class="column tonejs">
+            <div class="thumbnail" onclick="location.href='./gallery/studio02.html';">
+                <iframe src="./gallery/studio02.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>Studio 01</h4>
+                <p>A Drone studio 2 for js</p>
+            </div>
+        </div>
+
+        <div class="column tonejs">
+            <div class="thumbnail" onclick="location.href='./gallery/tonejsseq.html';">
+                <iframe src="./gallery/tonejsseq.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>A simple sequencer</h4>
+                <p>A 3 voices seq done in tone.js</p>
+            </div>
+        </div>
+
+        <div class="column visual">
+            <div class="thumbnail" onclick="location.href='./gallery/gltunnel.html';">
+                <iframe src="./gallery/gltunnel.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>WebGL Tunnel</h4>
+                <p>A tunnel template for three.js</p>
+            </div>
+        </div>
+
+        <div class="column webaudioapi">
+            <div class="thumbnail" onclick="location.href='./gallery/spectrum.html';">
+                <iframe src="./gallery/spectrum.html" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                <h4>Spectrum analyzer</h4>
+                <p>Use WAapi analyzer for RT spec display</p>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- END GRID -->
+    </div>
+
+    <!-- END MAIN -->
+    </div>
+
+    <script>
+        const sites = [{
+                name: "Hello Sound",
+                category: "tonejs",
+                url: "./class01/hellosound03.html",
+                comment: "Inits with css and WAApi",
+                img: ""
+            },
+            {
+                name: "Theremin",
+                category: "webaudioapi",
+                url: "./class02-tonejs/tonejs01.html",
+                comment: "Initial theremin"
+            }
+        ];
+
+        // create div class row
+
+        for (var i = 0; i < sites.length; i++) {
+            console.log(sites[i].name);
+            var column = document.createElement("div");
+            // column.classList.add("column " + sites[i].category;)
+
+            var row = document.getElementById("row");
+            // row.appendChild(column);
+
+
+
+            // div column <category>
+            // div class thumbnail 
+            // iframe
+            // h4
+            // p
+
+        }
+
+
+
+
+
+        filterSelection("all")
+
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("column");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+                w3RemoveClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+            }
+        }
+
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) {
+                    element.className += " " + arr2[i];
+                }
+            }
+        }
+
+        function w3RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+
+
+        // Add active class to the current button (highlight it)
+        var btnContainer = document.getElementById("myBtnContainer");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+    </script>
+
+</body>
+
+</html>

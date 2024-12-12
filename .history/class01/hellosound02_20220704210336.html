@@ -1,0 +1,23 @@
+<html>
+
+<body>
+    <p>static paragraph</p>
+    <script>
+        let h1Elem = document.createElement("h1");
+        let text = document.createTextNode("Hello htmlinjs!");
+        h1Elem.appendChild(text);
+        document.body.appendChild(h1Elem);
+
+        //sound
+        const context = new AudioContext(),
+            osc = new OscillatorNode(context),
+            amp = new GainNode(context, {
+                gain: 0.5
+            });
+        osc.connect(amp).connect(context.destination);
+        osc.start();
+        osc.stop(1);
+    </script>
+</body>
+
+</html>
