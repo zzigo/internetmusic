@@ -16,7 +16,7 @@
 		{"id":"530aba71f9eccd9d","type":"file","file":"2-technologies/APIs.md","x":-421,"y":-99,"width":120,"height":50},
 		{"id":"cab1cadf0f267e33","type":"file","file":"2-technologies/web midi API.md","x":-485,"y":260,"width":249,"height":50},
 		{"id":"c61d17a7d64d7691","type":"file","file":"2-technologies/Client.md","x":-1087,"y":-89,"width":154,"height":50},
-		{"id":"e0e8625224b9a311","type":"file","file":"2-technologies/node.js.md","x":-149,"y":20,"width":156,"height":50},
+		{"id":"e0e8625224b9a311","type":"file","file":"2-technologies/node workspaces.md","x":-149,"y":20,"width":156,"height":50},
 		{"id":"55cf222875c3e276","type":"file","file":"2-technologies/electron.md","x":-490,"y":17,"width":166,"height":56},
 		{"id":"920788e21b4b8b62","type":"text","text":"stack overflow","x":-337,"y":1048,"width":185,"height":60},
 		{"id":"d4da3f502ef702fa","type":"text","text":"mdn","x":-337,"y":1148,"width":185,"height":60},
