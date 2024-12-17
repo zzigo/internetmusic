@@ -79,11 +79,27 @@ pnpm run dev:project-a
 11. on the root always use `pnpm -w install` w option works only with the full workspace 
 12. run:
 	1. all projects:
+13. 
 ```bash
-pnpm --parallel run dev
-
+pnpm --parallel run dev | grep "Local:"
 ```
+
+
 2. one project:
+
 ```bash
 pnpm run dev --filter <project>
 ```
+
+
+
+# other support commands
+
+```bash
+pnpm add vite --save-dev
+pnpm store prune # erase cache
+pnpm store import 
+pnpm store clear # cleal cache
+pnpm install 
+```
+

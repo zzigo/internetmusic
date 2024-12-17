@@ -3,6 +3,7 @@ packages:
   - '3j-avatar'
   - '3j-base'
   - '3j-bouncing-ball'
+  - '3j-hydra-three'
   - '3j-lipsync'
   - 'hydravite'
   - 'node_modules'
