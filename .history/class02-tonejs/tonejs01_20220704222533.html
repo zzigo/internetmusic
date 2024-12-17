@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.3/Tone.js"
+        integrity="sha512-nUjml8mN4CNYqBAy0ndDrd8pJV/eTtBNDsnvNtPqozx9/BccUeWSoKW14qWkQUnhuh8E3m+yra3qdzM68lqPEQ=="
+        crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="start">start</button>
+    <button id="clear">clear</button>
+    <button id="stop">stop</button>
+    <p id="status">...</p>
+
+    <script>
+        let clicks = 1;
+        const osc = new Tone.Oscillator('C1').toDestination();
+        document.getElementById("clear") ? .addEventListener('click', () => {
+            clicks = 0;
+        });
+        document.getElementById("stop") ? .addEventListener('click', () => {
+            osc.stop(0);
+        });
+        document.getElementById('start') ? .addEventListener('click', async () => {
+
+            let newValue = "C" + clicks.toString();
+            osc.frequency.rampTo(newValue, .4);
+
+            console.log("starting with", newValue);
+            osc.start();
+            document.getElementById("status").innerText = "playing " + newValue;
+            clicks += 1;
+        })
+    </script>
+</body>
+
+</html>

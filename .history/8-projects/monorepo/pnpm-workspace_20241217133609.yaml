@@ -1,0 +1,3 @@
+packages:
+  - '*/'        # Matches all immediate subdirectories
+  - '*/*/'      # Matches one level of nested directories (optional)

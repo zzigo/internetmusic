@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>AlienstedHandyClick</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        html,
+        body {
+            margin: 0;
+        }
+
+        .padre-flex {
+            background: #A8C7D6;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .padre-flex>div {
+            text-align: center;
+        }
+
+        .botonMusica {
+            padding: 30px;
+            border-radius: 35px;
+            backgroundcolor: white;
+            transition-property: backgroundcolor;
+            transition-duration: 2s;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <div class="padre-flex">
+        <div>
+            <button class="botonMusica" id="boton1">Osc 1</button>
+            <button class="botonMusica" id="boton2">Osc 2</button>
+            <button class="botonMusica" id="boton3">Osc 3</button>
+            <button class="botonMusica" id="boton4">Osc 4</button>
+        </div>
+    </div>
+
+</body>
+
+<footer>
+
+    <script>
+        var audioContext = new AudioContext();
+        var now = audioContext.currentTime;
+        var oscillator1 = audioContext.createOscillator("sine");
+        var oscillator2 = audioContext.createOscillator("square");
+        var oscillator3 = audioContext.createOscillator("triangle");
+        var oscillator4 = audioContext.createOscillator("sawtooth");
+        var gainNode = audioContext.createGain();
+        var estadoPlay1 = false;
+        var estadoPlay2 = false;
+        var estadoPlay3 = false;
+        var estadoPlay4 = false;
+        var btn1 = document.getElementById("boton1");
+        var btn2 = document.getElementById("boton2");
+        var btn3 = document.getElementById("boton3");
+        var btn4 = document.getElementById("boton4");
+        var prender1 = 1;
+        var prender2 = 1;
+        var prender3 = 1;
+        var prender4 = 1;
+        var freq = 0;
+
+        // btn1.addEventListener("click", play1, false);
+        btn1.addEventListener("click", () => {
+            play1(oscillator1, btn1);
+        });
+        btn2.addEventListener("click", () => {
+            play2(oscillator2, btn2);
+        });
+        btn3.addEventListener("click", () => {
+            play3(oscillator3, btn3);
+        });
+        btn4.addEventListener("click", () => {
+            play4(oscillator4, btn4);
+        });
+
+        function play1(osc, btn) {
+
+            if (!estadoPlay1) {
+                estadoPlay1 = true;
+
+                // Si corresponde inicio oscilador
+                if (prender1 == 1) {
+                    prender(osc);
+                }
+
+                // Cambio frecuencia
+                cambioFrecuencia(osc, btn);
+
+            } else {
+                estadoPlay1 = false;
+
+                // Pongo frecuencia en 0
+                prender1 = 0;
+                apagar(osc, btn);
+            }
+
+        }
+
+        function play2(osc, btn) {
+
+            if (!estadoPlay2) {
+                estadoPlay2 = true;
+
+                // Si corresponde inicio oscilador
+                if (prender2 == 1) {
+                    prender(osc);
+                }
+
+                // Cambio frecuencia
+                cambioFrecuencia(osc, btn);
+
+            } else {
+                estadoPlay2 = false;
+
+                // Pongo frecuencia en 0
+                prender2 = 0;
+                apagar(osc, btn);
+            }
+
+        }
+
+        function play3(osc, btn) {
+
+            if (!estadoPlay3) {
+                estadoPlay3 = true;
+
+                // Si corresponde inicio oscilador
+                if (prender3 == 1) {
+                    prender(osc);
+                }
+
+                // Cambio frecuencia
+                cambioFrecuencia(osc, btn);
+
+            } else {
+                estadoPlay3 = false;
+
+                // Pongo frecuencia en 0
+                prender3 = 0;
+                apagar(osc, btn);
+            }
+
+        }
+
+        function play4(osc, btn) {
+
+            if (!estadoPlay4) {
+                estadoPlay4 = true;
+
+                // Si corresponde inicio oscilador
+                if (prender4 == 1) {
+                    prender(osc);
+                }
+
+                // Cambio frecuencia
+                cambioFrecuencia(osc, btn);
+
+            } else {
+                estadoPlay4 = false;
+
+                // Pongo frecuencia en 0
+                prender4 = 0;
+                apagar(osc, btn);
+            }
+
+        }
+
+        function prender(osc) {
+            osc.start();
+        }
+
+        function cambioFrecuencia(osc, btn) {
+            freq = Math.floor(Math.random() * 300 + 101);
+            //osc.frequency.exponentialRampToValueAtTime(freq, audioContext.currenttime+1.3);
+            osc.frequency.value = freq;
+            osc.connect(audioContext.destination);
+            console.log("Cambio frecuencia");
+
+            console.log(freq);
+            if (freq >= 1 && freq <= 199) {
+                btn.style = "background-color:red";
+            } else if (freq >= 200 && freq <= 299) {
+                btn.style = "background-color:yellow";
+            } else if (freq >= 300 && freq <= 400) {
+                btn.style = "background-color:blue";
+            } else {
+                btn.style = "background-color:white";
+            }
+
+        }
+
+        function apagar(osc, btn) {
+            freq = 0;
+            //osc.frequency.exponentialRampToValueAtTime(freq, audioContext.currenttime+0.5);
+            osc.frequency.value = freq;
+            btn.style = "background-color:white";
+            console.log("Silencio");
+        }
+    </script>
+
+</footer>
+
+
+</html>

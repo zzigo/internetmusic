@@ -1,0 +1,12 @@
+packages:
+  - '3j-aframe'
+  - '3j-avatar'
+  - '3j-base'
+  - '3j-bouncing-ball'
+  - '3j-hydra-three'
+  - '3j-lipsync'
+  - 'hydravite'
+  - 'node_modules'
+  - 'tom-3j-practice1'
+  - 'vite-ai1'
+  - 'vite-dall-e'
