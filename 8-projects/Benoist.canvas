@@ -1,0 +1,15 @@
+{
+	"nodes":[
+		{"id":"4e932826776feb95","x":-170,"y":-260,"width":125,"height":60,"type":"text","text":"MAIN"},
+		{"id":"75ce3996dc90a9ae","type":"text","text":"cellist","x":-170,"y":-360,"width":125,"height":60},
+		{"id":"836a5da51a0fe3f2","type":"text","text":"webcam","x":-232,"y":-100,"width":250,"height":60,"color":"3"},
+		{"id":"6830ff977fab7311","type":"text","text":"web / mediapipe","x":-232,"y":20,"width":250,"height":60,"color":"4"},
+		{"id":"6b280bbed1d8b48c","type":"text","text":"maxmsp","x":-232,"y":240,"width":250,"height":60,"color":"4"}
+	],
+	"edges":[
+		{"id":"05c06d52a22c0621","fromNode":"75ce3996dc90a9ae","fromSide":"bottom","toNode":"4e932826776feb95","toSide":"top"},
+		{"id":"b400d9a9ab66681b","fromNode":"4e932826776feb95","fromSide":"bottom","toNode":"836a5da51a0fe3f2","toSide":"top"},
+		{"id":"0bb5409ff8dcbeda","fromNode":"836a5da51a0fe3f2","fromSide":"bottom","toNode":"6830ff977fab7311","toSide":"top"},
+		{"id":"772fd2dc0bf7fd6a","fromNode":"6830ff977fab7311","fromSide":"bottom","toNode":"6b280bbed1d8b48c","toSide":"top","label":"LANG : OSC (openSoundControl)"}
+	]
+}

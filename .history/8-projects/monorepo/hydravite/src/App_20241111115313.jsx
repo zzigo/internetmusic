@@ -8,7 +8,7 @@ function RotatingCube({ texture }) {
 
   useFrame((state, delta) => {
     cubeRef.current.rotation.x += delta * 0.5;
-    cubeRef.current.rotation.y += delta * 0.10;
+    cubeRef.current.rotation.y += delta * 0.5;
   });
 
   return (
@@ -29,7 +29,7 @@ function App() {
   const [counter, setCounter] = useState(null);  // Referencia del temporizador de Tone.js
 
   // Configurar Tone.js para el contador
-useEffect(() => {
+  useEffect(() => {
     // Inicializar el contador solo cuando se active
     if (counterActive) {
       const newCounter = new Tone.Loop((time) => {

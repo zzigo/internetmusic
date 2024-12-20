@@ -12,6 +12,9 @@
     "three": "^0.171.0"
   },
   "scripts": {
-    "deploy:hydravite": "gh-pages -d hydravite -b gh-pages"
+    "predeploy": "npm run build", 
+    "deploy": "gh-pages -d hydravite"
   }
+}
+
 }

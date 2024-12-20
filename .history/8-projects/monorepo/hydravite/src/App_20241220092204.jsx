@@ -7,7 +7,7 @@ function RotatingCube({ texture }) {
   const cubeRef = useRef();
 
   useFrame((state, delta) => {
-    cubeRef.current.rotation.x += delta * 0.5;
+    cubeRef.current.rotation.x += delta * 10;
     cubeRef.current.rotation.y += delta * 0.10;
   });
 
