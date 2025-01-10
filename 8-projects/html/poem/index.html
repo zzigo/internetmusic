@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.2/p5.min.js" integrity="sha512-1YMgn4j8cIL91s14ByDGmHtBU6+F8bWOMcF47S0cRO3QNm8SKPNexy4s3OCim9fABUtO++nJMtcpWbINWjMSzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        #container p {
+            position: absolute;
+            font-family: Arial, sans-serif;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+
+    <script>
+        var tempo;
+        var sentence; 
+        var sentenceArray;
+        var progress;
+
+        function setup() {
+            tempo = 240;
+            sentence = `
+
+Les larmes des fontaines coulent dans la nuit,  
+Sœurs des étoiles perdues, éclatantes et floues.  
+Leur mélodie serpente comme un soupir enfoui,  
+Chassant l'ombre avec leurs voix douces et jalouses.
+
+Ô musiques liquides, murmures d’azur et d'or,  
+Vous dansez sous la lune, en cercles infinis,  
+Comme des âmes vagabondes, hors du décor,  
+Lancinantes et profondes, elles défient l'oubli.
+
+Sous le voile nacré des brumes automnales,  
+Les gouttes éclatent en rires cristallins,  
+Et des harpes invisibles, aux cordes astrales,  
+Tissent une fugue céleste, un chant divin.
+
+"Ecoutez," dit Verlaine, "ces sanglots mélancoliques,  
+Ombres et reflets du spleen harmonique."  
+Et Baudelaire répond : "Dans le miroir des eaux,  
+Brille la beauté funèbre des tombeaux."
+
+Rimbaud surgit, visionnaire et insolent,  
+Avec ses fontaines de feu, éclats déchirants :  
+"Les cascades crient ! Elles mordent le ciel,  
+Dans un hymne sauvage, au goût éternel."
+
+Apollinaire, rêveur, contemple ces luttes :  
+"Les fontaines sont des cœurs, où battent les flûtes.  
+Chaque goutte est un songe, un écho des étoiles,  
+Un cristal d’éphémère, capturé dans le voile."
+
+Les notes liquides, éparses et vibrantes,  
+Grimpent aux voûtes du monde silencieux,  
+Des accords humides, fiévreux et obsédants,  
+Scintillent, éclaboussant l’éther audacieux.
+
+Dans la pénombre des jardins abandonnés,  
+Les fontaines s'élancent, colonnades sacrées,  
+Portant aux cieux leurs symphonies voilées,  
+Entre éclats de rire et pleurs entremêlés.
+
+Ô musique des eaux, chant des sphères éclatantes,  
+Tu bruis dans les veines de la terre tremblante.  
+Tu es Verlaine dans tes larmes satinées,  
+Tu es Rimbaud dans ta rage illuminée.
+
+Et toi, Baudelaire, au parfum d’opium,  
+Tu chantes l’abîme où sombrent les hommes.  
+Dans le murmure des fontaines égarées,  
+Luit le secret des âmes envoûtées.
+
+Les eaux s'élèvent, vibrantes de désirs,  
+Un orgue liquide aux touches infinies.  
+Apollinaire sourit, dans un soupir :  
+"Les fontaines composent la symphonie des vies."
+`;
+            sentenceArray = sentence.split(" ");
+
+            progress = 0;
+            setTimeout(TheFirst, 800);
+        }
+
+        function TheFirst() {
+            setInterval(Stamp, tempo);
+        }
+
+        function Stamp() {
+            if (mouseX != 0 && mouseY != 0) {
+                // Create the <p> element
+                var p = document.createElement("p");
+                var word = document.createTextNode(sentenceArray[progress]);
+                p.appendChild(word);
+
+                // Style the <p>
+                p.style.position = "absolute";
+                p.style.left = `${mouseX}px`;
+                p.style.top = `${mouseY}px`;
+
+                // Add the <p> to the "container" div
+                var container = document.getElementById("container");
+                container.appendChild(p);
+
+                // Increment progress
+                progress++;
+                if (progress >= sentenceArray.length) {
+                    progress = 0;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

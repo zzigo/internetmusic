@@ -9,11 +9,17 @@
 		{"id":"fbb622d86a7e7ad3","x":-380,"y":340,"width":200,"height":138,"type":"text","text":"mouse \n/hovering\n\n"},
 		{"id":"a9e89fd992977453","type":"text","text":"MIC\n/speechrecognition\n\n\n","x":-610,"y":340,"width":200,"height":138},
 		{"id":"8f54aa5fcc75b5ea","type":"text","text":"CAM\n/mediapipe\n\n\n","x":-610,"y":531,"width":200,"height":138},
-		{"id":"9ffe5f710fa7b9fc","x":-1120,"y":260,"width":100,"height":50,"type":"text","text":"form"},
-		{"id":"c3a4a1db915309cf","x":-1000,"y":140,"width":220,"height":60,"type":"text","text":"distributed cognition"},
 		{"id":"012aba70799737f8","type":"text","text":"networking","x":-420,"y":-155,"width":140,"height":60},
 		{"id":"8064c196dbd8b7ea","type":"text","text":"spatial\npositionalAudio\n3d space","x":80,"y":-155,"width":200,"height":115},
-		{"id":"2663fb5a9ba6c2a8","x":-235,"y":-127,"width":250,"height":60,"color":"1","type":"text","text":"? real space"}
+		{"id":"2663fb5a9ba6c2a8","x":-235,"y":-127,"width":250,"height":60,"color":"1","type":"text","text":"? real space"},
+		{"id":"e06dff4261f65b44","x":-855,"y":340,"width":205,"height":129,"type":"text","text":"interActor\n(listener / viewer)"},
+		{"id":"9ffe5f710fa7b9fc","x":-1180,"y":240,"width":100,"height":50,"type":"text","text":"form"},
+		{"id":"c3a4a1db915309cf","x":-862,"y":40,"width":220,"height":60,"type":"text","text":"distributed cognition"},
+		{"id":"fca7631abff70a9a","x":-975,"y":155,"width":120,"height":60,"type":"text","text":"modes"},
+		{"id":"122922f4ce751782","type":"text","text":"scenes","x":-975,"y":235,"width":120,"height":60},
+		{"id":"522cf61f71bba1ad","x":-1560,"y":215,"width":220,"height":100,"type":"text","text":"sections\nmotives\n"},
+		{"id":"948f03fe24ef1140","x":-1205,"y":358,"width":245,"height":94,"type":"text","text":"subjective plane\n1shootPlayer\n"},
+		{"id":"1b98b0f888e43d96","type":"text","text":"minimap\nzenithal","x":-1202,"y":489,"width":245,"height":94}
 	],
 	"edges":[
 		{"id":"79c3b7f07ca4635b","fromNode":"aa15b58cfd7ec3cc","fromSide":"bottom","toNode":"49b7af0d62294186","toSide":"top"},
@@ -25,6 +31,11 @@
 		{"id":"b3f6bc6155c592d9","fromNode":"94e9b37bb080a1b7","fromSide":"bottom","toNode":"a9e89fd992977453","toSide":"top"},
 		{"id":"f2a3411dddcedb28","fromNode":"e6b79bf23779df6b","fromSide":"right","toNode":"aa15b58cfd7ec3cc","toSide":"left"},
 		{"id":"49a49ff7b24be07f","fromNode":"94e9b37bb080a1b7","fromSide":"bottom","toNode":"8f54aa5fcc75b5ea","toSide":"top"},
-		{"id":"b5fbfdc0a4261367","fromNode":"8064c196dbd8b7ea","fromSide":"left","toNode":"2663fb5a9ba6c2a8","toSide":"right"}
+		{"id":"b5fbfdc0a4261367","fromNode":"8064c196dbd8b7ea","fromSide":"left","toNode":"2663fb5a9ba6c2a8","toSide":"right"},
+		{"id":"31c4291fcedb83eb","fromNode":"c3a4a1db915309cf","fromSide":"bottom","toNode":"e06dff4261f65b44","toSide":"top"},
+		{"id":"545c515b029c731a","fromNode":"e06dff4261f65b44","fromSide":"left","toNode":"948f03fe24ef1140","toSide":"right"},
+		{"id":"b57510c63da45e83","fromNode":"9ffe5f710fa7b9fc","fromSide":"left","toNode":"522cf61f71bba1ad","toSide":"right"},
+		{"id":"a6a125ee608beefb","fromNode":"9ffe5f710fa7b9fc","fromSide":"right","toNode":"fca7631abff70a9a","toSide":"left"},
+		{"id":"dd730b522c3de55a","fromNode":"9ffe5f710fa7b9fc","fromSide":"right","toNode":"122922f4ce751782","toSide":"left"}
 	]
 }
