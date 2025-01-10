@@ -29,11 +29,32 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);
-renderer.domElement.style.display = "none";
+renderer.domElement.style.display = "block";
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
+controls.minDistance = 5;
+controls.maxDistance = 15;
+controls.maxPolarAngle = Math.PI / 2;
+controls.enablePan = false;
+
+// WASD Controls
+const keys = { w: false, a: false, s: false, d: false };
+document.addEventListener('keydown', (event) => {
+  if (event.key in keys) keys[event.key] = true;
+});
+document.addEventListener('keyup', (event) => {
+  if (event.key in keys) keys[event.key] = false;
+});
+
+function updateControls() {
+  const speed = 0.1;
+  if (keys.w) camera.position.z -= speed;
+  if (keys.s) camera.position.z += speed;
+  if (keys.a) camera.position.x -= speed;
+  if (keys.d) camera.position.x += speed;
+}
 
 // Vertex Shader
 const trailVertexShader = `
@@ -94,16 +115,8 @@ const glowFragmentShader = `
 // Ball CREATION
 const ballRadius = 0.2;
 const ballGeometry = new THREE.SphereGeometry(ballRadius, 32, 32);
-const ballMaterial = new THREE.ShaderMaterial({
-  vertexShader: glowVertexShader,
-  fragmentShader: glowFragmentShader,
-  uniforms: {
-    glowColor: { value: new THREE.Color(0xff0000) },
-    glowIntensity: { value: 2 },
-  },
-  side: THREE.DoubleSide,
-  blending: THREE.AdditiveBlending,
-  transparent: true,
+const ballMaterial = new THREE.MeshBasicMaterial({
+  color: 0xff0000, // Red color
 });
 const ball = new THREE.Mesh(ballGeometry, ballMaterial);
 ball.castShadow = true;
@@ -127,16 +140,8 @@ let isAudioStarted = false;
 // Cube (Wireframe with Glow)
 const cubeSize = 5;
 const cubeGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-const cubeMaterial = new THREE.ShaderMaterial({
-  vertexShader: glowVertexShader,
-  fragmentShader: glowFragmentShader,
-  uniforms: {
-    glowColor: { value: new THREE.Color(0x00ff00) },
-    glowIntensity: { value: 1 },
-  },
-  side: THREE.DoubleSide,
-  blending: THREE.AdditiveBlending,
-  transparent: true,
+const cubeMaterial = new THREE.MeshBasicMaterial({
+  color: 0x00ff00, // Green color
   wireframe: true,
 });
 const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
@@ -423,12 +428,8 @@ function animate() {
   camera.position.applyAxisAngle(new THREE.Vector3(0, 0, 1), 0.001); // Rotate around Z-axis
   camera.lookAt(scene.position);
   controls.update();
+  updateControls();
 
   // Update the sunset effect and drone
   sunsetProgress = animateSunset(sky, ambientLight, spotlight, sunsetProgress);
-  // Update drone synth with sunset progress
-  updateDrone(sunsetProgress);
-
-  // Render with Postprocessing (Bloom)
-  composer.render();
 }

@@ -33,3 +33,4 @@ Aujourd'hui, nous abordons le thème des niveaux ou des scènes, ce qui introdui
 PONG
 Je dois faire en sorte que la balle n'aille pas dans le vide, l'agon est de faire rebondir la balle sur la plateforme que je peux manipuler. C'est pour cela que le LIEN est, le JOUEUR conduit la plateforme. 
 
+l
