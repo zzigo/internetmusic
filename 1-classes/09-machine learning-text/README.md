@@ -14,9 +14,9 @@ date: 231002
 
 ---
 
-# What is Machine Learning?
+# Qu'est-ce que l'apprentissage automatique ?
 
-> The field of machine learning is concerned with the question of how to construct computer programs that <span style="color:#92d050">automatically improve</span> with experience. T./ Mitchell, 1997, Machine Learning
+> Le domaine de l'apprentissage automatique s'intéresse à la question de savoir comment construire des programmes informatiques qui <span style="color:#92d050">s'améliorent automatiquement</span> avec l'expérience. T./ Mitchell, 1997, Apprentissage automatique
 ---
 ## ML is a subset of IA
 ---
@@ -29,23 +29,23 @@ a("MODEL")<-->b("DATA");
 b -->c("TARGET TRANSFORMATION");
 ```
 
-note:Lets go for an example, imagine that you want to write a program to reconigze an isoritmitc motet from a a choral or a 19th vocal piece.
-3.  If you want to write this program using traditional programming techniques, your program is goint to get overly complex. You will have to come up with lots of rules to come up with specific curves, rules and exceptions to these rules, pitch classes, rhytmical patterns , lyric parsers an comparers to tell if it’s a composition from XVI or XIX century. But then If I give you , just one voice of the four or more, your program would not work and you would have to rewrite it.
-4.  To solve the this type of problems we use ML.
-5.  In ML we build a model or an engine and give it lots and lots of data.
-6.  For example we give it thousands or ten of thousands of recordings of motets and vocal music. Or even better , midi files.
-7.  Our model will then find and learn patterns and the input data, so we can give it a new score of any style that even wasn’t in the database, and ask it, is it a motet or is a lied or what kind of technique is using. And it will tell us with a certain level of accuracy the more input data we give it, the more accurate our model is going to be.
-8.  There is a lot of phantasy but also political, social, economical, moral, and ethical implications of saying that a program learns.
-9.  The first axiom of ML is : the performance of a programme improves as experience grows.
-10.  Experience here means data, in quantity and in quality ← Datacentric IA. A lot of very good data.
-11.  So the our first task is to learn how to build a good data-set or collection in three stages: to collect, handle, and process.
-Some examples of the actual state of ML and art, and media production .
+note:Prenons un exemple, imaginons que vous vouliez écrire un programme pour reconfigurer un motet isoritmique à partir d'un choral ou d'une pièce vocale du 19ème siècle.
+3.  Si vous voulez écrire ce programme en utilisant les techniques de programmation traditionnelles, votre programme va devenir excessivement complexe. Vous devrez élaborer de nombreuses règles pour définir des courbes spécifiques, des règles et des exceptions à ces règles, des classes de hauteur, des motifs rythmiques, des analyseurs de paroles et des comparateurs pour déterminer s'il s'agit d'une composition du XVIe ou du XIXe siècle. Mais si je vous donne une seule voix parmi les quatre ou plus, votre programme ne fonctionnera pas et vous devrez le réécrire.
+4.  Pour résoudre ce type de problèmes, nous utilisons le ML.
+5.  En ML, nous construisons un modèle ou un moteur et nous lui donnons beaucoup de données.
+6.  Par exemple, nous lui donnons des milliers ou des dizaines de milliers d'enregistrements de motets et de musique vocale. Ou mieux encore, des fichiers midi.
+7.  Notre modèle va alors trouver et apprendre des modèles et des données d'entrée, de sorte que nous pouvons lui donner une nouvelle partition de n'importe quel style qui n'était même pas dans la base de données, et lui demander si c'est un motet ou un lied ou quel type de technique est utilisé. Et il nous répondra avec un certain niveau de précision que plus nous lui donnons de données d'entrée, plus notre modèle sera précis.
+8.  Il y a beaucoup de fantaisie mais aussi des implications politiques, sociales, économiques, morales et éthiques à dire qu'un programme apprend.
+9.  Le premier axiome du ML est le suivant : les performances d'un programme s'améliorent au fur et à mesure que l'expérience s'accroît.
+10.  Expérience signifie ici données, en quantité et en qualité ← IA centrée sur les données. Beaucoup de très bonnes données.
+11.  Notre première tâche est donc d'apprendre à construire un bon ensemble de données ou une bonne collection en trois étapes : collecter, gérer et traiter.
+Quelques exemples de l'état actuel de la ML et de l'art, et de la production médiatique .
 ---
-the performance of a programme **<mark style="background: #ABF7F7A6;">improves</mark>** as experience **<mark style="background: #BBFABBA6;">grows</mark>**.
+la performance d'un programme **<mark style="background: #ABF7F7A6;">améliore</mark>** en tant qu'expérience **<mark style="background: #BBFABBA6;">se développe</mark>**.
 
 ---
 
-### ML processes
+### Processus ML
 
 1. DATA   /dataset 
 2. DATA CLEANING
@@ -56,12 +56,12 @@ the performance of a programme **<mark style="background: #ABF7F7A6;">improves</
  2. EVALUATION & IMPROVEMENT
   1. temperature
 
-note:1.  So ML involves a number of steps, the first step is to import our data which often comes in the form of a .csv file, or better known as **dataset**.
-2.  Next, we need th **clean** the data. And this involves tasks such as duplicated data, irrelevant, incomplete or noisy data.
-3.  Once data is clean, we need to split the data into two segments: **training** and **test sets** to make sure that our model produces the right result. For example if you have the collection of the 380 Bach chorals we can reserve 300 for training and 80 for testing (80-20%).
-4.  The next step is to **create a model** and this involves selecting an algorithm to analyse the data. There are so many machine learnings algorithms out there, such as decision trees, neural networks and so on. Each algorithm have pros and cons in terms of accuracy and performance so the algorithm you use, depends on the kind of problem you’re trying to solve and your input data.
-5.  Next we need to **train the model**. So we feed it our training data. On this step our model will then look for the patterns in the data, so next we can ask it to make predictions. Coming back to our motet recognition exanple, giving a header of few pitches (a partial theme of a exposition), our model can predict potential continuities based on its train. Of course, this prediction is not always accurate.
-6.  This measurement of the prediction is the **evaluation and improvement** stage, and in many algorythms you will find a measure of this accuracy called _**temperature**._
+note:1. le ML implique un certain nombre d'étapes, la première étape consiste à importer nos données qui se présentent souvent sous la forme d'un fichier .csv, ou mieux connu sous le nom de **dataset**.
+2.  Ensuite, nous devons **nettoyer** les données. Cela implique des tâches telles que les données dupliquées, les données non pertinentes, incomplètes ou bruyantes.
+3.  Une fois les données nettoyées, nous devons les diviser en deux segments : **entraînement** et **ensembles de test** pour s'assurer que notre modèle produit les bons résultats. Par exemple, si vous disposez de la collection des 380 chorals de Bach, nous pouvons en réserver 300 pour l'entraînement et 80 pour le test (80-20 %).
+4.  L'étape suivante consiste à **créer un modèle**, ce qui implique de sélectionner un algorithme pour analyser les données. Il existe de nombreux algorithmes d'apprentissage automatique, tels que les arbres de décision, les réseaux neuronaux, etc. Chaque algorithme présente des avantages et des inconvénients en termes de précision et de performance. L'algorithme que vous utilisez dépend donc du type de problème que vous essayez de résoudre et de vos données d'entrée.
+5.  Ensuite, nous devons **entraîner le modèle**. Nous lui transmettons donc nos données d'entraînement. Au cours de cette étape, notre modèle recherchera des modèles dans les données, de sorte que nous pourrons ensuite lui demander de faire des prédictions. Pour en revenir à notre exemple de reconnaissance de motet, en donnant un en-tête de quelques hauteurs (un thème partiel d'une exposition), notre modèle peut prédire des continuités potentielles en se basant sur son entraînement. Bien sûr, cette prédiction n'est pas toujours exacte.
+6.  Cette mesure de la prédiction est l'étape **d'évaluation et d'amélioration**, et dans de nombreux algorythmes, vous trouverez une mesure de cette précision appelée _**température**._
 ---
 
 ##  Forevere
@@ -72,13 +72,13 @@ note:1.  So ML involves a number of steps, the first step is to import our data 
 
 ## GPT-4
 
-what to know about gpt-4
+ce qu'il faut savoir sur le gpt-4
 
-1. is a large-scale multimodal **model** which accepts images and text inputs and produce text outputs.
-2. It exhibits human-level performance on various professional and academic benchmarks
-3. Is a transformer-based model pre-trained to predict the next token in a document.
-4. The post-training alignment process results in improved performance on measures of factuality and adherence to desired behaviour.
-5. This Fine-tuned usess Reinforcement Learning from Human Feedback (RLHF)
+1. est un **modèle** multimodal à grande échelle qui accepte des images et du texte en entrée et produit du texte en sortie.
+2. Il présente des performances de niveau humain sur divers critères de référence professionnels et académiques.
+3. Il s'agit d'un modèle basé sur un transformateur, pré-entraîné pour prédire le prochain élément d'un document.
+4. Le processus d'alignement post-formation se traduit par une amélioration des performances en termes de factualité et de respect du comportement souhaité.
+5. Ce réglage fin utilise l'apprentissage par renforcement à partir du retour d'information humain (RLHF).
 
 
 ---
@@ -93,18 +93,18 @@ what to know about gpt-4
 ---
 
 
-# Largue language Models
+# Modèles de langue Largue
 
 
-some assumptions
-1. the bast majority of reasoning tasks can be efficiently expressed and evaluated in language.
-2. the unsupervised learning is done by providing world's text and proccess making generative modeling.
-3. The original WebText dataset was a web scrape of outbounds links from reddit through Deember 2017 (receiving at least 3 karma)
-4. WebText 2 adde Jan-Oct 2018 links. (96 GB)
-5. Later, a Books Corpus was added, Common Crawl, English Wikipedia and publicly-availabe Internet Books.
+Quelques hypothèses
+1. la grande majorité des tâches de raisonnement peuvent être efficacement exprimées et évaluées en langage.
+2. l'apprentissage non supervisé est effectué en fournissant le texte du monde et le processus de modélisation générative.
+3. L'ensemble de données WebText original était un scrape web de liens sortants de reddit jusqu'en décembre 2017 (recevant au moins 3 karma).
+4. WebText 2 a ajouté les liens de janvier à octobre 2018. (96 GO)
+5. Plus tard, un corpus de livres a été ajouté, Common Crawl, Wikipedia en anglais et des livres Internet accessibles au public.
 
 ---
-1. Since 2020 there is a new model every month:
+1. Depuis 2020, il y a un nouveau modèle chaque mois :
 
 	1. GPT-2
 	2. BERT
@@ -116,20 +116,20 @@ some assumptions
 
 
 ---
-In a new paper ("Training Compute-Optimal Large Language Models" by Hoffmann et al.), DeepMind researchers revisited Kaplan's findings and found that scaling the number of training tokens (i.e., the amount of text data with which the model is fed) is as important as scaling the size of the model.
+Dans un nouvel article ("Training Compute-Optimal Large Language Models" par Hoffmann et al.), les chercheurs de DeepMind ont réexaminé les conclusions de Kaplan et ont constaté que l'augmentation du nombre de jetons d'entraînement (c'est-à-dire la quantité de données textuelles avec lesquelles le modèle est alimenté) est aussi importante que l'augmentation de la taille du modèle.
 
 ---
 
-5.Given a fixed computational budget, researchers must allocate it in similar proportions to increase the model size and the number of training tokens to reach the optimal computational model (as measured by the minimum training loss). "For every doubling of the model size, the number of training tokens should also double." This implies that a smaller model can vastly outperform a larger - but suboptimal - model if trained with a significantly larger number of tokens.
+5. compte tenu d'un budget de calcul fixe, les chercheurs doivent l'allouer dans des proportions similaires pour augmenter la taille du modèle et le nombre de jetons d'entraînement afin d'atteindre le modèle de calcul optimal (tel que mesuré par la perte d'entraînement minimale). "Pour chaque doublement de la taille du modèle, le nombre de jetons d'entraînement devrait également doubler". Cela signifie qu'un modèle plus petit peut largement surpasser un modèle plus grand - mais sous-optimal - s'il est entraîné avec un nombre significativement plus élevé de jetons.
 
 ---
-Chinchilla, a 70B-parameter model 4 times smaller than the previous leader in language AI, Gopher (also built by DeepMind), but trained on 4 times more data.
+Chinchilla, un modèle de 70B paramètres 4 fois plus petit que le précédent leader de l'IA du langage, Gopher (également construit par DeepMind), mais entraîné sur 4 fois plus de données.
 
 ---
-So, now, the quality of the NLM are measured both in size (number of parameters) as in training tokens. 
+Ainsi, désormais, la qualité du NLM se mesure à la fois en taille (nombre de paramètres) et en tokens d'entraînement.
 
 ---
-Meanwhile LaMDA have 137B but 168B training tokens, Chichilla has 70B and 1.4T training tokens.
+Pendant ce temps, LaMDA a 137B mais 168B tokens d'entraînement, Chichilla a 70B et 1.4T tokens d'entraînement.
 
 ---
 
@@ -145,92 +145,92 @@ Meanwhile LaMDA have 137B but 168B training tokens, Chichilla has 70B and 1.4T t
 				6. Specify the TARGET  (lilypond)
 
 ---
-## <mark class="hltr-blue">important</mark> data to know the underlying architecture of LLM
+## <mark class="hltr-blue">important</mark> données pour connaître l'architecture sous-jacente de LLM
 
 --
-### **Contexts**
-In Large Language Models (LLMs), contexts refer to the specific situations or scenarios that a model
-is trained on. These contexts can be thought of as "bags" that contain relevant information for a particular task,
-such as text classification or question answering. The model learns to recognize patterns and relationships within
-these contexts to make predictions or generate responses.
+### **Contextes**
+Dans les grands modèles linguistiques (LLM), les contextes font référence aux situations ou scénarios spécifiques sur lesquels un modèle est entraîné.
+sur lequel un modèle est formé. Ces contextes peuvent être considérés comme des "sacs" contenant des informations pertinentes pour une tâche particulière,
+comme la classification de textes ou la réponse à des questions. Le modèle apprend à reconnaître les modèles et les relations au sein de ces contextes afin de faire des prédictions ou de répondre à des questions.
+dans ces contextes afin de faire des prédictions ou de générer des réponses.
 
 --
-### **Knowledge cutoff**
-This term refers to the date up to which a model's training data is current. For example, if a
-language model was trained until 2022, its knowledge cutoff would be 2022. This means that the model may not have
-been exposed to more recent events, trends, or terminology, which can impact its performance on newer texts.
+### **Coupure des connaissances**
+Ce terme fait référence à la date jusqu'à laquelle les données d'apprentissage d'un modèle sont à jour. Par exemple, si un
+a été formé jusqu'en 2022, son seuil de connaissance sera 2022. Cela signifie que le modèle peut ne pas avoir
+Cela signifie que le modèle peut ne pas avoir été exposé à des événements, des tendances ou une terminologie plus récents, ce qui peut avoir un impact sur ses performances sur des textes plus récents.
 
 --
-### **Pretrained tokens** Pretrained tokens are word embeddings learned from large amounts of text data before being
-fine-tuned for a specific task. These embeddings represent words as dense vectors in a high-dimensional space,
-capturing their semantic relationships and context-dependent meanings. This pretraining step allows models to
-leverage general linguistic knowledge and transfer it to downstream tasks.
+### **Tokens préformés** Les tokens préformés sont des enchâssements de mots appris à partir de grandes quantités de données textuelles avant d'être affinés pour une tâche spécifique.
+avant d'être affinés pour une tâche spécifique. Ces encastrements représentent les mots comme des vecteurs denses dans un espace à haute dimension,
+Ces encastrements représentent les mots comme des vecteurs denses dans un espace à haute dimension, capturant leurs relations sémantiques et leurs significations dépendantes du contexte. Cette étape de pré-entraînement permet aux modèles de
+d'exploiter les connaissances linguistiques générales et de les transférer aux tâches en aval.
 
 --
-### **Fine-tuned instructions**
-Fine-tuning involves adjusting the model's parameters based on a smaller, task-specific
-dataset. Instructions for fine-tuning can include specific objectives, such as maximum likelihood estimation or
-masked language modeling. These instructions help guide the model's learning process, allowing it to adapt to new
-contexts and tasks while maintaining its general knowledge.
+### **Instructions affinées**
+La mise au point consiste à ajuster les paramètres du modèle sur la base d'un ensemble de données plus restreint et spécifique à la tâche.
+de données plus petit et spécifique à la tâche. Les instructions pour le réglage fin peuvent inclure des objectifs spécifiques, tels que l'estimation du maximum de vraisemblance ou la modélisation du langage masqué.
+la modélisation du langage masqué. Ces instructions aident à guider le processus d'apprentissage du modèle, lui permettant de s'adapter à de nouveaux contextes et à de nouvelles tâches tout en conservant ses connaissances générales.
+nouveaux contextes et tâches tout en conservant ses connaissances générales.
 
 --
-### **LLM dimensions**
-LLM dimensions refer to the number of units (e.g., neurons) in a particular layer within an LLM
-architecture. For instance, a model might have 256-dimensional input embeddings or 1024-dimensional hidden states.
-These dimensions influence the model's representation capacity and ability to capture complex relationships between
-inputs.
+### **Dimensions LLM**
+Les dimensions LLM se réfèrent au nombre d'unités (par exemple, les neurones) dans une couche particulière au sein d'une architecture LLM.
+d'une architecture LLM. Par exemple, un modèle peut avoir 256 dimensions d'encastrements d'entrée ou 1024 dimensions d'états cachés.
+Ces dimensions influencent la capacité de représentation du modèle et sa capacité à capturer des relations complexes entre les entrées.
+les entrées.
 
 --
-### **Vocabulary size**
-Vocabulary size represents the number of unique words or tokens that a model is trained on. A
-larger vocabulary size typically means that the model has been exposed to more diverse language patterns, idioms,
-and expressions, allowing it to generalize better to unseen texts.
+### **Taille du vocabulaire**
+La taille du vocabulaire représente le nombre de mots ou d'éléments uniques sur lesquels un modèle est formé. A
+vocabulaire plus important signifie généralement que le modèle a été exposé à des modèles de langage, des idiomes et des expressions plus variés, ce qui lui permet de mieux s'adapter à des textes inédits,
+et expressions, ce qui lui permet de mieux s'adapter à des textes inédits.
 
 --
-### **Output layer**
-the final layer in an LLM architecture responsible for generating predictions
-or responses. This layer can be designed for various tasks, such as classification, regression, or generation. The
-output layer's design and size can significantly impact a model's performance on specific tasks and its ability to
-produce coherent, relevant outputs.
+### **Couche de sortie**
+la couche finale d'une architecture LLM chargée de générer des prédictions ou des réponses.
+ou des réponses. Cette couche peut être conçue pour diverses tâches, telles que la classification, la régression ou la génération. La conception et la taille de la couche de
+La conception et la taille de la couche de sortie peuvent avoir un impact significatif sur la performance d'un modèle sur des tâches spécifiques et sur sa capacité à produire des résultats cohérents et pertinents.
+produire des résultats cohérents et pertinents.
 
 --
 ### **Batch size**
-it refers to the number of input examples (e.g., text samples) processed in parallel by
-the model during training. A larger batch size can accelerate training, but may also increase memory usage and
-computation time.
+il s'agit du nombre d'exemples d'entrée (par exemple, des échantillons de texte) traités en parallèle par le modèle au cours de l'apprentissage.
+par le modèle pendant l'apprentissage. Une taille de lot plus importante peut accélérer la formation, mais peut également augmenter l'utilisation de la mémoire et le temps de calcul.
+mémoire et le temps de calcul.
 
 --
 ### **Optimizer**
-An optimizer is an algorithm that adjusts the model's parameters based on the loss function and
-learning rate. Popular optimizers include Adam, SGD, RMSProp, and Adagrad.
+Un optimiseur est un algorithme qui ajuste les paramètres du modèle en fonction de la fonction de perte et du taux d'apprentissage.
+taux d'apprentissage. Les optimiseurs les plus courants sont Adam, SGD, RMSProp et Adagrad.
 
 --
 ### **Learning rate**
-it controls how quickly the model learns from the data. A high learning rate can
-lead to faster convergence but may also result in overshooting or oscillations. A low learning rate can ensure
-stable updates but may slow down training.
+il contrôle la vitesse à laquelle le modèle apprend des données. Un taux d'apprentissage élevé peut
+d'apprentissage élevé peut conduire à une convergence plus rapide, mais peut également entraîner un dépassement ou des oscillations. Un taux d'apprentissage faible peut garantir
+des mises à jour stables mais peut ralentir l'apprentissage.
 
 --
 ### **Regularization**
-such as L1 and L2 regularization, help prevent overfitting by adding
-a penalty term to the loss function. This encourages the model to learn simpler representations that generalize
-better.
+comme la régularisation L1 et L2, permettent d'éviter les surajustements en ajoutant un terme de pénalité à la fonction de perte.
+en ajoutant un terme de pénalité à la fonction de perte. Cela encourage le modèle à apprendre des représentations plus simples qui se généralisent mieux.
+meilleure généralisation.
 
 --
 ### **Dropout**
-regularization technique that randomly drops neurons during training to prevent
-over-reliance on individual features. This helps improve robustness and generalization capabilities.
+technique de régularisation qui supprime aléatoirement des neurones pendant la formation
+de l'apprentissage afin d'éviter une dépendance excessive à l'égard des caractéristiques individuelles. Cela permet d'améliorer la robustesse et les capacités de généralisation.
 
 --
 ### **Weight decay**
-also known as L2 regularization, adds a penalty term to the loss function based on
-the magnitude of the model's weights. This encourages the model to learn smaller, more stable weights that
-generalize better.
+également connue sous le nom de régularisation L2, ajoute un terme de pénalité à la fonction de perte en fonction de l'ampleur des poids du modèle.
+l'ampleur des poids du modèle. Cela encourage le modèle à apprendre des poids plus petits et plus stables qui
+qui généralisent mieux.
 
 --
 ### **Layer normalization** 
-a technique that normalizes the activations in each layer before
-passing them through the next layer. This helps stabilize training and improve performance.
+une technique qui normalise les activations de chaque couche avant de les
+avant de passer à la couche suivante. Cela permet de stabiliser l'entraînement et d'améliorer les performances.
 
 --
 ### **Embedding size**
@@ -240,13 +240,14 @@ memory usage.
 
 --
 ### **Attention mechanism** 
-it allows the model to focus on specific parts of the inputwhen generatingg outputs or making predictions. This can be especially useful for tasks like machine translation or
-question answering.
+La taille de l'intégration fait référence à la dimensionnalité des intégrations de mots apprises par le modèle. A
+plus grande peut capturer des relations sémantiques plus nuancées, mais peut aussi augmenter le temps de calcul et l'utilisation de la mémoire.
+l'utilisation de la mémoire.
 
 --
 ### **Maximum sequence length**
-it limits the longest possible input sequence that the model
-can process. This is important for handling long-range dependencies and ensuring computational efficiency.
+il limite la plus longue séquence d'entrée possible que le modèle peut traiter.
+peut traiter. Ceci est important pour traiter les dépendances à longue portée et garantir l'efficacité des calculs.
 
 
 ---

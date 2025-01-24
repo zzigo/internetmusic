@@ -246,5 +246,13 @@
       ],
       "key": "D"
     }
+  ],
+  "translate:translator-selection-default": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "C"
+    }
   ]
 }

@@ -12,17 +12,14 @@
             "id": "b002a3c9d4522a06",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "8-projects/Benoist.canvas",
-                "viewState": {
-                  "x": 1082.2081587815956,
-                  "y": 106.50586494214417,
-                  "zoom": -0.7518973443905513
-                }
+                "file": "1-classes/09-machine learning-text/README.md",
+                "mode": "source",
+                "source": true
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "Benoist"
+              "icon": "lucide-file",
+              "title": "README"
             }
           }
         ]
@@ -112,18 +109,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "8-projects/Benoist.canvas"
+                "file": "1-classes/09-machine learning-text/README.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of Benoist"
+              "title": "Outline of README"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 321.5,
-    "collapsed": true
+    "width": 321.5
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -232,13 +228,14 @@
       "workspaces:Manage workspace layouts": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
-      "obsidian-advanced-slides:Show Slide Preview": false
+      "obsidian-advanced-slides:Show Slide Preview": false,
+      "translate:Open translation view": false
     }
   },
   "active": "b002a3c9d4522a06",
   "lastOpenFiles": [
-    "1-classes/11-machine learning-sound/README.me.md",
     "8-projects/Benoist.canvas",
+    "1-classes/11-machine learning-sound/README.me.md",
     "1-classes/09-machine learning-text/README.md",
     "4-maps/perceptual modes.canvas",
     "1-classes/09-machine learning-text/ML resources.md",
@@ -279,7 +276,6 @@
     "8-projects/monorepo/3j-fountainPipe/node_modules/jzz/README.md",
     "8-projects/monorepo/3j-fountainPipe/node_modules/jzz/LICENSE.md",
     "8-projects/monorepo/3j-fountainPipe/node_modules/nanoid/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/djipevents/README.md",
     "8-projects/monorepo/3j-fountainPipe/src/javascript.svg",
     "8-projects/monorepo/3j-fountainPipe/public/vite.svg",
     "8-projects/monorepo/threejs-water-fountain/src/javascript.svg",
