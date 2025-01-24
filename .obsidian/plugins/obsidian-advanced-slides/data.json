@@ -1,0 +1,21 @@
+{
+  "port": "8004",
+  "autoReload": true,
+  "exportDirectory": "img",
+  "enableChalkboard": true,
+  "enableOverview": true,
+  "enableMenu": true,
+  "enablePointer": true,
+  "enableTimeBar": true,
+  "theme": "css/mattropolis.css",
+  "highlightTheme": "zenburn",
+  "transition": "fade",
+  "transitionSpeed": "slow",
+  "controls": true,
+  "progress": true,
+  "slideNumber": true,
+  "showGrid": false,
+  "autoComplete": "always",
+  "paneMode": "split",
+  "motm": "2025-01-24T09:03:12.185Z"
+}

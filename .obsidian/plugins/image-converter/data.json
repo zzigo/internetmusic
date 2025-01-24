@@ -1,0 +1,18 @@
+{
+  "autoRename": true,
+  "convertToWEBP": true,
+  "convertToJPG": false,
+  "convertToPNG": false,
+  "convertTo": "",
+  "quality": 0.75,
+  "attachmentLocation": "current",
+  "attachmentSpecifiedFolder": "",
+  "attachmentSubfolderName": "",
+  "resizeMode": "None",
+  "desiredWidth": 600,
+  "desiredHeight": 800,
+  "desiredLength": 800,
+  "resizeByDragging": true,
+  "resizeWithShiftScrollwheel": true,
+  "rightClickContextMenu": false
+}

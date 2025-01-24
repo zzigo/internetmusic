@@ -1,0 +1,296 @@
+{
+  "main": {
+    "id": "6d35ec5a54521775",
+    "type": "split",
+    "children": [
+      {
+        "id": "afd1b6b6f121b128",
+        "type": "tabs",
+        "dimension": 57.78834720570749,
+        "children": [
+          {
+            "id": "b002a3c9d4522a06",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "8-projects/Benoist.canvas",
+                "viewState": {
+                  "x": 1082.2081587815956,
+                  "y": 106.50586494214417,
+                  "zoom": -0.7518973443905513
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "Benoist"
+            }
+          }
+        ]
+      },
+      {
+        "id": "03a2fbb2e261516b",
+        "type": "tabs",
+        "dimension": 42.21165279429251,
+        "children": [
+          {
+            "id": "1abc7e5ab0a8e01c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1-classes/11-machine learning-sound/README.me.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README.me"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e26d103d814ce59a",
+    "type": "split",
+    "children": [
+      {
+        "id": "884408a8b57feeb7",
+        "type": "tabs",
+        "dimension": 77.42663656884876,
+        "children": [
+          {
+            "id": "ab31873ae6afb851",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "f9e543cc931ba7b5",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#technologies",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "b199a2f3ca771f9e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      },
+      {
+        "id": "6fb517df340c36f4",
+        "type": "tabs",
+        "dimension": 22.573363431151243,
+        "children": [
+          {
+            "id": "58628f64fbf0a992",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "8-projects/Benoist.canvas"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Benoist"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 321.5,
+    "collapsed": true
+  },
+  "right": {
+    "id": "a1832bf0e47e7aee",
+    "type": "split",
+    "children": [
+      {
+        "id": "71284de8dd997e03",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "193ce53127030c57",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "1-classes/08-threejs/README.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for README"
+            }
+          },
+          {
+            "id": "8f795dc1064bf8dd",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "1-classes/08-threejs/README.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from README"
+            }
+          },
+          {
+            "id": "b1058bd6fac969da",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "0875fe6f0273f069",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "c15d1dd232db0c4d",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "de93172f2a57dbae",
+            "type": "leaf",
+            "state": {
+              "type": "aHR0cHM6Ly9lZGl0b3IucDVqcy5vcmcvenppZ28vc2tldGNoZXMvWm5hNlFRZ1dR",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 483.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "workspaces:Manage workspace layouts": false,
+      "obsidian-textgenerator-plugin:Generate Text!": false,
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
+      "obsidian-advanced-slides:Show Slide Preview": false
+    }
+  },
+  "active": "b002a3c9d4522a06",
+  "lastOpenFiles": [
+    "1-classes/11-machine learning-sound/README.me.md",
+    "8-projects/Benoist.canvas",
+    "1-classes/09-machine learning-text/README.md",
+    "4-maps/perceptual modes.canvas",
+    "1-classes/09-machine learning-text/ML resources.md",
+    "1-classes/19-deploy/README.md",
+    "8-projects/README.md",
+    "1-classes/19-deploy",
+    "4-maps/js spec.canvas",
+    "4-maps/internet technologies.canvas",
+    "4-maps/internet music-concert dictionaryUntitled.canvas",
+    "4-maps/internet music map.canvas",
+    "4-maps/canvas sandbox.canvas",
+    "1-classes/08-threejs/README.md",
+    "8-projects/monorepo/3j-fountainPipe/public/essaieeau.mov",
+    "8-projects/monorepo/3j-fountainPipe/src/essaieeau.mov",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/camera_utils/package.json",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/camera_utils/index.d.ts",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/camera_utils/camera_utils.js",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/camera_utils/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/camera_utils",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/@esbuild/android-x64",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/@esbuild/darwin-x64",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/@esbuild/android-arm64",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/fsevents/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/three/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/three/examples/fonts/ttf/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/three/examples/fonts/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/@esbuild/darwin-arm64/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/hands/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/webmidi/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/rollup/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/rollup/LICENSE.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/vite/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/vite/LICENSE.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/three/src/nodes/materialx/DISCLAIMER.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/three/examples/jsm/libs/draco/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/three/examples/jsm/libs/basis/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/postcss/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/jzz/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/jzz/LICENSE.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/nanoid/README.md",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/djipevents/README.md",
+    "8-projects/monorepo/3j-fountainPipe/src/javascript.svg",
+    "8-projects/monorepo/3j-fountainPipe/public/vite.svg",
+    "8-projects/monorepo/threejs-water-fountain/src/javascript.svg",
+    "8-projects/monorepo/threejs-water-fountain/public/vite.svg",
+    "8-projects/monorepo/3j-hydra-three/node_modules 2/connect-pushstate/test/fixtures/www/images/image.png",
+    "8-projects/monorepo/3j-hydra-three/node_modules 2/browserify/assets/logo.png",
+    "8-projects/monorepo/3j-hydra-three/node_modules 2/browserify/assets/browserify.png",
+    "8-projects/monorepo/3j-hydra-three/node_modules 2/falafel/falafel.png",
+    "8-projects/24-tom-1/testvite/testvite/public/vite.svg",
+    "8-projects/24-tom-1/testvite/testvite/javascript.svg",
+    "maps/internet music tree.canvas",
+    "maps/web structure.canvas"
+  ]
+}
