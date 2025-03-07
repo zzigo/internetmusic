@@ -11,17 +11,14 @@
             "id": "759c007d7c19022a",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "8-projects/Tom.canvas",
-                "viewState": {
-                  "x": 1560.0159055332667,
-                  "y": -322.9915242920544,
-                  "zoom": -0.9626884677012758
-                }
+                "file": "2-technologies/git tutorial.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "Tom"
+              "icon": "lucide-file",
+              "title": "git tutorial"
             }
           }
         ]
@@ -91,13 +88,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "8-projects/Tom.canvas",
+                "file": "2-technologies/git tutorial.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Tom"
+              "title": "Outline of git tutorial"
             }
           }
         ]
@@ -219,6 +216,8 @@
   },
   "active": "759c007d7c19022a",
   "lastOpenFiles": [
+    "2-technologies/git.md",
+    "2-technologies/git tutorial.md",
     "8-projects/Benoist.canvas",
     "8-projects/Tom.canvas",
     "1-classes/10-machine learning-image/README.md.md",
@@ -261,7 +260,6 @@
     "8-projects/monorepo/3j-fountainPipe/node_modules/@esbuild/darwin-arm64/README.md",
     "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/hands/README.md",
     "8-projects/monorepo/3j-fountainPipe/node_modules/webmidi/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/rollup/README.md",
     "8-projects/monorepo/3j-fountainPipe/src/javascript.svg",
     "8-projects/monorepo/3j-fountainPipe/public/vite.svg",
     "8-projects/monorepo/threejs-water-fountain/src/javascript.svg",
