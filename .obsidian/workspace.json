@@ -4,43 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "afd1b6b6f121b128",
+        "id": "346c0b44f401b6fe",
         "type": "tabs",
-        "dimension": 57.78834720570749,
         "children": [
           {
-            "id": "b002a3c9d4522a06",
+            "id": "759c007d7c19022a",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "1-classes/09-machine learning-text/README.md",
-                "mode": "source",
-                "source": true
+                "file": "8-projects/Tom.canvas",
+                "viewState": {
+                  "x": 1560.0159055332667,
+                  "y": -322.9915242920544,
+                  "zoom": -0.9626884677012758
+                }
               },
-              "icon": "lucide-file",
-              "title": "README"
-            }
-          }
-        ]
-      },
-      {
-        "id": "03a2fbb2e261516b",
-        "type": "tabs",
-        "dimension": 42.21165279429251,
-        "children": [
-          {
-            "id": "1abc7e5ab0a8e01c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1-classes/11-machine learning-sound/README.me.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README.me"
+              "icon": "lucide-layout-dashboard",
+              "title": "Tom"
             }
           }
         ]
@@ -63,7 +44,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -109,10 +91,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1-classes/09-machine learning-text/README.md"
+                "file": "8-projects/Tom.canvas",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of README"
+              "title": "Outline of Tom"
             }
           }
         ]
@@ -232,11 +217,24 @@
       "translate:Open translation view": false
     }
   },
-  "active": "b002a3c9d4522a06",
+  "active": "759c007d7c19022a",
   "lastOpenFiles": [
     "8-projects/Benoist.canvas",
-    "1-classes/11-machine learning-sound/README.me.md",
+    "8-projects/Tom.canvas",
+    "1-classes/10-machine learning-image/README.md.md",
+    "1-classes/16-artificial intelligence (wip)/README.md",
+    "2-technologies/AI Coding assistants.md",
+    "bib/design patterns/Bradley_2021_Design Patterns in Python.pdf",
     "1-classes/09-machine learning-text/README.md",
+    "bib/literature and internet/Icon\r",
+    "2-technologies/bash.md",
+    "2-technologies/www.md",
+    "2-technologies/wget.md",
+    "2-technologies/TCP.md",
+    "2-technologies/SpeechSynthesiUtterance.md",
+    "2-technologies/github pages.md",
+    "2-technologies/vite tree.md",
+    "1-classes/11-machine learning-sound/README.me.md",
     "4-maps/perceptual modes.canvas",
     "1-classes/09-machine learning-text/ML resources.md",
     "1-classes/19-deploy/README.md",
@@ -256,8 +254,6 @@
     "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/camera_utils/README.md",
     "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/camera_utils",
     "8-projects/monorepo/3j-fountainPipe/node_modules/@esbuild/android-x64",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/@esbuild/darwin-x64",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/@esbuild/android-arm64",
     "8-projects/monorepo/3j-fountainPipe/node_modules/fsevents/README.md",
     "8-projects/monorepo/3j-fountainPipe/node_modules/three/README.md",
     "8-projects/monorepo/3j-fountainPipe/node_modules/three/examples/fonts/ttf/README.md",
@@ -266,16 +262,6 @@
     "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/hands/README.md",
     "8-projects/monorepo/3j-fountainPipe/node_modules/webmidi/README.md",
     "8-projects/monorepo/3j-fountainPipe/node_modules/rollup/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/rollup/LICENSE.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/vite/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/vite/LICENSE.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/three/src/nodes/materialx/DISCLAIMER.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/three/examples/jsm/libs/draco/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/three/examples/jsm/libs/basis/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/postcss/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/jzz/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/jzz/LICENSE.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/nanoid/README.md",
     "8-projects/monorepo/3j-fountainPipe/src/javascript.svg",
     "8-projects/monorepo/3j-fountainPipe/public/vite.svg",
     "8-projects/monorepo/threejs-water-fountain/src/javascript.svg",

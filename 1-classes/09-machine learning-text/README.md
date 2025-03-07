@@ -64,9 +64,17 @@ note:1. le ML implique un certain nombre d'étapes, la première étape consiste
 6.  Cette mesure de la prédiction est l'étape **d'évaluation et d'amélioration**, et dans de nombreux algorythmes, vous trouverez une mesure de cette précision appelée _**température**._
 ---
 
-##  Forevere
-<iframe src="https://m.twitch.tv/watchmeforever" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
+##  Nothing, Forever
 
+<iframe src="https://clips.twitch.tv/embed?clip=FlirtyFragileGullHoneyBadger-riMWB_9zDxnAnuVj&parent=zztt.org" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+
+note: **Nothing, Forever** is a show about nothing, that happens forever. Kinda like popular sitcoms of the past, except that it never stops.
+
+##### Nothing, Forever is always-on, runs 365 days of the year, and delivers new content every minute.
+
+Everything you see, hear, or experience (with the exception of the artwork and laugh track) is always brand new content, generated via machine learning and AI algorithms.
+
+**DISCLAIMER**: Much of our generative content is provided through OpenAI's GPT platform and does not reflect views held by the creators of Nothing, Forever.
 
 ---
 

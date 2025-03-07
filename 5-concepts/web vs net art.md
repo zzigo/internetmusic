@@ -1,3 +1,8 @@
+---
+tags:
+  - netart
+status: done
+---
 #olialalina
 #concept 
 
