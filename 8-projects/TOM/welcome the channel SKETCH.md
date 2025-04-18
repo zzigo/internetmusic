@@ -13,7 +13,7 @@ fake chatters 1 and 2: →  dictionary1.json {
 phrase
 phrars2}
   
-SWITCHING POINT →   👹 
+SWITCHING POINT →   👹  
 
 STAGE: 
 sax1 →  light on
