@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "welcome the channel.md",
+                "file": "8-projects/TOM/welcome the channel SKETCH.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "welcome the channel"
+              "title": "welcome the channel SKETCH"
             }
           }
         ],
@@ -69,7 +69,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "sax",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -90,8 +90,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "6fb517df340c36f4",
@@ -104,13 +103,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "welcome the channel.md",
+                "file": "8-projects/TOM/welcome the channel SKETCH.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of welcome the channel"
+              "title": "Outline of welcome the channel SKETCH"
             }
           }
         ]
@@ -232,11 +231,12 @@
   },
   "active": "022a948a1a046f96",
   "lastOpenFiles": [
-    "8-projects/Tom.canvas",
+    "8-projects/TOM",
+    "8-projects/TOM/Tom.canvas",
     "1-classes/13-scores-js/multiplayer-game/readme.md",
     "1-classes/21-gaming/20-gaming and music.md",
     "1-classes/20-design patterns/c20-design patterns.md",
-    "welcome the channel.md",
+    "8-projects/TOM/welcome the channel SKETCH.md",
     "8-projects/README.md",
     "1-classes/21-gaming",
     "8-projects/monorepo/threejs-water-fountain/node_modules/@esbuild/darwin-arm64/bin/esbuild 2",
