@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "346c0b44f401b6fe",
+        "id": "339c01ddd70521cc",
         "type": "tabs",
         "children": [
           {
-            "id": "759c007d7c19022a",
+            "id": "573dad77f103eaaa",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2-technologies/git tutorial.md",
+                "file": "1-classes/21-gaming/20-gaming and music.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "git tutorial"
+              "title": "20-gaming and music"
+            }
+          },
+          {
+            "id": "022a948a1a046f96",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "welcome the channel.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "welcome the channel"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -54,7 +69,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#technologies",
+                "query": "sax",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -75,7 +90,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "6fb517df340c36f4",
@@ -88,20 +104,20 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2-technologies/git tutorial.md",
+                "file": "welcome the channel.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of git tutorial"
+              "title": "Outline of welcome the channel"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 321.5
+    "width": 200
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -214,62 +230,61 @@
       "translate:Open translation view": false
     }
   },
-  "active": "759c007d7c19022a",
+  "active": "022a948a1a046f96",
   "lastOpenFiles": [
-    "2-technologies/git.md",
-    "2-technologies/git tutorial.md",
-    "8-projects/Benoist.canvas",
     "8-projects/Tom.canvas",
-    "1-classes/10-machine learning-image/README.md.md",
-    "1-classes/16-artificial intelligence (wip)/README.md",
-    "2-technologies/AI Coding assistants.md",
-    "bib/design patterns/Bradley_2021_Design Patterns in Python.pdf",
-    "1-classes/09-machine learning-text/README.md",
-    "bib/literature and internet/Icon\r",
-    "2-technologies/bash.md",
-    "2-technologies/www.md",
-    "2-technologies/wget.md",
-    "2-technologies/TCP.md",
-    "2-technologies/SpeechSynthesiUtterance.md",
-    "2-technologies/github pages.md",
-    "2-technologies/vite tree.md",
-    "1-classes/11-machine learning-sound/README.me.md",
-    "4-maps/perceptual modes.canvas",
-    "1-classes/09-machine learning-text/ML resources.md",
-    "1-classes/19-deploy/README.md",
+    "1-classes/13-scores-js/multiplayer-game/readme.md",
+    "1-classes/21-gaming/20-gaming and music.md",
+    "1-classes/20-design patterns/c20-design patterns.md",
+    "welcome the channel.md",
     "8-projects/README.md",
-    "1-classes/19-deploy",
+    "1-classes/21-gaming",
+    "8-projects/monorepo/threejs-water-fountain/node_modules/@esbuild/darwin-arm64/bin/esbuild 2",
+    "8-projects/monorepo/3j-fountainPipe/node_modules/@esbuild/darwin-arm64/bin/esbuild 2",
+    "8-projects/Benoist.canvas",
+    "1-classes/17 vite/README.md",
+    "1-classes/20-design patterns",
+    "7-events/WebSoundArt festival 2024.md",
+    "4-maps/perceptual modes.canvas",
     "4-maps/js spec.canvas",
-    "4-maps/internet technologies.canvas",
     "4-maps/internet music-concert dictionaryUntitled.canvas",
-    "4-maps/internet music map.canvas",
+    "4-maps/internet technologies.canvas",
     "4-maps/canvas sandbox.canvas",
-    "1-classes/08-threejs/README.md",
-    "8-projects/monorepo/3j-fountainPipe/public/essaieeau.mov",
-    "8-projects/monorepo/3j-fountainPipe/src/essaieeau.mov",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/camera_utils/package.json",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/camera_utils/index.d.ts",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/camera_utils/camera_utils.js",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/camera_utils/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/camera_utils",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/@esbuild/android-x64",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/fsevents/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/three/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/three/examples/fonts/ttf/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/three/examples/fonts/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/@esbuild/darwin-arm64/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/@mediapipe/hands/README.md",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/webmidi/README.md",
+    "4-maps/internet music map.canvas",
+    "1-classes/19-deploy/README.md",
+    "1-classes/16-artificial intelligence (wip)/README.md",
+    "1-classes/03-tonejs/README.md",
+    "1-classes/02-setup/README.md",
+    "1-classes/01-intro/README.md",
+    "1-classes/11-machine learning-sound/README.me.md",
+    "2-technologies/AI Coding assistants.md",
+    "2-technologies/git tutorial.md",
+    "2-technologies/special-characters.md",
+    "2-technologies/IDE.md",
+    "9-arc/im-book/00 init/IDE.md",
+    "9-arc/im-book/docs/class02/js/lib/hemwa.js",
+    "9-arc/im-book/docs/class02/js/lib/noise.js",
+    "9-arc/im-book/docs/class03/js/01.html",
+    "9-arc/im-book/docs/class99/js/438892__craigsmith__g57-06-space-wind.wav",
+    "9-arc/im-book/docs/class99/js/33796__yewbic__ambience03.wav",
+    "9-arc/im-book/docs/class99/js/2.html",
+    "9-arc/im-book/webaudio/webaudio-initialization/page-11.md",
+    "9-arc/im-book/webaudio/webaudio-initialization/README.md",
+    "9-arc/im-book/webaudio/generators/snare.md",
+    "9-arc/im-book/webaudio/generators/lowis-misuary-bd.md",
+    "9-arc/im-book/webaudio/generators/README.md",
+    "9-arc/im-book/scheduling/page-6/page-9.md",
+    "9-arc/im-book/scheduling/page-6/README.md",
+    "9-arc/im-book/docs/class00/webaudioapi-guitar-diagram.svg",
+    "9-arc/im-book/docs/class00/webaudioapi-diagram.svg",
+    "im-book/docs/class00/webaudioapi-guitar-diagram.svg",
+    "im-book/docs/class00/webaudioapi-diagram.svg",
     "8-projects/monorepo/3j-fountainPipe/src/javascript.svg",
     "8-projects/monorepo/3j-fountainPipe/public/vite.svg",
     "8-projects/monorepo/threejs-water-fountain/src/javascript.svg",
     "8-projects/monorepo/threejs-water-fountain/public/vite.svg",
     "8-projects/monorepo/3j-hydra-three/node_modules 2/connect-pushstate/test/fixtures/www/images/image.png",
     "8-projects/monorepo/3j-hydra-three/node_modules 2/browserify/assets/logo.png",
-    "8-projects/monorepo/3j-hydra-three/node_modules 2/browserify/assets/browserify.png",
-    "8-projects/monorepo/3j-hydra-three/node_modules 2/falafel/falafel.png",
-    "8-projects/24-tom-1/testvite/testvite/public/vite.svg",
-    "8-projects/24-tom-1/testvite/testvite/javascript.svg",
     "maps/internet music tree.canvas",
     "maps/web structure.canvas"
   ]

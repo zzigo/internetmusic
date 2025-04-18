@@ -5,10 +5,10 @@ unit: 2
 date: 231002
 ---
 
-| ![\|50](https://i.imgur.com/N8z2xP4.png) |               |                        |
-| ---------------------------------------- | :------------ | ---------------------: |
-| **class 04**                             | Nov 8th, 2024 | *internet music 24/25* |
-### class 04
+| ![\N- 50](https://i.imgur.com/N8z2xP4.png)| | | | | | | | | | |
+| ---------------------------------------- | :------------ | --------------------- : |
+| **classe 04** | 8 novembre 2024 | *musique internet 24/25
+### classe 04
 # Component-Based Architectures
 ---
 - **Definition**: Modular approach where each part of the UI is built as an independent *component*.

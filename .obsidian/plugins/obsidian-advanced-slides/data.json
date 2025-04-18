@@ -1,5 +1,5 @@
 {
-  "port": "8004",
+  "port": "8100",
   "autoReload": true,
   "exportDirectory": "img",
   "enableChalkboard": true,
