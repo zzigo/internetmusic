@@ -13,26 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1-classes/21-gaming/20-gaming and music.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "20-gaming and music"
-            }
-          },
-          {
-            "id": "022a948a1a046f96",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
                 "file": "8-projects/TOM/welcome the channel SKETCH.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
               "title": "welcome the channel SKETCH"
+            }
+          },
+          {
+            "id": "33fe7c4498da10e9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "8-projects/README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
             }
           }
         ],
@@ -103,20 +103,20 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "8-projects/TOM/welcome the channel SKETCH.md",
+                "file": "8-projects/README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of welcome the channel SKETCH"
+              "title": "Outline of README"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 229.5086555480957
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -225,25 +225,33 @@
       "workspaces:Manage workspace layouts": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
-      "obsidian-advanced-slides:Show Slide Preview": false,
-      "translate:Open translation view": false
+      "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "022a948a1a046f96",
+  "active": "33fe7c4498da10e9",
   "lastOpenFiles": [
-    "8-projects/TOM",
-    "8-projects/TOM/Tom.canvas",
-    "1-classes/13-scores-js/multiplayer-game/readme.md",
-    "1-classes/21-gaming/20-gaming and music.md",
-    "1-classes/20-design patterns/c20-design patterns.md",
+    "1-classes/21-gaming/212 game theory.md",
     "8-projects/TOM/welcome the channel SKETCH.md",
     "8-projects/README.md",
-    "1-classes/21-gaming",
-    "8-projects/monorepo/threejs-water-fountain/node_modules/@esbuild/darwin-arm64/bin/esbuild 2",
-    "8-projects/monorepo/3j-fountainPipe/node_modules/@esbuild/darwin-arm64/bin/esbuild 2",
+    "1-classes/21-gaming/211-gaming and music.md",
+    "1-classes/01-intro/README.md",
+    "bib/net art/- Art Post-Internet-Ullens Center for Contemporary Art (2014)-1.pdf",
+    "bib/net art/Pipkin_2022_The house that technology builds.pdf",
+    "bib/net art/Pipkin_2022_Software for Artists Book #2 Untethering the Web.pdf",
+    "bib/net art/Moss_2019_Expanded Internet Art.pdf",
+    "bib/zotero_export.rdf",
+    "bib/código/Icon\r",
+    "bib/design patterns/Icon\r",
+    "bib/networked performance/Andric, Andreja. ConcertForSmartphoneNetwork/Icon\r",
+    "bib/networked performance/Icon\r",
+    "bib/the browser/Icon\r",
+    "2-technologies/AI Coding assistants.md",
+    "1-classes/09-machine learning-text/ML resources.md",
+    "8-projects/TOM/Tom.canvas",
+    "1-classes/13-scores-js/multiplayer-game/readme.md",
+    "1-classes/20-design patterns/c20-design patterns.md",
     "8-projects/Benoist.canvas",
     "1-classes/17 vite/README.md",
-    "1-classes/20-design patterns",
     "7-events/WebSoundArt festival 2024.md",
     "4-maps/perceptual modes.canvas",
     "4-maps/js spec.canvas",
@@ -255,26 +263,17 @@
     "1-classes/16-artificial intelligence (wip)/README.md",
     "1-classes/03-tonejs/README.md",
     "1-classes/02-setup/README.md",
-    "1-classes/01-intro/README.md",
     "1-classes/11-machine learning-sound/README.me.md",
-    "2-technologies/AI Coding assistants.md",
     "2-technologies/git tutorial.md",
     "2-technologies/special-characters.md",
     "2-technologies/IDE.md",
     "9-arc/im-book/00 init/IDE.md",
-    "9-arc/im-book/docs/class02/js/lib/hemwa.js",
-    "9-arc/im-book/docs/class02/js/lib/noise.js",
-    "9-arc/im-book/docs/class03/js/01.html",
-    "9-arc/im-book/docs/class99/js/438892__craigsmith__g57-06-space-wind.wav",
-    "9-arc/im-book/docs/class99/js/33796__yewbic__ambience03.wav",
-    "9-arc/im-book/docs/class99/js/2.html",
     "9-arc/im-book/webaudio/webaudio-initialization/page-11.md",
     "9-arc/im-book/webaudio/webaudio-initialization/README.md",
     "9-arc/im-book/webaudio/generators/snare.md",
     "9-arc/im-book/webaudio/generators/lowis-misuary-bd.md",
     "9-arc/im-book/webaudio/generators/README.md",
     "9-arc/im-book/scheduling/page-6/page-9.md",
-    "9-arc/im-book/scheduling/page-6/README.md",
     "9-arc/im-book/docs/class00/webaudioapi-guitar-diagram.svg",
     "9-arc/im-book/docs/class00/webaudioapi-diagram.svg",
     "im-book/docs/class00/webaudioapi-guitar-diagram.svg",

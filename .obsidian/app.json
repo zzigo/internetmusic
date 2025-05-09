@@ -2,5 +2,9 @@
   "promptDelete": false,
   "attachmentFolderPath": "img",
   "showUnsupportedFiles": true,
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "userIgnoreFilters": [
+    "*Icon",
+    "**Icon"
+  ]
 }

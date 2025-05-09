@@ -6,4 +6,4 @@
 
 Acoustics tools - Windows
 
-AnsyAcademicStudent_2024
+AnsyAcademicStudent_2024 
