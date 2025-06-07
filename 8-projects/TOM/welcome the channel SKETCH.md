@@ -262,3 +262,29 @@ Alexander Bruce, 2013
 ---
 
 If you want, I can also map **historical roots** (labyrinth myths, Borges, etc.) or suggest **design frameworks** for speculative maze games you might want to develop yourself. Want to explore that?
+
+
+
+--------
+
+
+maze
+webcam
+mic
+streamer
+
+-----
+
+
+v1
+chat
+game-message
+
+
+streamer
+	shooting ?
+	
+Bach's Preludes <- 
+
+v1 s+i+c
+

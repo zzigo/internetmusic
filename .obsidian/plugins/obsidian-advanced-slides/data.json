@@ -7,7 +7,7 @@
   "enableMenu": true,
   "enablePointer": true,
   "enableTimeBar": true,
-  "theme": "css/mattropolis.css",
+  "theme": "css/zztt.css",
   "highlightTheme": "zenburn",
   "transition": "fade",
   "transitionSpeed": "slow",
@@ -17,5 +17,5 @@
   "showGrid": false,
   "autoComplete": "always",
   "paneMode": "split",
-  "motm": "2025-03-01T20:18:18.783Z"
+  "motm": "2025-06-06T07:01:45.543Z"
 }

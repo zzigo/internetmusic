@@ -2,5 +2,6 @@
   "accentColor": "",
   "enabledCssSnippets": [
     "canvas-candy"
-  ]
+  ],
+  "theme": "moonstone"
 }
