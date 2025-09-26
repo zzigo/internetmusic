@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>hydra inside a webpage</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+	body{margin:0}
+	#myCanvas{ position: absolute;width: 100%;height: 100%;
+</style>
+    <script src="https://unpkg.com/hydra-synth"></script> 
+  </head>
+  <body>
+    <canvas id="myCanvas"></canvas>
+
+    <script>     
+      var hydra = new Hydra({
+        canvas: document.getElementById("myCanvas"),
+        detectAudio: true,
+				enableStreamCapture: false,
+      })
+       render()
+
+osc(30,0,0)
+  .modulate(noise(3))
+  .out(o0)
+osc(30,0,0)
+  .modulateRotate(noise(3).mult(shape(99,0.0,0.3)),Math.PI*2,0)
+  .out(o1)
+osc(30,0,0)
+  .modulatePixelate(noise(3).pixelate(8,5),1034,8)
+  .out(o2)
+osc(30,0,0)
+  .modulateKaleid(noise(3).color(0.1),4)
+  .out(o3)
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,200 @@
+<html>
+
+	<style>
+
+				* {
+			margin: 0;
+			padding: 0;
+}
+
+		#console {
+			position: fixed;
+			bottom: 0;
+			rigth: 100;
+		}
+
+
+   </style>
+
+<body>
+
+
+  <canvas id="canvas" style="background:grey"  height="100%" width="100%"> 
+
+
+	</canvas>
+		<p id="console" style="color:black;position:fixed;"> console:</p>
+
+
+<script>
+
+"use strict"; //the strict mode basically helps with error debugging
+
+
+//global variable declaration
+var oscillator = null,
+//10.0 we add the mousedown variable to track the mouse state
+mousedown = false;
+
+//10.001 and other two variables we will need later
+ oscillator = null;
+ pitch = 0;
+
+
+
+	//draw section
+	//binding to the const canvas
+
+var draw = function(x,y){
+
+	const canvas = document.querySelector ('#canvas');
+	canvas.width = document.body.clientWidth;
+	canvas.height = document.body.clientHeight;
+	console.log (canvas.width + " " + canvas.height)
+
+
+	const ctx = canvas.getContext ('2d');
+	//we use the onselectstart property of the canvas to avoid its selection.
+	ctx.onselectstart = function () {return false;} //avoid that the canvas text can be selected
+
+ctx.beginPath();
+ctx.arc(x,y, 50, 0, 2 * Math.PI);
+ctx.stroke();
+ctx.closePath();
+
+}
+
+
+function clearCoor() {
+	document.getElementById("console").innerHTML ="";
+}
+
+//onScreenConsole
+function onScreenConsole(x,y) {
+	document.getElementById("console").innerHTML = x + "  " + y;
+}
+
+
+//MOUSE
+
+	//10.06 and finally we instance all the functions that instance the signals update
+
+document.body.addEventListener('mousemove', function (e) {
+    // mouseActivity(e);
+	// playRandomOscillator(e);
+
+  changeFrequency(e);
+});
+
+document.body.addEventListener('mousedown', function (e){
+	//09.05 instead of running playRandomOscillator on mousedown event, we should move this to mousemove
+	createOscillator(e);
+  changeFrequency(e);
+});
+
+document.body.addEventListener('mouseup', function (e){
+	stopOscillator(e);
+});
+
+
+//TOUCH
+document.body.addEventListener('touchmove', function (e) {
+    changeFrequency(e);
+});
+
+document.body.addEventListener('touchstart', function (e) {
+createOscillator(e);
+changeFrequency(e);
+});
+
+document.body.addEventListener('touchend', function () {
+    stopOscillator(e);
+});
+
+
+//WEBAUDIO
+
+//init audio for any browser
+var context = new (window.AudioContext || window.webkitAudioContext)(),
+			gainNode = context.createGain();
+gainNode.connect(context.destination);
+
+
+//play a random note any time you press the mouse
+
+// 10.01 we will change playRandomOscillator for a function called createOscillator. And other called changeFrequency. The first one will be triggered on the mousedown event, and the second one, on the mousemove (continuous) event.
+
+var createOscillator = function(e){
+
+	    //10. 011 We can make sure that an oscillator is actively accepting frequency values by keeping track of whether the mouse has been clicked.
+			mousedown = true;  
+
+
+//10.02 bind the mouse coordinates to readable vars.
+	var xPos = e.clientX, yPos = e.clientY;
+
+	// 10.03 we create the same clientXY binders for the touch events.
+
+  if (e.touches) {
+    xPos = e.touches[0].clientX;
+    yPos = e.touches[0].clientY;
+}
+
+
+	oscillator = context.createOscillator(); //create oscillator
+
+	// oscillator.frequency.setTargetAtTime(Math.random()*500, context.currentTime, 0.0001);
+	//10.04 instead of having a random freq we will calculate a freq depending on the mouse coordinates. First we instance (call) the function calculateFrequency:
+
+	  oscillator.frequency.setTargetAtTime(calculateFrequency(xPos), context.currentTime, 0.001);
+
+
+
+	oscillator.connect(context.destination);
+	oscillator.type = 'square';
+	oscillator.start(context.currentTime);
+
+
+//run functions (still here)
+// draw(xPos,yPos);
+// onScreenConsole (x,y);
+}
+
+var changeFrequency = function (e) {
+    var xPos = e.clientX,
+        yPos = e.clientY;
+
+    if (e.touches) {
+        xPos = e.touches[0].clientX;
+        yPos = e.touches[0].clientY;
+    }
+
+    if (mousedown && oscillator) {
+         oscillator.frequency.setTargetAtTime(calculateFrequency(xPos), context.currentTime , 0.001);
+         gainNode.gain.setTargetAtTime(calculateGain(yPos), context.currentTime, 0.001);
+
+		//run functions
+		//10.05 as this is the continuous event we need to run the functions here
+		draw(xPos,yPos);
+    onScreenConsole(xPos,yPos);
+    // drawPitch(toNote(pitch));
+    }
+		     
+
+
+};
+
+// Stop the Oscillator 
+
+var stopOscillator = function () {
+    mousedown = false;
+
+    if (oscillator) {
+        oscillator.stop(context.currentTime);
+        oscillator.disconnect();
+    }
+};
+
+</script>
+</body>
+</html>

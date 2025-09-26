@@ -1,0 +1,13 @@
+filters:
+  and:
+    - file.folder == "3-works"
+    - file.ext != "base"
+views:
+  - type: cards
+    name: Table
+    order:
+      - file.name
+      - year
+      - person
+      - tags
+    image: note.img

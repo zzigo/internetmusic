@@ -4,42 +4,67 @@
     "type": "split",
     "children": [
       {
-        "id": "339c01ddd70521cc",
+        "id": "efa026cb4d0263b9",
         "type": "tabs",
-        "dimension": 60.02227171492205,
         "children": [
           {
-            "id": "573dad77f103eaaa",
+            "id": "935b96fd864b2d81",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1-classes/21-gaming/aesthetic procedures.md",
+                "file": "3-works/my boyfriend came back from the war.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "aesthetic procedures"
+              "title": "my boyfriend came back from the war"
             }
-          }
-        ]
-      },
-      {
-        "id": "a7a99d48fa2d1d38",
-        "type": "tabs",
-        "dimension": 39.97772828507795,
-        "children": [
+          },
           {
-            "id": "c6edf1cdbe02dce7",
+            "id": "9bdda030037dac96",
             "type": "leaf",
             "state": {
-              "type": "reveal-preview-view",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "3-works/jazz computer.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "Slide Preview"
+              "title": "jazz computer"
+            }
+          },
+          {
+            "id": "4bfa1b3bb019fad9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "3-works/jazz computer.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "jazz computer"
+            }
+          },
+          {
+            "id": "0e4b5910f64b08d0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "home.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "home"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -106,20 +131,20 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1-classes/21-gaming/aesthetic procedures.md",
+                "file": "3-works/jazz computer.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of aesthetic procedures"
+              "title": "Outline of jazz computer"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 261.5086555480957
+    "width": 352.5
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -195,18 +220,8 @@
             "state": {
               "type": "advanced-tables-toolbar",
               "state": {},
-              "icon": "lucide-file",
-              "title": "Plugin no longer active"
-            }
-          },
-          {
-            "id": "de93172f2a57dbae",
-            "type": "leaf",
-            "state": {
-              "type": "aHR0cHM6Ly9lZGl0b3IucDVqcy5vcmcvenppZ28vc2tldGNoZXMvWm5hNlFRZ1dR",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "Plugin no longer active"
+              "icon": "lucide-ghost",
+              "title": "advanced-tables-toolbar"
             }
           }
         ],
@@ -219,6 +234,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -229,66 +245,69 @@
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
       "obsidian-advanced-slides:Show Slide Preview": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-git:Open Git source control": false,
+      "templater-obsidian:Templater": false,
+      "obsidian-book-search-plugin:Create new book note": false,
+      "translate:Open translation view": false
     }
   },
-  "active": "573dad77f103eaaa",
+  "active": "9bdda030037dac96",
   "lastOpenFiles": [
-    "1-classes/21-gaming/213-player typologies.md",
-    "1-classes/21-gaming/aesthetic procedures.md",
-    "1-classes/21-gaming/211-gaming and music.md",
-    "1-classes/21-gaming/212 game theory.md",
-    "9-arc/IM.prg 2024-2025.md",
-    "img/Pasted image 20250606085859.png",
+    "3-works/works.base",
+    "3-works/jazz computer.md",
+    "3-works/my boyfriend came back from the war.md",
+    "3-works/nobodyhere.md",
+    "home.md",
+    "9-obs/tpl/t-work.md",
+    "3-imi/imi MOC.md",
+    "3-imi/patatap.md",
+    "3-imi/orca.md",
+    "3-works/My boyfriend came back from War/dot_clea.gif",
     "README.md",
-    "8-projects/README.md",
-    "8-projects/TOM/welcome the channel SKETCH.md",
-    "img/Pasted image 20250524085401.png",
-    "img/Pasted image 20250524085356.png",
-    "img/Pasted image 20250524085351.png",
-    "1-classes/20-design patterns/c20-design patterns.md",
-    "Untitled.canvas",
-    "bib/net art/Wasielewski_2021_From City Space to Cyberspace Art, Squatting, and Internet Culture in the Netherlands.pdf",
-    "bib/live coding/Rutz_2010_Rethinking the Supercollider Client....pdf",
-    "bib/live coding/Nilson_2015_Collected Rewritings.pdf",
-    "bib/código/Montfort_2016_Exploratory programming for the arts and humanities.epub",
-    "bib/código/Lens_2023_Procedural 3D modeling using geometry nodes in blender discover the professional usage of geometry.pdf",
-    "bib/net art/Kholeif_2017_You are here art after the Internet.pdf",
-    "bib/live coding/Gutiérrez_2004_Live Coding como Recurso para la Interpretación Musical.pdf",
-    "bib/net art/Daniels and Reisinger_2009_Net pioneers 1.0 contextualizing early net-based art.pdf",
-    "bib/net art/Cornell and Halter_2015_Mass effect art and the internet in the twenty-first century.pdf",
-    "bib/live coding/Collins_2011_Live Coding and Machine Listening.pdf",
-    "1-classes/01-intro/README.md",
+    "9-obs/IM.prg 2024-2025.md",
+    "1-classes/21-gaming/213-player typologies.md",
+    "9-obs/arc",
+    "1-classes/21-gaming/212 game theory.md",
+    "1-classes/21-gaming/211-gaming and music.md",
     "2-technologies/AI Coding assistants.md",
-    "1-classes/09-machine learning-text/ML resources.md",
-    "8-projects/TOM/Tom.canvas",
-    "1-classes/13-scores-js/multiplayer-game/readme.md",
-    "8-projects/Benoist.canvas",
-    "1-classes/17 vite/README.md",
-    "7-events/WebSoundArt festival 2024.md",
+    "5-concepts/internet music-concert dictionary.md",
+    "5-concepts/metaverses.md",
+    "5-concepts/modes of interactions.md",
+    "5-concepts/networked performance.md",
+    "5-concepts/randomness.md",
+    "2-technologies/responsivity.md",
+    "5-concepts/reversed engineering.md",
+    "5-concepts/textese.md",
+    "5-concepts/web vs net art.md",
+    "2-technologies/chrome.md",
+    "2-technologies/browsers.md",
+    "4-maps/canvas sandbox.canvas",
     "4-maps/perceptual modes.canvas",
     "4-maps/js spec.canvas",
-    "4-maps/internet music-concert dictionaryUntitled.canvas",
     "4-maps/internet technologies.canvas",
-    "4-maps/canvas sandbox.canvas",
+    "4-maps/internet music-concert dictionaryUntitled.canvas",
     "4-maps/internet music map.canvas",
-    "1-classes/19-deploy/README.md",
-    "1-classes/16-artificial intelligence (wip)/README.md",
-    "1-classes/03-tonejs/README.md",
-    "1-classes/02-setup/README.md",
-    "1-classes/11-machine learning-sound/README.me.md",
-    "2-technologies/git tutorial.md",
-    "2-technologies/special-characters.md",
-    "2-technologies/IDE.md",
-    "9-arc/im-book/00 init/IDE.md",
-    "9-arc/im-book/webaudio/webaudio-initialization/page-11.md",
-    "9-arc/im-book/webaudio/webaudio-initialization/README.md",
-    "9-arc/im-book/docs/class00/webaudioapi-guitar-diagram.svg",
-    "9-arc/im-book/docs/class00/webaudioapi-diagram.svg",
-    "im-book/docs/class00/webaudioapi-guitar-diagram.svg",
-    "im-book/docs/class00/webaudioapi-diagram.svg",
-    "8-projects/monorepo/3j-fountainPipe/src/javascript.svg",
-    "8-projects/monorepo/3j-fountainPipe/public/vite.svg",
+    "bib/3D/Icon\r",
+    "bib/analog computing/Icon\r",
+    "bib/html css/Icon\r",
+    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/textures/cubemap/parliament/readme.txt",
+    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/textures/cubemap/parliament/posz.jpg",
+    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/textures/cubemap/parliament/posy.jpg",
+    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/textures/cubemap/parliament/posx.jpg",
+    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/textures/cubemap/parliament/negz.jpg",
+    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/textures/cubemap/parliament/negy.jpg",
+    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/textures/cubemap/parliament/negx.jpg",
+    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/textures/cubemap/parliament/Icon\r",
+    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/models/ogre/skins/skin.jpg",
+    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/models/ogre/skins/Icon\r",
+    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/models/jessica/jessica/fmouth.png",
+    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/models/jessica/jessica/jessica_head_skin_d.png",
+    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/models/jessica/jessica/Thumbs.db",
+    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/models/jessica/jessica/Icon\r",
+    "Untitled.canvas",
+    "8-projects/TOM/Tom.canvas",
+    "8-projects/Benoist.canvas",
     "maps/internet music tree.canvas"
   ]
 }

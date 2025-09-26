@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 4-2016 -->
+<title>: Tide</title>
+  
+ <style>
+   
+   
+.outer_face
+{
+xoverflow: auto;
+margin:0; padding:0; position:absolute;
+top:0px;
+left:0px;
+width:100%;
+height:100%;
+background: black;
+   z-index: 0;
+}
+
+
+
+
+
+
+.hand {
+    position: absolute;
+    width: 100%; /* width of hour hand */
+    height: 50%; /* height of hour hand */
+    top: 0%; /* set top to 50% - height */
+    left: 50%;
+    margin-left: -50%; /* set this value to 1/2 width */    
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -moz-transform-origin: bottom;
+    -ms-transform-origin: bottom;
+    -webkit-transform-origin: bottom;
+    transform-origin: bottom;
+    z-index: 1;
+    }
+.hand.hour {
+     position: absolute;
+    width: 100%; /* width of hour hand */
+    height: 100%; /* height of hour hand */
+    top: 0%; /* set top to 50% - height */
+    xxleft: 50%;
+    margin-left: -50%; /* set this value to 1/2 width */
+    bottom: 0;
+    background: #0000ff;
+    z-index: 2;
+    }
+.hand.minute {
+     position: absolute;
+    height: 50%; /* height of min hand */
+    top: 0%; /* set top to 50% - height */
+    width: 20px; /* width of min hand */
+    margin-left: 0px; /* set this value to 1/2 width */
+    background: #00ff00;
+    z-index: 20;
+    }
+
+.hand.second {
+     position: absolute;
+    height: 50%; /* height of sec hand */
+    width: 2px; /* width of sec hand */
+    margin-left: 0px; /* set this value to 1/2 width */
+    top: 0;
+    background: #ff0000;
+    z-index: 130;
+    }
+
+   
+  </style>
+
+  </head>
+<body >
+<div id="liveclock" class="outer_face">
+<div class="inner_face">
+
+<div class="hand hour"></div>
+<div class="hand minute"></div>
+<div class="hand second"></div>
+
+</div>
+</div>
+
+
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+  
+
+<script type="text/javascript">
+var $hands = $('#liveclock div.hand')
+window.requestAnimationFrame = window.requestAnimationFrame
+                               || window.mozRequestAnimationFrame
+                               || window.webkitRequestAnimationFrame
+                               || window.msRequestAnimationFrame
+                               || function(f){setTimeout(f, 60)}
+
+function updateclock(){
+	var curdate = new Date()
+	
+	var j = (curdate.getMinutes()+( curdate.getSeconds() + curdate.getMilliseconds()/1000 ) /60) / 60 * 360;
+	var i = ( curdate.getSeconds() + curdate.getMilliseconds()/1000 ) /60 * 360;
+	var h = ( curdate.getHours() + ((curdate.getMinutes()+( curdate.getSeconds() + curdate.getMilliseconds()/1000 ) /60) / 60) ) / 24 * 360; ;
+
+	
+	if(h>=0 & h<=90){
+	$hands.filter('.hour').css({transform: 'rotateX(' + h + 'deg)' })
+	}else if(h>90 & h<=180){
+	$hands.filter('.hour').css({transform: 'rotateX(' +(-h+180) + 'deg)' })
+	}
+	else if(h>180 & h<=270){
+	$hands.filter('.hour').css({transform: 'rotateX(' +(-h+180) + 'deg)' })
+	}
+	else{
+	$hands.filter('.hour').css({transform: 'rotateX(' + h + 'deg)' })
+	}
+
+	$hands.filter('.minute').css({transform: 'rotateX(' + j + 'deg)' })
+		
+	if(j>=0 & j<=90){
+	$hands.filter('.minute').css({'marginLeft': j/2 +'%'});
+	}else if(j>90 & j<270){
+	$hands.filter('.minute').css({'marginLeft': (-j +180)/2  +'%'});
+	}
+	else{
+	$hands.filter('.minute').css({'marginLeft': (-360 +j)/2 +'%'});
+	}
+	
+	$hands.filter('.second').css({transform: 'rotateX(' + i + 'deg)' })
+	
+	if(i>=0 & i<=90){
+	$hands.filter('.second').css({'marginLeft': i/2 +'%'});
+	}else if(i>90 & i<270){
+	$hands.filter('.second').css({'marginLeft': (-i +180)/2  +'%'});
+	}
+	else{
+	$hands.filter('.second').css({'marginLeft': (-360 +i)/2 +'%'});
+	}
+	
+	requestAnimationFrame(updateclock)
+}
+
+requestAnimationFrame(updateclock)
+
+
+</script>
+
+</body>
+</html>

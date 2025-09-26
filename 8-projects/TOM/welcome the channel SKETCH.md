@@ -224,11 +224,9 @@ Alexander Bruce, 2013
 ### **Speculative and Future Research Directions**
 
 - Procedural generation of mazes using machine learning (_AI-generated architecture_).
-    
+
 - Quantum labyrinths: spaces that exist in superposition until observed.
-    
 - Perceptual mazes using VR/AR to fold physical and virtual dimensions.
-    
 - Acoustic mazes: spaces structured by sound reflection or spatialized audio, not just geometry.
     
 
@@ -287,4 +285,13 @@ streamer
 Bach's Preludes <- 
 
 v1 s+i+c
+
+
+# output
+
+- autonomous game
+- game framework as score
+	- game control performer, no score, all info into the game. 
+
+
 

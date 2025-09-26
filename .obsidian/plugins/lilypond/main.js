@@ -3064,13 +3064,13 @@ var require_temp = __commonJS({
   }
 });
 
-// main.ts
+// src/main.ts
 __export(exports, {
   default: () => LilypondPlugin
 });
 var import_obsidian2 = __toModule(require("obsidian"));
 
-// settings.ts
+// src/settings.ts
 var import_obsidian = __toModule(require("obsidian"));
 var SettingsTab = class extends import_obsidian.PluginSettingTab {
   constructor(app, plugin) {
@@ -3087,7 +3087,7 @@ var SettingsTab = class extends import_obsidian.PluginSettingTab {
   }
 };
 
-// lilypond.ts
+// src/lilypond.ts
 var path = __toModule(require("path"));
 var fs = __toModule(require("fs"));
 var temp = __toModule(require_temp());
@@ -3101,7 +3101,7 @@ var render = function(lilypondCode, lilypondPath, el) {
     fs.writeSync(lyFile.fd, lilypondCode);
     fs.closeSync(lyFile.fd);
     const lyFileDir = path.join(lyFile.path, "..");
-    exec(`${lilypondPath} -dbackend=svg -fsvg --silent --output=${lyFileDir} ${lyFile.path}`).then(() => {
+    exec(`${lilypondPath} -dbackend=svg -dpoint-and-click=false -fsvg --silent --output=${lyFileDir} ${lyFile.path}`).then(() => {
       const outputPath = lyFile.path.substring(0, lyFile.path.lastIndexOf(".ly")).concat(".svg");
       el.innerHTML = fs.readFileSync(outputPath, { encoding: "utf8", flag: "r" });
     }).catch((error) => {
@@ -3115,9 +3115,10 @@ var render = function(lilypondCode, lilypondPath, el) {
   });
 };
 
-// main.ts
+// src/main.ts
+var DEFAULT_LILY_PATH = "/usr/local/bin/lilypond";
 var DEFAULT_SETTINGS = {
-  path: "/usr/local/bin/lilypond"
+  path: ""
 };
 var LilypondPlugin = class extends import_obsidian2.Plugin {
   onload() {
@@ -3125,7 +3126,7 @@ var LilypondPlugin = class extends import_obsidian2.Plugin {
       yield this.loadSettings();
       this.addSettingTab(new SettingsTab(this.app, this));
       this.registerMarkdownCodeBlockProcessor("lily", (source, el) => {
-        render(source, this.settings.path, el);
+        render(source, this.settings.path || DEFAULT_LILY_PATH, el);
       });
     });
   }
@@ -3140,3 +3141,5 @@ var LilypondPlugin = class extends import_obsidian2.Plugin {
     });
   }
 };
+
+/* nosourcemap */

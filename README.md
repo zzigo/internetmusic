@@ -1,3 +1,5 @@
+IM program 2025-2026
+
 
 intro: internet culture, obsidian, hypermusic
 

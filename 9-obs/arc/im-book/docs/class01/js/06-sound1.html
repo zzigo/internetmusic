@@ -1,0 +1,137 @@
+<html>
+
+	<style>
+
+		/* this is a way to get rid of margins and paddings */
+				* {
+			margin: 0;
+			padding: 0;
+}
+
+		/* body { overflow: hidden;
+}
+
+		canvas {
+			display: block;
+		} */
+
+
+		/* we call the ID (#) console and say that the position:fixed , this makes the element not depend on the scroll or other element's relative positions anymore */
+		#console {
+			position: fixed;
+			bottom: 0;
+			rigth: 100;
+		}
+
+
+   </style>
+
+<body>
+
+
+  <canvas id="canvas" style="background:grey"  height="100%" width="100%"> 
+
+
+	</canvas>
+		<p id="console" style="color:black;position:fixed;"> console:</p>
+
+
+<script>
+
+"use strict"; //the strict mode basically helps with error debugging
+
+
+//global variable declaration
+var oscillator = null;
+
+
+	//draw section
+
+	//binding to the const canvas
+	const canvas = document.querySelector ('#canvas');
+	canvas.width = document.body.clientWidth;
+	canvas.height = document.body.clientHeight;
+	console.log (canvas.width + " " + canvas.height)
+
+
+function mouseActivity(e) {
+	var x = e.clientX;
+	var y = e.clientY;
+	onScreenConsole (x,y);
+}
+
+
+function clearCoor() {
+	document.getElementById("console").innerHTML ="";
+}
+
+//onScreenConsole
+function onScreenConsole(x,y) {
+	document.getElementById("console").innerHTML = x + "  " + y;
+}
+
+
+//connections (of interfaces)
+
+//06.02 You may notice that the app is working on the browser but still is not doing nothing on touchable devices. This is because the document.body Events in order to doing so are differents.
+
+//MOUSE
+document.body.addEventListener('mousemove', function (e) {
+    mouseActivity(e);
+});
+
+document.body.addEventListener('mousedown', function (e){
+	playRandomOscillator(e);
+});
+
+document.body.addEventListener('mouseup', function (e){
+	stopOscillator(e);
+});
+
+
+
+// 06.01 The creation of the Oscillator depends on the activity of the mouse. This can be ordered into a programming flowchart answering always these 2 questions: 1. What I want the user do?, 2. What happens with that action? . Almost always this is the order that sctructure the folding and dependencies between events and functions. In this case: 1. When the mouse is pressed-down, trigger playRandomOscillator() 
+
+//WEBAUDIO
+
+//init audio for any browser
+var context = new (window.AudioContext || window.webkitAudioContext)(),
+			gainNode = context.createGain();
+gainNode.connect(context.destination);
+
+
+//play a random note any time you press the mouse
+
+var playRandomOscillator = function(e){
+
+	oscillator = context.createOscillator();
+	oscillator.frequency.setTargetAtTime(Math.random()*500, context.currentTime, 0.001);
+
+	//06.03 The Method setTargetAtTime schedules the start of a gradual change to some value. The format is
+	// .setTargetAtTime(target,startTime,timeConstant);
+	// target in this case  the frequency value
+	// startTime is when the transition will begin
+	// time-constant value, given in seconds, of an exponential approach to the target value. The larger this value is, the slower the transition will be. 
+
+	oscillator.connect(context.destination);
+	oscillator.type = 'square';
+	oscillator.start(context.currentTime);
+}
+
+// Stop the Oscillator 
+
+var stopOscillator = function () {
+    // mousedown = false;
+
+    if (oscillator) {
+        oscillator.stop(context.currentTime);
+        oscillator.disconnect();
+    }
+};
+
+
+
+
+</script>
+</body>
+</html>

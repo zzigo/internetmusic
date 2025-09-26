@@ -1,0 +1,35 @@
+<html>
+<body>
+
+
+  <canvas id="canvas" style="background:grey" onmousemove="mouseActivity(event)" onmouseout="clearCoor()" height="400" width="500"> 
+
+
+	</canvas>
+		<p id="console" style="color:black;position:fixed;"> console:</p>
+
+
+<script>
+
+function mouseActivity(e) {
+	var x = e.clientX;
+	var y = e.clientY;
+	onScreenConsole (x,y);
+}
+
+//03.01 In this case, we've changed the HTML DOM EVENT from onclick to onmousemove, triggering the function mouseActivity() which takes the clientX,Y properties showing mouse's coordinates.
+
+//03.02 Just to experiment we added another HTML DOM EVENT called onmouseout that trigger the function clearCoor() once the mouse is outside the canvas. It will erase the content of the onScreenConsole.
+
+function clearCoor() {
+	document.getElementById("console").innerHTML ="";
+}
+
+//define the Function
+function onScreenConsole(x,y) {
+	document.getElementById("console").innerHTML = x + "  " + y;
+}
+
+</script>
+</body>
+</html>

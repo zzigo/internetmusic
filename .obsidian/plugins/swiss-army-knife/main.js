@@ -43,6 +43,11 @@ var SwissArmyKnifePlugin = class extends import_obsidian.Plugin {
       editorCallback: (editor, view) => this.removeEmptyLines(editor)
     });
     this.addCommand({
+      id: "create-expandable-section",
+      name: "Create expandable/collapsable section",
+      editorCallback: (editor, view) => createExpandableSection(editor)
+    });
+    this.addCommand({
       id: "fetch-plugin-version",
       name: "Fetch plugin version",
       callback: () => new FetchPluginModal(this.app, (url) => fetchPluginRelease(url, this.app)).open()
@@ -65,6 +70,32 @@ function replaceRegexInFile(editor, pattern, replacement) {
     editor.replaceSelection(updatedText, selectedText);
   } else {
     const updatedText = currentText.replace(pattern, replacement);
+    editor.setValue(updatedText);
+  }
+}
+function createExpandableSection(editor) {
+  const currentText = editor.getValue();
+  const selectedText = editor.getSelection();
+  if (selectedText) {
+    const firstSentenceIdentificator = /[\.!?]|$/;
+    const endOfFirstSentenceIfExist = selectedText.search(firstSentenceIdentificator);
+    const firstSentenceIndex = endOfFirstSentenceIfExist === -1 ? selectedText.length : endOfFirstSentenceIfExist + 1;
+    const summary = selectedText.slice(0, firstSentenceIndex);
+    const description = selectedText.slice(firstSentenceIndex, selectedText.length);
+    const updatedText = `
+<details><summary>
+	${summary}
+ </summary>
+	${description}
+</details>`;
+    editor.replaceSelection(updatedText, selectedText);
+  } else {
+    const updatedText = currentText + `
+<details><summary>
+	
+ </summary>
+	
+</details>`;
     editor.setValue(updatedText);
   }
 }
@@ -130,3 +161,5 @@ var InfoModal = class extends import_obsidian.Modal {
     contentEl.empty();
   }
 };
+
+/* nosourcemap */

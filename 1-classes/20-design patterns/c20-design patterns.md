@@ -22,6 +22,11 @@ theme: zztt
 
 ---
 
+
+check > https://refactoring.guru/design-patterns/memento
+
+---
+
 # Origins of Design Patterns (1994)
 
 Design patterns are **formalized best practices** addressing recurring problems in software design. They provide **abstract solutions** that are reusable across various contexts, promoting modularity, scalability, and maintainability. The concept of design patterns was popularized by the **"Gang of Four"** (Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides) with their landmark book:  

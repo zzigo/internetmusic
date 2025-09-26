@@ -5,7 +5,15 @@
   "obsidian-icon-folder",
   "obsidian-icons-plugin",
   "swiss-army-knife",
-  "obsidian-link-embed",
   "obsidian-imgur-plugin",
-  "table-editor-obsidian"
+  "table-editor-obsidian",
+  "templater-obsidian",
+  "dataview",
+  "awesome-reader",
+  "obsidian-book-search-plugin",
+  "translate",
+  "settings-search",
+  "obsidian-paste-as-html",
+  "convert-url-to-iframe",
+  "youtube-iframe-timestamps"
 ]

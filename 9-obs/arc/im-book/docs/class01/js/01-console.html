@@ -1,0 +1,28 @@
+<html>
+<body>
+	<p id="console"> console:</p>
+	
+<script>
+
+//01.01 When you load an html page, the browser create a document object.
+//the document object is the root node of the html document. 
+
+//02.02 having the element paragraph <p> with an id "console" we want to change its content.
+// For that we can access to the element p with the document method .getElementById("name")
+//And then we access to any property of the given element, in this case  the one called .innerHTML that lets us get or set  the html content of the object. 
+
+
+//define the Function
+function onScreenConsole(x,y) {
+	document.getElementById("console").innerHTML = "hello two";
+}
+
+//here we use the getElementById() method of the document object
+
+// run the Function 
+onScreenConsole();
+
+
+</script>
+</body>
+</html>

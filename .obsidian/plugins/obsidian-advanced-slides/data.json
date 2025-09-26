@@ -7,7 +7,7 @@
   "enableMenu": true,
   "enablePointer": true,
   "enableTimeBar": true,
-  "theme": "css/zztt.css",
+  "theme": "zztt",
   "highlightTheme": "zenburn",
   "transition": "fade",
   "transitionSpeed": "slow",

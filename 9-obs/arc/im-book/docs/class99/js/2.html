@@ -1,0 +1,39 @@
+<html>
+
+<body>
+	<script>
+		window.onload = init;
+var context, bufferLoader;
+
+function init() {
+context = new webkitAudioContext();
+
+bufferLoader = new BufferLoader (
+context,
+[
+'438892__craigsmith__g57-06-space-wind.wav',
+'33796__yewbic__ambience03.wav'
+],
+finishedLoading()
+);
+
+	bufferLoader.load();
+	
+}
+
+		function finishedLoading(bufferList) {
+			//create soruces
+			var s1= context.createBufferSource();
+			var s2= context.createBufferSource();
+			s1.buffer = bufferList[0];
+			s2.buffer = bufferList[1];
+
+			s1.connect(context.destination);
+			s2.connect(context.destination);
+			s1.start(0);
+			s2.start(0);
+		}
+	</script>
+</body>
+
+</html>

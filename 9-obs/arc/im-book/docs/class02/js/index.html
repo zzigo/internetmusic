@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<button type="button" id="mixButton" >Play</button>
+	
+<script>
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
+var actx = new AudioContext();
+var mixGain = actx.createGain();
+var filterGain = actx.createGain();
+var mixButton = document.querySelector('#mixButton');
+
+//SOUNDS
+
+function kick() {
+
+    var osc = actx.createOscillator();
+    var osc2 = actx.createOscillator();
+    var gainOsc = actx.createGain();
+    var gainOsc2 = actx.createGain();
+
+    osc.type = "triangle";
+    osc2.type = "sine";
+
+    gainOsc.gain.setValueAtTime(1, actx.currentTime);
+    gainOsc.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.5);
+    
+
+    gainOsc2.gain.setValueAtTime(1, actx.currentTime);
+    gainOsc2.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.5);
+  
+
+    osc.frequency.setValueAtTime(120, actx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.5);
+
+    osc2.frequency.setValueAtTime(50, actx.currentTime);
+    osc2.frequency.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.5);
+
+    osc.connect(gainOsc);
+    osc2.connect(gainOsc2);
+    gainOsc2.connect(mixGain);
+    gainOsc.connect(mixGain);
+    gainOsc.connect(actx.destination);
+    gainOsc2.connect(actx.destination);
+
+    mixGain.gain.value = 1;
+
+    osc.start(actx.currentTime);
+    osc2.start(actx.currentTime);
+
+    osc.stop(actx.currentTime + 0.5);
+    osc2.stop(actx.currentTime + 0.5);
+
+};
+
+function snare() {
+
+    var osc3 = actx.createOscillator();
+    var gainOsc3 = actx.createGain();
+
+    filterGain.gain.setValueAtTime(1, actx.currentTime);
+    filterGain.gain.exponentialRampToValueAtTime(0.01, actx.currentTime + 0.2);
+
+    osc3.type = "triangle";
+    osc3.frequency.value = 100;
+    gainOsc3.gain.value = 0;
+
+    gainOsc3.gain.setValueAtTime(0, actx.currentTime);
+    gainOsc3.gain.exponentialRampToValueAtTime(0.01, actx.currentTime + 0.1);
+
+    osc3.connect(gainOsc3);
+    gainOsc3.connect(mixGain);
+
+    mixGain.gain.value = 1;
+
+    osc3.start(actx.currentTime);
+    osc3.stop(actx.currentTime + 0.2);
+
+    var node = actx.createBufferSource(),
+        buffer = actx.createBuffer(1, 4096, actx.sampleRate),
+        data = buffer.getChannelData(0);
+
+    var filter = actx.createBiquadFilter();
+    filter.type = "highpass";
+    filter.frequency.setValueAtTime(100, actx.currentTime);
+    filter.frequency.linearRampToValueAtTime(1000, actx.currentTime + 0.2);
+
+
+    for (var i = 0; i < 4096; i++) {
+        data[i] = Math.random();
+    }
+    node.buffer = buffer;
+    node.loop = true;
+    node.connect(filter);
+    filter.connect(filterGain);
+    filterGain.connect(mixGain);
+    node.start(actx.currentTime);
+    node.stop(actx.currentTime + 0.2);
+
+};
+
+
+function hihat() {
+
+    var gainOsc4 = actx.createGain();
+    var fundamental = 40;
+    var ratios = [2, 3, 4.16, 5.43, 6.79, 8.21];
+
+    var bandpass = actx.createBiquadFilter();
+    bandpass.type = "bandpass";
+    bandpass.frequency.value = 10000;
+
+    var highpass = actx.createBiquadFilter();
+    highpass.type = "highpass";
+    highpass.frequency.value = 7000;
+
+
+    ratios.forEach(function(ratio) {
+
+        var osc4 = actx.createOscillator();
+        osc4.type = "square";
+        osc4.frequency.value = fundamental * ratio;
+        osc4.connect(bandpass);
+
+        osc4.start(actx.currentTime);
+        osc4.stop(actx.currentTime + 0.05);
+        
+    });
+
+    gainOsc4.gain.setValueAtTime(1, actx.currentTime);
+    gainOsc4.gain.exponentialRampToValueAtTime(0.01, actx.currentTime + 0.05);
+    
+    bandpass.connect(highpass);
+    highpass.connect(gainOsc4);
+    gainOsc4.connect(mixGain);
+    
+    mixGain.gain.value = 1;
+
+};
+
+//PLAY AROUND WITH INTERVAL VALUES TO CHANGE BEATS
+
+mixButton.addEventListener('click', function() {
+
+    interval(function() {
+        kick(); 
+    }, 600, 10);
+    interval(function() {
+        snare(); 
+    }, 1200, 5);
+        interval(function() {
+        //hitom(); 
+        //kick();
+    }, 300, 20);
+                interval(function() {
+        //lowtom(); 
+    }, 100, 60);
+         interval(function() {
+        hihat(); 
+
+    }, 200, 30);
+
+});
+
+//SET INTERVAL
+//THANKS TO https://bit.ly/1ZlB1D4
+
+function interval(func, wait, times) {
+    var interv = function(w, t) {
+        return function() {
+            if (typeof t === "undefined" || t-- > 0) {
+                setTimeout(interv, w);
+                try {
+                    func.call(null);
+                } catch (e) {
+                    t = 0;
+                    throw e.toString();
+                }
+            }
+        };
+    }(wait, times);
+
+    setTimeout(interv, wait);
+};
+
+mixGain.connect(actx.destination);
+mixGain.gain.value = 0;
+filterGain.gain.value = 0;
+
+</script>
+</body>
+</html>

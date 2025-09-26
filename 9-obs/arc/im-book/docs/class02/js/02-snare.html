@@ -1,0 +1,124 @@
+<html>
+
+<head>
+	<!-- <script src="lib/hemwa.js"></script> -->
+	</head>
+
+
+	<body>
+
+		<script>
+
+			
+
+
+var actx = new (window.AudioContext || window.webkitAudioContext)();
+var master = actx.createGain();
+master.connect(actx.destination);
+var now = actx.currenTime;
+
+
+
+		createKick(); 
+
+		// 02.1To synthetize a snare we need to emulate the rattling of the snare wires. This can be done creating a noise burst effect. /
+		// 02.2We will use the technic cvalled the random number generator. 
+		
+		
+		function whitenoise() { 
+			var node = actx.createBufferSource(),
+		
+		//02.3 the createBufferSource method Interface is used to create a new AudioBufferSourceNode, wich can be used to play audio data contained within an AudioBuffer object. This allows us to fill in the buffer with any code and content we want.
+
+buffer = actx.createBuffer (1, 4096, actx.sampleRate), 
+data = buffer.getChannelData (0);  
+
+//02.4 While .createBufferSource is the interface that represents the in-memory audio data(in a kinda stochastic way!) .createBuffer is the Interface used. 
+
+	// to create an empty AudioBuffer object 
+	//.createBuffer (channels,length, sampleRate ) 
+	// channels: intenger with the number of changel (1-32) 
+	// length: An integer representing the size of the buffer i nsample-frames (where each sample-frame 	is the size of a sample in bytes multiplied by numOfChannels). To determine the length to use for a specific number of seconds of audio, use numSeconds * sampleRate.
+	// sample rate (linear audio data in sample-frames per second) supported by modern browsers ( 8,000 Hz to 96,000 Hz) 
+
+
+	for (var i = 0; i < 4096; i++) { 
+		data[i]=Math.random(); 
+		} 
+
+		node.buffer=buffer; 
+		node.loop=true; 
+		node.start(now); 
+		node.stop(now + 0.2); 
+		node.connect(master); 
+		}; 
+
+
+
+
+//snare button
+		const snareB=document.createElement( "button"); 
+		snareB.innerText="snare" ; 
+		snareB.addEventListener( "click", function(){whitenoise()});
+
+		document.body.appendChild(snareB);
+		
+		
+
+function kick() {
+
+var osc = actx.createOscillator();
+var gainOsc = actx.createGain();
+var osc2 = actx.createOscillator();
+var gainOsc2 = actx.createGain();
+
+
+osc.type ="triangle"; 
+osc2.type = "sine";
+
+osc.frequency.value = 40;
+osc2.frequency.value = 70;
+
+//gain
+gainOsc.gain.setValueAtTime (1, actx.currentTime);
+gainOsc.gain.exponentialRampToValueAtTime(0.001, now+ 0.5);
+
+gainOsc2.gain.setValueAtTime (1, actx.currentTime);
+gainOsc2.gain.exponentialRampToValueAtTime(0.0001, now+ 0.5);
+
+//freq
+osc.frequency.setValueAtTime (1, actx.currentTime);
+osc.frequency.exponentialRampToValueAtTime(0.001, now+ 0.5);
+
+osc2.frequency.setValueAtTime (50, actx.currentTime);
+osc2.frequency.exponentialRampToValueAtTime(0.001, now+ 0.5);
+
+//connections
+osc.connect(gainOsc);
+osc2.connect(gainOsc2);
+gainOsc.connect(master);
+gainOsc2.connect(master);
+master.connect(actx.destination);
+
+osc.start(now);
+osc2.start(now);
+
+osc.stop(now + 0.4);
+osc2.stop(now + 0.5);
+
+}
+
+function createKick(){
+const kickB = document.createElement("button")
+kickB.innerText = "kick";
+kickB.addEventListener("click", function() {kick()});
+document.body.appendChild(kickB);
+}
+
+
+
+
+		 </script>
+	</body>
+
+</html>

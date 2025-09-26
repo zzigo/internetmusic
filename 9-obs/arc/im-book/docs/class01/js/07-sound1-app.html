@@ -1,0 +1,131 @@
+<html>
+
+	<style>
+
+				* {
+			margin: 0;
+			padding: 0;
+}
+
+
+		#console {
+			position: fixed;
+			bottom: 0;
+			rigth: 100;
+		}
+
+
+   </style>
+
+<body>
+
+
+  <canvas id="canvas"  height="100%" width="100%"> 
+
+
+	</canvas>
+		<p id="console" style="color:black;position:fixed;"> console:</p>
+
+
+<script>
+
+"use strict";
+
+//global variable declaration
+var oscillator = null;
+
+
+	//draw section
+
+	//binding to the const canvas
+	const canvas = document.querySelector ('#canvas');
+	canvas.width = document.body.clientWidth;
+	canvas.height = document.body.clientHeight;
+	console.log (canvas.width + " " + canvas.height)
+
+	function changeCanvasBackground() {
+   var x = Math.floor(Math.random() * 256);
+    var y = 100+ Math.floor(Math.random() * 256);
+    var z = 50+ Math.floor(Math.random() * 256);
+    var bgColor = "rgb(" + x + "," + y + "," + z + ")";
+	canvas.style.backgroundColor = bgColor;
+
+
+	}
+
+
+
+function mouseActivity(e) {
+	var x = e.clientX;
+	var y = e.clientY;
+	onScreenConsole (x,y);
+
+}
+
+
+function clearCoor() {
+	document.getElementById("console").innerHTML ="";
+}
+
+//onScreenConsole
+function onScreenConsole(x,y) {
+	document.getElementById("console").innerHTML = x + "  " + y;
+}
+
+
+//connections (of interfaces)
+
+//MOUSE
+document.body.addEventListener('mousemove', function (e) {
+    mouseActivity(e);
+});
+
+document.body.addEventListener('mousedown', function (e){
+	playRandomOscillator(e);
+		//change Canvas
+	changeCanvasBackground();
+});
+
+document.body.addEventListener('mouseup', function (e){
+	stopOscillator(e);
+});
+
+
+//WEBAUDIO
+
+//init audio for any browser
+var context = new (window.AudioContext || window.webkitAudioContext)(),
+			gainNode = context.createGain();
+gainNode.connect(context.destination);
+
+
+//play a random note any time you press the mouse
+
+var playRandomOscillator = function(e){
+
+	oscillator = context.createOscillator();
+	oscillator.frequency.setTargetAtTime(Math.random()*500, context.currentTime, 0.0001);
+
+
+	oscillator.connect(context.destination);
+	oscillator.type = 'square';
+	oscillator.start(context.currentTime);
+}
+
+// Stop the Oscillator 
+
+var stopOscillator = function () {
+    // mousedown = false;
+
+    if (oscillator) {
+        oscillator.stop(context.currentTime);
+        oscillator.disconnect();
+    }
+};
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+
+<body>
+
+
+  <canvas id="canvas" style="background:grey"  height="400" width="500"> 
+
+
+	</canvas>
+		<p id="console" style="color:black;position:fixed;"> console:</p>
+
+
+<script>
+
+function mouseActivity(e) {
+	var x = e.clientX;
+	var y = e.clientY;
+	onScreenConsole (x,y);
+}
+
+
+
+function clearCoor() {
+	document.getElementById("console").innerHTML ="";
+}
+
+//onScreenConsole
+function onScreenConsole(x,y) {
+	document.getElementById("console").innerHTML = x + "  " + y;
+}
+
+//connections (of interfaces)
+
+
+// 04.01 We have other option to control the mouse activity through the document object.
+// Due the HOISTING we don't need to put the function prior the others.
+// in this case the mouse coordinates are no longer limited to the canvas area but to the whole document. 
+//In the case of the Theremin app this is usefull dealing with the fullscreen type defined by css as we will se on the next step (05)
+
+document.body.addEventListener('mousemove', function (e) {
+    mouseActivity(e);
+});
+
+
+
+
+</script>
+</body>
+</html>

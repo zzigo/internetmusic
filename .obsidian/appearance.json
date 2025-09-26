@@ -3,5 +3,7 @@
   "enabledCssSnippets": [
     "canvas-candy"
   ],
-  "theme": "moonstone"
+  "theme": "obsidian",
+  "cssTheme": "Arzaba",
+  "showRibbon": false
 }

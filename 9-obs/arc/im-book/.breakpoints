@@ -1,0 +1,24 @@
+{
+  "files": {
+    "class02/js/02-snare.html": [
+      {
+        "id": "92e7a138-a150-4e55-a556-99d2a32a647d",
+        "line": 18,
+        "version": 1190,
+        "index": 235
+      },
+      {
+        "id": "9eb1fa3b-0700-4e31-b74d-8f3741a88a1b",
+        "line": 45,
+        "version": 1190,
+        "index": 1599
+      },
+      {
+        "id": "5d13fd8a-133f-4757-ae01-a01b056849cd",
+        "line": 114,
+        "version": 1190,
+        "index": 3044
+      }
+    ]
+  }
+}

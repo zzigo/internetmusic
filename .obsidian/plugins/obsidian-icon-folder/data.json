@@ -1,6 +1,6 @@
 {
   "settings": {
-    "migrated": 5,
+    "migrated": 6,
     "iconPacksPath": ".obsidian/icons",
     "fontSize": 16,
     "emojiStyle": "twemoji",
@@ -26,7 +26,9 @@
     "iconInFrontmatterFieldName": "icon",
     "iconColorInFrontmatterFieldName": "iconColor",
     "iconsInLinksEnabled": true,
-    "debugMode": false
+    "debugMode": false,
+    "lucideIconPackType": "native",
+    "useInternalPlugins": false
   },
   "bib": "LiBook"
 }

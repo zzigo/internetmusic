@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<script>
+
+
+//AUDIOactx
+var actx = new AudioContext;
+console.log (actx.sampleRate);
+console.log (actx.destination.channelCount);
+
+
+//BUFFER
+
+const buffer = actx.createBuffer(
+	1,
+	actx.sampleRate * 1,
+	actx.sampleRate 
+)
+
+const channelData = buffer.getChannelData(0);
+
+
+//WHITENOISE
+for (let i = 0; i < buffer.length; i++) {
+	channelData[i] = Math.random() * 2 - 1;
+}
+
+
+const primaryGainControl = actx.createGain();
+primaryGainControl.gain.setValueAtTime (0.05, 0);
+primaryGainControl.connect(actx.destination);
+
+const button = document.createElement("button");
+button.innerText = " White Noise";
+button.addEventListener("click",() => {
+	const whiteNoiseSource = actx.createBufferSource ();
+	whiteNoiseSource.buffer = buffer;
+	whiteNoiseSource.connect(primaryGainControl);
+	whiteNoiseSource.start();
+})
+
+document.body.appendChild(button);
+
+//SNARE
+const snareFilter = actx.createBiquadFilter();
+snareFilter.type = "highpass";
+snareFilter.frequency.value = 500;
+snareFilter.connect(primaryGainControl);
+
+const snareButton = document.createElement("button")
+snareButton.innerText = "Snare"
+snareButton.addEventListener("click", () => {
+		const whiteNoiseSource = actx.createBufferSource ();
+	whiteNoiseSource.buffer = buffer;
+	whiteNoiseSource.connect(snareFilter);
+	whiteNoiseSource.start();
+	whiteNoiseSource.stop(actx.currentTime + 0.07);
+		console.log ("hello");
+
+})
+
+document.body.appendChild(snareButton);
+
+//KICK
+
+const kickButton = document.createElement("button")
+kickButton.innerText = "Kick"
+kickButton.addEventListener("click", () => {
+		const kickOscillator = actx.createOscillator ();
+
+		kickOscillator.frequency.setValueAtTime(150,0);
+		kickOscillator.frequency.exponentialRampToValueAtTime (
+			0.002,
+			actx.currentTime + 0.5
+		);
+
+		const kickGain = actx.createGain();
+		kickGain.gain.setValueAtTime(1,0);
+		kickGain.gain.exponentialRampToValueAtTime (
+			0.001,
+			actx.currentTime + 0.5
+		);
+
+		kickOscillator.connect(kickGain);
+		kickGain.connect(primaryGainControl);
+		kickOscillator.start();
+		kickOscillator.stop(actx.currentTime + 0.5);
+});
+document.body.appendChild(kickButton);
+
+
+
+
+// var oscillator = actx.createOscillator();
+// oscillator.frequency = 150;
+
+// var gain = actx.createGain();
+
+// oscillator.connect(gain);
+// gain.connect(actx.destination);
+
+// var now = actx.currentTime; 
+
+// gain.gain.setValueAtTime(1, now); 
+// gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+// oscillator.start(now);
+// oscillator.stop(now + 0.5);
+
+
+	</script>
+
+	
+</body>
+</html>
