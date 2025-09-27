@@ -10,4 +10,7 @@ views:
       - year
       - person
       - tags
+    sort:
+      - property: year
+        direction: ASC
     image: note.img

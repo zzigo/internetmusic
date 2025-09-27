@@ -230,7 +230,7 @@
       "api_key": "8155a769-4ca6-4278-a28f-1d44c15c63f8",
       "auto_translate": false,
       "auto_translate_interval": 500,
-      "validated": true,
+      "validated": false,
       "available_languages": [
         "bg",
         "cs",
