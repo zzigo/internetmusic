@@ -1,10 +1,12 @@
 filters:
   and:
-    - file.folder == "3-works"
     - file.ext != "base"
 views:
   - type: cards
-    name: Table
+    name: Internet Music Works
+    filters:
+      and:
+        - file.folder == "3-works"
     order:
       - file.name
       - year
@@ -13,4 +15,29 @@ views:
     sort:
       - property: year
         direction: ASC
+    image: note.img
+  - type: cards
+    name: Expanded music
+    filters:
+      and:
+        - file.folder == "3-works/expanded music"
+    order:
+      - file.name
+      - person
+      - year
+      - materials
+    rowHeight: medium
+    image: note.img
+    imageAspectRatio: 0.25
+    cardSize: 320
+  - type: cards
+    name: HEM IM works
+    filters:
+      and:
+        - file.folder == "3-works/hem"
+    order:
+      - file.name
+      - person
+      - year
+      - tags
     image: note.img

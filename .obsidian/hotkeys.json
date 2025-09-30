@@ -1,20 +1,4 @@
 {
-  "editor:swap-line-up": [
-    {
-      "modifiers": [
-        "Shift"
-      ],
-      "key": "ArrowUp"
-    }
-  ],
-  "editor:swap-line-down": [
-    {
-      "modifiers": [
-        "Shift"
-      ],
-      "key": "ArrowDown"
-    }
-  ],
   "convert-url-to-iframe:url-to-iframe": [
     {
       "modifiers": [
@@ -279,6 +263,58 @@
         "Mod"
       ],
       "key": "L"
+    }
+  ],
+  "neighbouring-files:prev": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod",
+        "Shift"
+      ],
+      "key": "["
+    }
+  ],
+  "neighbouring-files:next": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod",
+        "Shift"
+      ],
+      "key": "]"
+    }
+  ],
+  "global-search-and-replace:search-and-replace": [
+    {
+      "modifiers": [
+        "Ctrl"
+      ],
+      "key": "F"
+    }
+  ],
+  "app:delete-file": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "Backspace"
+    }
+  ],
+  "editor:swap-line-down": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "ArrowDown"
+    }
+  ],
+  "editor:swap-line-up": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "ArrowUp"
     }
   ]
 }

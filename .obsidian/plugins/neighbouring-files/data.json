@@ -1,0 +1,9 @@
+{
+  "defaultSortOrder": "alphabetical",
+  "enableFolderLoop": true,
+  "includedFileTypes": "markdownOnly",
+  "additionalExtensions": [
+    "canvas",
+    "pdf"
+  ]
+}

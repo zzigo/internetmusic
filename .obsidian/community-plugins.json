@@ -14,5 +14,7 @@
   "settings-search",
   "obsidian-paste-as-html",
   "convert-url-to-iframe",
-  "youtube-iframe-timestamps"
+  "youtube-iframe-timestamps",
+  "neighbouring-files",
+  "global-search-and-replace"
 ]
