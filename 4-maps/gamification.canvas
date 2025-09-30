@@ -1,0 +1,19 @@
+{
+	"nodes":[
+		{"id":"1b9594e94fc51934","type":"text","text":"superpowers\n","x":-600,"y":40,"width":250,"height":50},
+		{"id":"883a815ee03db6f6","type":"text","text":"player typologies","x":-600,"y":-380,"width":250,"height":60},
+		{"id":"a6a0cbfecf7272ca","type":"text","text":"finite state machines","x":-600,"y":-260,"width":250,"height":60},
+		{"id":"20ae0e5a6c06d4c7","type":"text","text":"autonomous characteres\n","x":-940,"y":-250,"width":250,"height":50},
+		{"id":"321c4dcf0af779f9","type":"text","text":"game typologies","x":-240,"y":-520,"width":250,"height":60},
+		{"id":"d5366306ed29f4a6","type":"text","text":"aesthetics procedures","x":-240,"y":-780,"width":250,"height":60},
+		{"id":"ec8d9c73db08dc46","type":"text","text":"interaction design","x":-240,"y":-260,"width":250,"height":60}
+	],
+	"edges":[
+		{"id":"d1694ad2664d1bab","fromNode":"a6a0cbfecf7272ca","fromSide":"bottom","toNode":"1b9594e94fc51934","toSide":"top"},
+		{"id":"6ce9b7c443a32194","fromNode":"d5366306ed29f4a6","fromSide":"bottom","toNode":"321c4dcf0af779f9","toSide":"top","label":"game theory"},
+		{"id":"dcf3c04eccc2c260","fromNode":"883a815ee03db6f6","fromSide":"bottom","toNode":"a6a0cbfecf7272ca","toSide":"top"},
+		{"id":"bd50c70444384a9c","fromNode":"883a815ee03db6f6","fromSide":"bottom","toNode":"20ae0e5a6c06d4c7","toSide":"top"},
+		{"id":"c88ec07839716453","fromNode":"321c4dcf0af779f9","fromSide":"bottom","toNode":"ec8d9c73db08dc46","toSide":"top"},
+		{"id":"fa67cbddf0906e20","fromNode":"ec8d9c73db08dc46","fromSide":"left","toNode":"a6a0cbfecf7272ca","toSide":"right"}
+	]
+}

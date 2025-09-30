@@ -13,47 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1-classes/09-machine learning-text/AI resources.md",
+                "file": "1-classes/06-integration/06-integration-1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "AI resources"
-            }
-          },
-          {
-            "id": "26bc81f589928776",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "8-projects/README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
-            }
-          }
-        ],
-        "currentTab": 1
-      },
-      {
-        "id": "107c37bfc9a20d6a",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "9ae42529dfcfce43",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "home.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "home"
+              "title": "06-integration-1"
             }
           }
         ]
@@ -123,13 +88,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "8-projects/README.md",
+                "file": "1-classes/06-integration/06-integration-1.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of README"
+              "title": "Outline of 06-integration-1"
             }
           }
         ]
@@ -245,16 +210,27 @@
       "folder-by-tags-distributor:Redistribute all notes to folder by tags": false
     }
   },
-  "active": "26bc81f589928776",
+  "active": "4bfa1b3bb019fad9",
   "lastOpenFiles": [
-    "4-maps/perceptual modes.canvas",
-    "4-maps/internet technologies.canvas",
+    "1-classes/21-gaming/superpowers.md",
+    "4-maps/gamification.canvas",
+    "1-classes/06-integration/06-integration-1.md",
+    "1-classes/21-gaming/211-gaming and music.md",
+    "1-classes/21-gaming/212 game theory.md",
+    "1-classes/09-machine learning-text/AI resources.md",
     "4-maps/internet music-concert dictionaryUntitled.canvas",
+    "4-maps/gamification.md",
     "4-maps/internet music map.canvas",
+    "4-maps/perceptual modes.canvas",
+    "8-projects/TOM/welcome the channel SKETCH.md",
+    "1-classes/21-gaming/aesthetic procedures.md",
+    "1-classes/21-gaming/game typologies.md",
+    "1-classes/21-gaming/213-player typologies.md",
+    "8-projects/README.md",
+    "4-maps/internet technologies.canvas",
     "4-maps/canvas sandbox.canvas",
     "3-imi/Poems about things.md",
     "2-technologies/AI Coding assistants.md",
-    "1-classes/09-machine learning-text/AI resources.md",
     "README.md",
     "home.md",
     "3-works/hem/welcome to the channel.md",
@@ -268,16 +244,6 @@
     "3-works/p1/Der langwierige Weg in die Wohnung der Natascha Un .md",
     "3-works/p1/A flock decends into the pentagonal garden .md",
     "3-works/p1/Chronocomie .md",
-    "3-works/p1/Éphémere .md",
-    "3-works/p1/Plus-Minus .md",
-    "3-works/p1/Zwei gefühle .md",
-    "3-works/p1/Become Ocean .md",
-    "3-works/p1/Jeux .md",
-    "3-works/p1/Symphony 3 .md",
-    "3-works/p1/Woven Dreams .md",
-    "3-works/p1/Rocana .md",
-    "3-works/p1/Modulations .md",
-    "3-works/p1/Still .md",
     "3-works/hem",
     "3-works/p1/mega-instruments 42e2e66776e743db9efbff6f9e46bf43/Untitled.gif",
     "3-works/expanded music",
@@ -300,7 +266,6 @@
     "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/models/jessica/jessica/fmouth.png",
     "Untitled.canvas",
     "8-projects/TOM/Tom.canvas",
-    "8-projects/Benoist.canvas",
-    "maps/internet music tree.canvas"
+    "8-projects/Benoist.canvas"
   ]
 }
