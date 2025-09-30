@@ -9,7 +9,7 @@ Ce cours explore l’Internet comme cadre culturel et technologique de la créat
 
 ---
 
-## schedule
+## schedule 25-26
 
 ### online → Friday 9-11 AM
 

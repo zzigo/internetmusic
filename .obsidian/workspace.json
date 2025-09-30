@@ -8,62 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "935b96fd864b2d81",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ff.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "ff"
-            }
-          },
-          {
-            "id": "4a1c9edadaeb1958",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "3-works/p2/Agón .md",
-                "mode": "source",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "Agón"
-            }
-          },
-          {
             "id": "4bfa1b3bb019fad9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "home.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "home"
-            }
-          },
-          {
-            "id": "309ecc91f3b56358",
-            "type": "leaf",
-            "state": {
-              "type": "bases",
-              "state": {
-                "file": "3-works/works.base",
-                "viewName": "HEM IM works"
-              },
-              "icon": "lucide-layout-grid",
-              "title": "works"
+              "title": "README"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "107c37bfc9a20d6a",
@@ -116,7 +74,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#neoclásico",
+                "query": "tag:#orquestal-dev",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": true,
@@ -137,8 +95,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "6fb517df340c36f4",
@@ -151,13 +108,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "3-works/p2/Agón .md",
+                "file": "README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Agón"
+              "title": "Outline of README"
             }
           }
         ]
@@ -273,36 +230,36 @@
       "folder-by-tags-distributor:Redistribute all notes to folder by tags": false
     }
   },
-  "active": "4a1c9edadaeb1958",
+  "active": "4bfa1b3bb019fad9",
   "lastOpenFiles": [
-    "README.md",
     "home.md",
-    "IM.prg 25-26.md",
-    "6-persons/Everist Pipkin.md",
-    "ff.md",
     "3-works/hem/welcome to the channel.md",
-    "3-works/hem/The Wonderful Johnny.md",
+    "ff.md",
+    "Ü.md",
+    "3-works/p1/Cantata Actus Tragicus .md",
     "3-works/works.base",
-    "9-obs/IM.prg 24-25.md",
+    "3-works/p1/Heliogabalus Imperator .md",
+    "3-works/p1/Antikhthon .md",
+    "3-works/p1/Manequin .md",
+    "3-works/p1/Der langwierige Weg in die Wohnung der Natascha Un .md",
+    "3-works/p1/A flock decends into the pentagonal garden .md",
+    "3-works/p1/Chronocomie .md",
+    "3-works/p1/Éphémere .md",
+    "3-works/p1/Plus-Minus .md",
+    "3-works/p1/Zwei gefühle .md",
+    "3-works/p1/Become Ocean .md",
+    "3-works/p1/Jeux .md",
+    "3-works/p1/Symphony 3 .md",
+    "3-works/p1/Woven Dreams .md",
+    "3-works/p1/Rocana .md",
+    "3-works/p1/Modulations .md",
+    "3-works/p1/Still .md",
+    "5-concepts/reversed engineering.md",
+    "5-concepts/randomness.md",
+    "5-concepts/digital paradigms.md",
+    "5-concepts/metaverses.md",
+    "5-concepts/digital garden.md",
     "3-works/hem",
-    "0-in/imi MOC.md",
-    "3-imi/orca.md",
-    "3-imi/imi MOC.md",
-    "3-imi/patatap.md",
-    "3-imi/Poems about things.md",
-    "3-works/p2/Quad .md",
-    "3-works/p2/playphrase me .md",
-    "3-works/p1/Orfeo .md",
-    "3-works/p2/Oracle .md",
-    "6-persons/Olia Lialina.md",
-    "3-works/p1/Octeto para Vientos y Cuerdas .md",
-    "3-works/p2/Nscor .md",
-    "3-works/nobodyhere.md",
-    "3-works/p2/Lolo y Sosaku .md",
-    "3-works/jazz computer.md",
-    "3-works/p1/Jazz Computer .md",
-    "3-works/my boyfriend came back from the war.md",
-    "3-works/p2/100 moving cities .md",
     "3-works/p1/mega-instruments 42e2e66776e743db9efbff6f9e46bf43/Untitled.gif",
     "3-works/expanded music",
     "3-works/p2",

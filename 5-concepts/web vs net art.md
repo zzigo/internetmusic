@@ -1,8 +1,5 @@
----
-tags:
-  - netart
-status: done
----
+
+
 #olialalina
 #concept 
 
@@ -23,11 +20,6 @@ Mark Voge:
  sites. In any case, whether the art work is on a Web site or in an E-mail, the terms "Web
  art" and "Net art" seem interchangeable.
  
+https://art.teleportacia.org/observation/web_vs_net
 
-```embed
-title: "web_vs_net"
-image: ""
-description: ""
-url: "https://art.teleportacia.org/observation/web_vs_net/"
-```
 
