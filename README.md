@@ -9,6 +9,33 @@ Ce cours explore l’Internet comme cadre culturel et technologique de la créat
 
 ---
 
+## schedule
+
+### online → Friday 9-11 AM
+
+**2025**
+17/10
+31/10
+28/11
+05/12
+
+**2026** 
+23/01
+27/02
+13/03
+17/04
+24/04
+15/05
+22/05
+29/05
+19/06
+
+### presential @HEMDufour →  Friday 10-13
+
+03/10/2025
+12/06/2026
+
+
 ## semester 1
 
 intro: internet culture, obsidian, hypermusic
