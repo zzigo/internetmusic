@@ -20,6 +20,10 @@ https://suno.com/
 MusicLM , a model generating music from text descriptions.
 https://google-research.github.io/seanet/musiclm/examples/
 # image processing
+
+2025
+Veo3, Seedream, Nano Banana, ComfyUI, Midjourney, ElevenLabs 
+
 https://www.midjourney.com/
 [Dall-E](https://huggingface.co/spaces/dalle-mini/dalle-mini)
 [StyleGan3](https://github.com/NVlabs/stylegan3)
@@ -35,6 +39,7 @@ https://wonderdynamics.com/  - An AI tool that automatically animates, lights an
 gen-2 - by runwayml
 https://research.runwayml.com/gen2
 # text generation
+
 [ChatGPT](https://chat.openai.com/chat)
 [DeepAI Text Generator](https://deepai.org/machine-learning-model/text-generator) - The text generation API is backed by a large-scale unsupervised language model that can generate paragraphs of text. This transformer-based language model, based on the GPT-2 model by OpenAI, intakes a sentence or partial sentence and predicts subsequent text from that input.
 [Google Colaboratory](https://colab.research.google.com/drive/1O6dii5zQVWON1pTrDYmNdVy4tF9ZqBB0#scrollTo=wvQyJu_IJUHr) - Huggingface GPT2-Spanish [These models](https://huggingface.co/DeepESP) were trained from scratch by Jorge Ortiz Fuentes (Chile) and Alejandro Oñate Latorre (Spain), members of [DeepESP](https://t.me/joinchat/VoEp1bPrDYEexc6h), an open-source community on Natural Language Processing in Spanish. Thanks to the members of the community who collaborated with funding for the initial tests.
@@ -51,8 +56,14 @@ https://research.runwayml.com/gen2
 # works
 [Hexorcismos with MelGan-VC](https://hexorcismos.bandcamp.com/album/-) - an album made with AI by Herxocism
 [Nothing,Forever - goes meta](https://m.twitch.tv/watchmeforever/clip/EnthusiasticBrainyTrollOMGScoots-190YbTxz136jR5bQ)  Procedurally generated sitcom , Mismatch Media, Skyler Hartle , Brian Habersberger. A computer broadcasts AI-generated spoof _Seinfeld_ episodes for eternity. "experimental forms of television shows, video games, and more, through generative ... and other machine learning technologies.
+
 [The Infinite Conversation](https://infiniteconversation.com/) Will this technology lead to a massive proliferation of sub-optimal-quality content? Should we simply distrust anything we see online? As new tools are developed to help identify generated content, I recommend maintaining a skeptical stance, particularly when the source/channel of information doesn't seem reliable and when the claims seem preposterous or outrageous.
 Ultimately, I don't see this as a technical problem, but as a human one. We all share a duty to educate the coming generations about the new paradigm while focusing on forming compassionate individuals who would not misuse these awesome powers.
 As an AI optimist, I remain hopeful that we will be able to regulate ourselves, and that we will take experiments such as the Infinite Conversation for what they are: a playful way to help us imagine what our favorite people would do, if we had unlimited access to their minds. Art and Philosophy, here exemplified by Bavarian director Werner Herzog and Slovenian philosopher Slavoj Žižek, can guide us while navigating these treacherous waters.
 # vst for audio production
-### - smart:EQ 3
+
+smart:EQ 3
+
+
+# production studios
+https://www.particle6.com/
