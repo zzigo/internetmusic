@@ -76,37 +76,37 @@ $\blacksquare_c + \blacklozenge_s + \bullet_h + \leftrightarrow^p + \square\!\!\
 # Some topics discussed today
 
 ## Materials
-music with music 
+- music with music 
 ## Objects
-browser agnostics 
-musical form
-	open (open work →  Umberto Eco )
-			bottom-up / top-down 
-	closed
-	 anti-teleogic music
-orchestral instruments
-	expanded  musical instruments
-	embedded hybridization
-DIY instrruments 
-fictional objects
-	props
-	digital fabrication
-	3d printin
-	parametric design 
-hyperobjects
+- browser agnostics 
+- musical form
+	- open (open work →  Umberto Eco )
+		- bottom-up / top-down 
+		 - anti-teleogic music
+	- closed
+- orchestral instruments
+	- expanded  musical instruments
+	- embedded hybridization
+- DIY instrruments 
+- fictional objects
+	- props
+	- digital fabrication
+	- 3d printin
+	- parametric design 
+- hyperobjects
 ## Agents
-humans
-posthumans
-	cyborgs
-	 avatars
-	 AI agents →  generative art
- no-humans
-	 insects
-	 plants
-	 animals
- sociocybernetics
-	distributed cognition
-	public participation
+- - humans
+- - posthumans
+	- - cyborgs
+	 - - avatars
+	 - - AI agents →  generative art
+ - - no-humans
+	- -  insects
+	- -  plants
+	- -  animals
+ - - sociocybernetics
+	- - distributed cognition
+	- - public participation
 ## Interfaces
 - music representation
 	- dynamic scores 
@@ -131,7 +131,7 @@ posthumans
 - scenic typologies 
 	-  lighting
 	- video
-		  - split screen 
+		- split screen 
 		 -  background screen 
 		 -  mapping (props) 
 	  - fictional objects
@@ -169,4 +169,4 @@ posthumans
 
 # tasks
 - read Gallanter
-- imagine an first micro-studio for yourself as agent, white noise (probability, chaotic systems, randomicity)  a simple interface (touchpad, keyboard, mic, cam). Some clues: order - disorder - filtering - prediction - music expectation.
+- **bring ideas** for  a first micro-studio for yourself as agent, white noise (probability, chaotic systems, randomicity)  a simple interface (touchpad, keyboard, mic, cam). Some clues: order - disorder - filtering - prediction - music expectation.
