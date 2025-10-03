@@ -4,13 +4,15 @@ tags:
 class: intro
 number: "01"
 yearupdate: "24"
-date: 2023-09-22
+created: 2023-09-22
+modified: 2025-10-03
+theme: moon
 ---
 
 
-| ![\|50](https://i.imgur.com/N8z2xP4.png) |                |                        |
-| ---------------------------------------- | :------------- | ---------------------: |
-| **class 01**                 |  | *internet music 24-25* |
+| ![\|50](https://i.imgur.com/N8z2xP4.png) |     |                        |
+| ---------------------------------------- | :-- | ---------------------: |
+| **class 01**                             |     | *internet music 25-26* |
 
 
 ## intro to

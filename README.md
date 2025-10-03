@@ -1,4 +1,11 @@
-# Internet Music  Syllabus  2025-2026
+# Internet Music-s25-26
+
+HEM Multimedia Master 2025-2026 Dufour GD-41 / online
+
+Haute École de Musique de Genève 
+
+
+## introduction
 
 Can the Internet be understood as one of the central challenges of our time—an environment to be interpreted, shaped, and re-imagined? This course examines the Internet as a cultural and technological framework for music, from its historical foundations to the most recent browser-based and IoT practices. The emphasis is on the development of multimodal approaches to music writing in which the browser itself becomes an instrument, spanning gamified concert formats, networked and ubiquitous performance, generative and data-driven composition, performative artificial intelligence, and the integration of digital fabrication into musical environments.
 Topics range from the philosophical basis of networked systems to advanced applications of Web Audio, interface design, and machine learning for sound. Practical work is carried out in browser-based code editors, with a sustained focus on musical aesthetics and performative research. We will also approach vibe coding for musical purposes, emphasizing attentiveness and  cognitive critical responsibility.
@@ -35,7 +42,13 @@ Ce cours explore l’Internet comme cadre culturel et technologique de la créat
 03/10/2025
 12/06/2026
 
+## course objectives
 
+Students in this course will:
+* Understand the theoretical principles of internet music, in the physical, analog  and distributed digital domains.
+* Understand the common tools and techniques for working with gamified instruments, as understood in academic research and New Music scene.
+* Learn best practices for webaudio programming and design, new instrument making, networked environments and artistic interaction design.
+* Learn how to deploy interactive hyperreal systems in various contexts, including the web, audio plugins, and embedded hardware.
 ## semester 1
 
 intro: internet culture, obsidian, hypermusic

@@ -13,15 +13,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1-classes/06-integration/06-integration-1.md",
+                "file": "3-works/hem/The Wonderful Johnny.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "06-integration-1"
+              "title": "The Wonderful Johnny"
+            }
+          },
+          {
+            "id": "5b1da5dc1f343eea",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1-classes/01-intro/im-251003-names-analysis of game pieces.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "im-251003-names-analysis of game pieces"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -88,20 +103,20 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1-classes/06-integration/06-integration-1.md",
+                "file": "1-classes/01-intro/im-251003-names-analysis of game pieces.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 06-integration-1"
+              "title": "Outline of im-251003-names-analysis of game pieces"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 352.5
+    "width": 506.5
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -188,7 +203,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 268.5
+    "width": 268.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -206,17 +222,22 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obsidian-git:Open Git source control": false,
       "templater-obsidian:Templater": false,
-      "obsidian-book-search-plugin:Create new book note": false,
-      "folder-by-tags-distributor:Redistribute all notes to folder by tags": false
+      "obsidian-book-search-plugin:Create new book note": false
     }
   },
-  "active": "4bfa1b3bb019fad9",
+  "active": "5b1da5dc1f343eea",
   "lastOpenFiles": [
+    "1-classes/01-intro/README.md",
+    "1-classes/01-intro/im-251003-names-analysis of game pieces.md",
+    "3-works/hem/The Wonderful Johnny.md",
+    "home.md",
+    "3-works/hem/welcome to the channel.md",
+    "README.md",
+    "1-classes/21-gaming/212 game theory.md",
+    "1-classes/06-integration/06-integration-1.md",
     "1-classes/21-gaming/superpowers.md",
     "4-maps/gamification.canvas",
-    "1-classes/06-integration/06-integration-1.md",
     "1-classes/21-gaming/211-gaming and music.md",
-    "1-classes/21-gaming/212 game theory.md",
     "1-classes/09-machine learning-text/AI resources.md",
     "4-maps/internet music-concert dictionaryUntitled.canvas",
     "4-maps/gamification.md",
@@ -231,9 +252,6 @@
     "4-maps/canvas sandbox.canvas",
     "3-imi/Poems about things.md",
     "2-technologies/AI Coding assistants.md",
-    "README.md",
-    "home.md",
-    "3-works/hem/welcome to the channel.md",
     "ff.md",
     "Ü.md",
     "3-works/p1/Cantata Actus Tragicus .md",
@@ -242,8 +260,6 @@
     "3-works/p1/Antikhthon .md",
     "3-works/p1/Manequin .md",
     "3-works/p1/Der langwierige Weg in die Wohnung der Natascha Un .md",
-    "3-works/p1/A flock decends into the pentagonal garden .md",
-    "3-works/p1/Chronocomie .md",
     "3-works/hem",
     "3-works/p1/mega-instruments 42e2e66776e743db9efbff6f9e46bf43/Untitled.gif",
     "3-works/expanded music",
