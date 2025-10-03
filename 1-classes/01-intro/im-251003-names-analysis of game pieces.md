@@ -108,66 +108,65 @@ posthumans
 	distributed cognition
 	public participation
 ## Interfaces
-music representation
-	dynamic scores 
-	graphics
-	 audio scores 
-	 decoupling
-text
-	chatbots
-performatic interfaces
-	hapitcs
-hyperphones
+- music representation
+	- dynamic scores 
+	- graphics
+	-  audio scores 
+	-  decoupling
+- text
+	- chatbots
+- performatic interfaces
+	- hapitcs
+- hyperphones
 	
 ## Environments
-hacking culture 
-game world
-	weaponize
-	 armory 
-	 treasures / gems
-networking performance
-	socket.io Web RTC
-	ubiquitiy
-scenic typologies 
-	 lighting
-	video
-		  split screen 
-		  background screen 
-		  mapping (props) 
-	  fictional objects
- scopic regime →  hyperobjects
+- hacking culture 
+- game world
+	- weaponize
+	 - armory 
+	 - treasures / gems
+- networking performance
+	- socket.io Web RTC
+	- ubiquitiy
+- scenic typologies 
+	-  lighting
+	- video
+		  - split screen 
+		 -  background screen 
+		 -  mapping (props) 
+	  - fictional objects
+ - scopic regime →  hyperobjects
 
 # References
-ji won [[The Wonderful Johnny]]
-johannes kreidler
-tobias pfeil
-zztt spam, the whorl
-oulipo, Perecs and generative analog literature
-internet culture 
-	memetics 
-memory systems
-	math compression and memory access
-	giordano bruno
-mapping
-datacrawling
-	wget
-	curl
-	 heavy data hacking
-autopoiesis - varela maturana
+- ji won [[The Wonderful Johnny]]
+- johannes kreidler
+- tobias pfeil
+- zztt spam, the whorl
+- oulipo, Perecs and generative analog literature
+- internet culture 
+	- memetics 
+- memory systems
+	- math compression and memory access
+	- giordano bruno
+- mapping
+- datacrawling
+	- wget
+	- curl
+	-  heavy data hacking
+- autopoiesis - varela maturana
 # Tools
-ci/cd
-node.js
-react
-next
-	vite
-	nuxt
-	 astro
-very subtle intro to js webaudioAPI tone.js three.js dataviewjs
-obsidian 
-	note taking, atomic notes 
+- ci/cd
+- node.js
+- react
+- next
+	- vite
+	- nuxt
+	-  astro
+- very subtle intro to js webaudioAPI tone.js three.js dataviewjs
+- obsidian 
+	- note taking, atomic notes 
 
 
 # tasks
 - read Gallanter
-- imagine an first micro-studio for yourself as agent, white noise (probability, chaotic systems, randomicity)  a simple interface (touchpad, keyboard, mic, cam). 
-- Some clues: order - disorder - filtering - prediction - music expectation.
+- imagine an first micro-studio for yourself as agent, white noise (probability, chaotic systems, randomicity)  a simple interface (touchpad, keyboard, mic, cam). Some clues: order - disorder - filtering - prediction - music expectation.
