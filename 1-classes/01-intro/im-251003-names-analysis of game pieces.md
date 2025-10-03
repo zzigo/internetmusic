@@ -31,43 +31,43 @@ Variations by superscripts:
 - $\leftrightarrow^n$ Neural Interface (BCI, electroencephalography, implant)
 - $\leftrightarrow^p$ Protocol Interface (API, HTTP, TCP/IP, MIDI)
 ## E - ENVIRONMENTS (Sheet of Assertions)
-$\square\!\!\!\!\square\!\!\!\!\square$ Base Environment - Surrounding context, "sheet of assertions" *(Peirce's sheet of assertions)*
+$\square$ Base Environment - Surrounding context, "sheet of assertions" *(Peirce's sheet of assertions)*
 Variations by combined indices:
-- $\square\!\!\!\!\square\!\!\!\!\square_{f}$ Physical Environment (air, water, forest, city, atmosphere)
-- $\square\!\!\!\!\square\!\!\!\!\square_{d}$ Digital Environment (HTML canvas, metaverse, web, blockchain)
-- $\square\!\!\!\!\square\!\!\!\!\square_{h}$ Hybrid Environment (mixed reality, smart city, IoT)
-- $\square\!\!\!\!\square\!\!\!\!\square_{c}$ Conceptual Environment (cultural context, paradigm, artistic field)
+- $\square_{f}$ Physical Environment (air, water, forest, city, atmosphere)
+- $\square_{d}$ Digital Environment (HTML canvas, metaverse, web, blockchain)
+- $\square_{h}$ Hybrid Environment (mixed reality, smart city, IoT)
+- $\square_{c}$ Conceptual Environment (cultural context, paradigm, artistic field)
 
 # Examples of MOAIE as formule
 
 ## 1. Traditional Performance
 
-$\blacksquare_p + \blacklozenge_i + \bullet_h + \leftrightarrow^t + \square\!\!\!\!\square\!\!\!\!\square_f \rightarrow \text{Dance}$
+$\blacksquare_p + \blacklozenge_i + \bullet_h + \leftrightarrow^t + \square_f \rightarrow \text{Dance}$
 
 *(Physical material + Instrumental object + Human agent + Tactile interface + Physical environment)*
 
 ## 2. Generative Art with AI
 
-$\blacksquare_d + \blacklozenge_s + \bullet_{ai} + \leftrightarrow^p + \square\!\!\!\!\square\!\!\!\!\square_d \rightarrow \text{Generative NFT}$
+$\blacksquare_d + \blacklozenge_s + \bullet_{ai} + \leftrightarrow^p + \square_d \rightarrow \text{Generative NFT}$
 
 *(Digital material + Synthetic object + AI agent + Protocol interface + Digital environment)*
 
   
 ## 3. Ecosocial Installation
 
-$\blacksquare_h + \blacklozenge_h + \bullet_c + \leftrightarrow^v + \square\!\!\!\!\square\!\!\!\!\square_h \rightarrow \text{Climate Art}$
+$\blacksquare_h + \blacklozenge_h + \bullet_c + \leftrightarrow^v + \square_h \rightarrow \text{Climate Art}$
 
 *(Hybrid material + Hyperobject + Collective agent + Visual interface + Hybrid environment)*
 
 ## 4. Interactive Bioart
 
-$\blacksquare_p + \blacklozenge_c + \bullet_v + \leftrightarrow^s + \square\!\!\!\!\square\!\!\!\!\square_f \rightarrow \text{Living Sculpture}$
+$\blacksquare_p + \blacklozenge_c + \bullet_v + \leftrightarrow^s + \square_f \rightarrow \text{Living Sculpture}$
 
 *(Physical material + Conceptual object + Plant agent + Sound interface + Physical environment)*
 
 ## 5. Collaborative Net Art
 
-$\blacksquare_c + \blacklozenge_s + \bullet_h + \leftrightarrow^p + \square\!\!\!\!\square\!\!\!\!\square_d \rightarrow \text{Web Platform}$
+$\blacksquare_c + \blacklozenge_s + \bullet_h + \leftrightarrow^p + \square_d \rightarrow \text{Web Platform}$
 
 *(Conceptual material + Synthetic object + Human agent + Protocol interface + Digital environment)*
 
