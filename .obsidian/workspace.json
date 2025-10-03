@@ -13,20 +13,6 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3-works/hem/The Wonderful Johnny.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "The Wonderful Johnny"
-            }
-          },
-          {
-            "id": "5b1da5dc1f343eea",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
                 "file": "1-classes/01-intro/im-251003-names-analysis of game pieces.md",
                 "mode": "source",
                 "source": false
@@ -35,8 +21,27 @@
               "title": "im-251003-names-analysis of game pieces"
             }
           }
-        ],
-        "currentTab": 1
+        ]
+      },
+      {
+        "id": "d3667f1bb915a134",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5b1da5dc1f343eea",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "home.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "home"
+            }
+          }
+        ]
       }
     ],
     "direction": "vertical"
@@ -225,12 +230,12 @@
       "obsidian-book-search-plugin:Create new book note": false
     }
   },
-  "active": "5b1da5dc1f343eea",
+  "active": "4bfa1b3bb019fad9",
   "lastOpenFiles": [
-    "1-classes/01-intro/README.md",
-    "1-classes/01-intro/im-251003-names-analysis of game pieces.md",
     "3-works/hem/The Wonderful Johnny.md",
     "home.md",
+    "1-classes/01-intro/im-251003-names-analysis of game pieces.md",
+    "1-classes/01-intro/README.md",
     "3-works/hem/welcome to the channel.md",
     "README.md",
     "1-classes/21-gaming/212 game theory.md",

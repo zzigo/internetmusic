@@ -138,17 +138,23 @@ scenic typologies
  scopic regime →  hyperobjects
 
 # References
-ji won
-oulipo
-memetics 
-giordano bruno
+ji won [[The Wonderful Johnny]]
+johannes kreidler
+tobias pfeil
+zztt spam, the whorl
+oulipo, Perecs and generative analog literature
+internet culture 
+	memetics 
+memory systems
+	math compression and memory access
+	giordano bruno
 mapping
 datacrawling
 	wget
 	curl
 	 heavy data hacking
 autopoiesis - varela maturana
-# tools
+# Tools
 ci/cd
 node.js
 react
@@ -156,3 +162,12 @@ next
 	vite
 	nuxt
 	 astro
+very subtle intro to js webaudioAPI tone.js three.js dataviewjs
+obsidian 
+	note taking, atomic notes 
+
+
+# tasks
+- read Gallanter
+- imagine an first micro-studio for yourself as agent, white noise (probability, chaotic systems, randomicity)  a simple interface (touchpad, keyboard, mic, cam). 
+- Some clues: order - disorder - filtering - prediction - music expectation.
