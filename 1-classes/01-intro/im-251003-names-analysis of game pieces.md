@@ -180,5 +180,5 @@ $\blacksquare_c + \blacklozenge_s + \bullet_h + \leftrightarrow^p + \square\!\!\
 
 
 # tasks
-- read Gallanter
+- read Galanter
 - **bring ideas** for  a first micro-studio for yourself as agent, white noise (probability, chaotic systems, randomicity)  a simple interface (touchpad, keyboard, mic, cam). Some clues: order - disorder - filtering - prediction - music expectation.
