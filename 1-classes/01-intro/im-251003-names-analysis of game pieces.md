@@ -138,10 +138,22 @@ $\blacksquare_c + \blacklozenge_s + \bullet_h + \leftrightarrow^p + \square\!\!\
  - scopic regime →  hyperobjects
 
 # References
-- ji won [[The Wonderful Johnny]]
+
+## music
+- ji won seo  [[The Wonderful Johnny]]
 - johannes kreidler
-- tobias pfeil
+- tobi pfeil
 - zztt spam, the whorl
+
+## philosophy
+- Graham Harman
+	- object oriented ontology
+- Quentin Meillassoux
+	- arche-fossil
+- Timothy Morton
+	- hyperobjects
+
+## culture
 - oulipo, Perecs and generative analog literature
 - internet culture 
 	- memetics 
