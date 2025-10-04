@@ -71,7 +71,7 @@ $\blacksquare_c + \blacklozenge_s + \bullet_h + \leftrightarrow^p + \square_d \r
 
 *(Conceptual material + Synthetic object + Human agent + Protocol interface + Digital environment)*
 
----
+-
 
 # Some topics discussed today
 
@@ -95,18 +95,18 @@ $\blacksquare_c + \blacklozenge_s + \bullet_h + \leftrightarrow^p + \square_d \r
 	- parametric design 
 - hyperobjects
 ## Agents
-- - humans
-- - posthumans
-	- - cyborgs
-	 - - avatars
-	 - - AI agents →  generative art
- - - no-humans
-	- -  insects
-	- -  plants
-	- -  animals
- - - sociocybernetics
-	- - distributed cognition
-	- - public participation
+-humans
+-posthumans
+	-cyborgs
+	 - avatars
+	 - AI agents →  generative art
+ -no-humans
+	- insects
+	- plants
+	- animals
+ -sociocybernetics
+	-distributed cognition
+	-public participation
 ## Interfaces
 - music representation
 	- dynamic scores 
@@ -143,6 +143,7 @@ $\blacksquare_c + \blacklozenge_s + \bullet_h + \leftrightarrow^p + \square_d \r
 - ji won seo  [[The Wonderful Johnny]]
 - johannes kreidler
 - tobi pfeil
+- aaron cassi
 - zztt spam, the whorl
 
 ## philosophy
