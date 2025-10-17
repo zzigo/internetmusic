@@ -6,7 +6,7 @@
 list from #imi
 ```
 
-# Internet Music HEM repository
+# Multimedia Master HEM repository
 ![[works.base#HEM IM works]]
 
 # expanded music

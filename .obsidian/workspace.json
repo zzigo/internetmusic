@@ -4,41 +4,41 @@
     "type": "split",
     "children": [
       {
-        "id": "efa026cb4d0263b9",
+        "id": "e33359d8b5ae25b9",
         "type": "tabs",
         "children": [
           {
-            "id": "4bfa1b3bb019fad9",
+            "id": "0966b5cc7f343277",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1-classes/01-intro/im-251003-names-analysis of game pieces.md",
+                "file": "1-classes/02-setup/generative principles.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "im-251003-names-analysis of game pieces"
+              "title": "generative principles"
             }
           }
         ]
       },
       {
-        "id": "d3667f1bb915a134",
+        "id": "96dd8926aca92090",
         "type": "tabs",
         "children": [
           {
-            "id": "5b1da5dc1f343eea",
+            "id": "412374ad32c9c93d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "home.md",
+                "file": "1-classes/02-setup/generative principles.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "home"
+              "title": "generative principles"
             }
           }
         ]
@@ -108,20 +108,20 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1-classes/01-intro/im-251003-names-analysis of game pieces.md",
+                "file": "1-classes/02-setup/generative principles.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of im-251003-names-analysis of game pieces"
+              "title": "Outline of generative principles"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 506.5
+    "width": 390.5
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -230,14 +230,35 @@
       "obsidian-book-search-plugin:Create new book note": false
     }
   },
-  "active": "4bfa1b3bb019fad9",
+  "active": "412374ad32c9c93d",
   "lastOpenFiles": [
-    "3-works/hem/The Wonderful Johnny.md",
-    "home.md",
-    "1-classes/01-intro/im-251003-names-analysis of game pieces.md",
-    "1-classes/01-intro/README.md",
-    "3-works/hem/welcome to the channel.md",
+    "8-projects/JI WON/readme.md",
+    "1-classes/03-tonejs/README.md",
+    "8-projects/JI WON",
+    "1-classes/02-setup/generative principles.md",
+    "1-classes/02-setup/class-02-25-setup.md",
+    "1-classes/02-setup/README.md",
     "README.md",
+    "2-technologies/wget.md",
+    "2-technologies/www.md",
+    "2-technologies/javascript.md",
+    "2-technologies/internet.md",
+    "2-technologies/js.md",
+    "1-classes/01-intro/README.md",
+    "1-classes/01-intro/im-251003-names-analysis of game pieces.md",
+    "9-obs/arc/im-book/javascript/js-dom.md",
+    "1-classes/02-setup/0212-hp-substractive.html",
+    "home.md",
+    "1-classes/02-setup/0212-substractive.html",
+    "1-classes/02-setup/0212-substractive commented copy.html",
+    "1-classes/02-setup/0212-substractive commented.html",
+    "1-classes/02-setup/0211-hp-piano.html",
+    "1-classes/02-setup/0210-hp-piano.html",
+    "1-classes/02-setup/0210-hp-piano 3.html",
+    "1-classes/02-setup/0210-pianoKeys.html",
+    "1-classes/02-setup/0200-fmkeys-r.html",
+    "3-works/hem/The Wonderful Johnny.md",
+    "3-works/hem/welcome to the channel.md",
     "1-classes/21-gaming/212 game theory.md",
     "1-classes/06-integration/06-integration-1.md",
     "1-classes/21-gaming/superpowers.md",
@@ -251,30 +272,9 @@
     "8-projects/TOM/welcome the channel SKETCH.md",
     "1-classes/21-gaming/aesthetic procedures.md",
     "1-classes/21-gaming/game typologies.md",
-    "1-classes/21-gaming/213-player typologies.md",
-    "8-projects/README.md",
     "4-maps/internet technologies.canvas",
     "4-maps/canvas sandbox.canvas",
-    "3-imi/Poems about things.md",
-    "2-technologies/AI Coding assistants.md",
-    "ff.md",
-    "Ü.md",
-    "3-works/p1/Cantata Actus Tragicus .md",
-    "3-works/works.base",
-    "3-works/p1/Heliogabalus Imperator .md",
-    "3-works/p1/Antikhthon .md",
-    "3-works/p1/Manequin .md",
-    "3-works/p1/Der langwierige Weg in die Wohnung der Natascha Un .md",
-    "3-works/hem",
     "3-works/p1/mega-instruments 42e2e66776e743db9efbff6f9e46bf43/Untitled.gif",
-    "3-works/expanded music",
-    "3-works/p2",
-    "3-works/97726aca-dd5d-40d6-8dab-5d88982947e6_ExportBlock-e1d31121-466b-4a78-bd70-0529c76aa632.zip",
-    "3-works/86583291-ba44-4e61-9335-8a2feac06f85_ExportBlock-1cec06e4-c1e7-4bf8-8b3c-70a8bd9a9739.zip",
-    "3-works/ExportBlock-1cec06e4-c1e7-4bf8-8b3c-70a8bd9a9739-Part-1.zip",
-    "3-works/Private & Shared/works 7b90da7f6f334f0b9f1ca05b4b683d63_all.csv",
-    "3-works/Private & Shared/works 7b90da7f6f334f0b9f1ca05b4b683d63.csv",
-    "3-works/Private & Shared",
     "3-works/My boyfriend came back from War/dot_clea.gif",
     "4-maps/js spec.canvas",
     "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/textures/cubemap/parliament/posz.jpg",

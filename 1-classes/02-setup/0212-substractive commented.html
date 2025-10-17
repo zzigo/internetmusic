@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hyperphone — Subtractive Synth (Incremental 1→8)</title>
+<style>
+  /*
+    Visual style: dark, monospace, clear didactic layout
+    - The screen can be divided in 1..8 parts ("lessons").
+    - Each part is a panel that introduces one new subtractive synthesis idea.
+  */
+  :root{
+    --bg: #0c0f12;
+    --panel: #151a20;
+    --text: #e6edf3;
+    --muted: #9fb0c0;
+    --accent: #39d353;
+    --accent2: #58a6ff;
+    --danger: #ff6b6b;
+    --border: #24303b;
+  }
+  html, body{
+    height: 100%;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    -webkit-font-smoothing: antialiased;
+  }
+  header{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0));
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  header h1{ font-size: 14px; font-weight: 600; margin: 0; color: var(--muted) }
+  .row{
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .chip{
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .chip[aria-pressed="true"]{ outline: 2px solid var(--accent2); }
+  .chip.small{ font-size: 12px; padding: 4px 8px; }
+  .btn{
+    border: 1px solid var(--border);
+    background: #0f141a;
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .btn:active{ transform: translateY(1px); }
+  .grid{
+    display: grid;
+    grid-auto-rows: 1fr;
+    gap: 12px;
+    padding: 12px;
+    height: calc(100% - 58px);
+  }
+  .panel{
+    border: 1px solid var(--border);
+    background: radial-gradient(1200px 600px at 100% 0%, rgba(88,166,255,0.08), transparent), var(--panel);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+  }
+  .panel h2{
+    margin: 0; font-size: 14px; color: var(--accent2);
+  }
+  .panel p{ margin: 0; color: var(--muted); font-size: 13px; }
+  .controls{ display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .keybtn{
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: 12px;
+    background: #0e1319; border: 1px solid var(--border);
+    cursor: pointer; font-weight: 700; letter-spacing: .5px; font-size: 14px;
+    user-select: none; position: relative; overflow: hidden;
+  }
+  .keybtn.active{ outline: 2px solid var(--accent); box-shadow: 0 0 0 4px rgba(57,211,83,0.12) inset; }
+  .slider{ display:flex; align-items:center; gap:6px; }
+  .slider input[type="range"]{ width: 180px; }
+  .kv{ font-size: 12px; color: var(--muted); }
+  .pad{
+    border: 1px dashed var(--border);
+    height: 120px;
+    border-radius: 10px;
+    background: repeating-linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 8px, transparent 8px, transparent 16px);
+    display: grid; place-items: center; color: var(--muted); font-size: 12px;
+    user-select: none; touch-action: none; cursor: crosshair;
+  }
+  .meter{
+    height: 8px; background: #0d1116; border:1px solid var(--border); border-radius: 6px; overflow: hidden; width: 220px;
+  }
+  .meter > div{ height: 100%; width: 0%; background: linear-gradient(90deg, #2ea043, #58a6ff); transition: width .08s linear; }
+  .kbd{ background:#0a0d11; border:1px solid var(--border); border-radius:6px; padding:2px 6px; font-size:12px; }
+  footer{ padding: 10px 14px; color: var(--muted); font-size: 12px; border-top:1px solid var(--border); }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Hyperphone — Subtractive Synth (incremental 1→8)</h1>
+    <div class="row" id="divisionBar" aria-label="Choose screen divisions">
+      <span class="kv">Divisions:</span>
+      <!-- division chips injected by JS (1..8) -->
+    </div>
+    <button id="fullscreenBtn" class="btn" title="Toggle Fullscreen (double‑click anywhere)">Fullscreen</button>
+    <span class="kv">Keys: [Space]=Noise, [A/S/D]=Panels 2/3 triggers</span>
+  </header>
+
+  <main class="grid" id="grid"></main>
+  <footer>
+    Goal: a didactic, incremental subtractive-synthesis playground. Each panel adds one new idea. Code is heavily commented for teaching.
+  </footer>
+
+<script>
+/***************************
+ * AUDIO ENGINE PRIMITIVES *
+ ***************************/
+let audioCtx;                 // Shared AudioContext
+let masterGain;               // Master volume node
+let analyser;                 // Analyser for the simple meter
+let meterRAF;                 // requestAnimationFrame id for meter loop
+
+/**
+ * ensureAudio() → Promise<void>
+ * Lazily creates (or resumes) a single shared AudioContext and core nodes.
+ * This avoids multiple contexts (bad for mobile / battery) and complies with
+ * the user-gesture requirement of Web Audio (must start on interaction).
+ */
+async function ensureAudio(){
+  if (audioCtx && audioCtx.state !== 'closed'){
+    if (audioCtx.state === 'suspended') await audioCtx.resume();
+    return;
+  }
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)({latencyHint:'interactive'});
+  masterGain = audioCtx.createGain();
+  masterGain.gain.value = 0.9; // conservative headroom
+  analyser = audioCtx.createAnalyser();
+  analyser.fftSize = 2048;
+  masterGain.connect(analyser).connect(audioCtx.destination);
+}
+
+/**
+ * createWhiteNoiseBuffer(ctx: AudioContext) → AudioBuffer
+ * Generates a 2‑channel AudioBuffer filled with white noise.
+ * We use a buffer + looping BufferSource (instead of ScriptProcessor)
+ * because ScriptProcessor is deprecated and AudioWorklet is overkill here.
+ */
+function createWhiteNoiseBuffer(ctx){
+  const length = ctx.sampleRate * 2; // 2 seconds
+  const buffer = ctx.createBuffer(2, length, ctx.sampleRate);
+  for (let ch=0; ch<2; ch++){
+    const data = buffer.getChannelData(ch);
+    for (let i=0; i<length; i++){
+      // White noise in [-1, 1]
+      data[i] = (Math.random()*2 - 1);
+    }
+  }
+  return buffer;
+}
+
+/**
+ * makeNoiseSource() → { source, outlet }
+ * Builds a looped white-noise BufferSource feeding a small trim GainNode.
+ * Caller can insert filters or envelopes between outlet and masterGain.
+ */
+function makeNoiseSource(){
+  const source = audioCtx.createBufferSource();
+  source.buffer = createWhiteNoiseBuffer(audioCtx);
+  source.loop = true;
+  const trim = audioCtx.createGain();
+  trim.gain.value = 1.0;
+  source.connect(trim);
+  return { source, outlet: trim };
+}
+
+/**
+ * makeADSR({attack, decay, sustain, release}) → { node, gateOn, gateOff }
+ * Returns a GainNode plus handy gate functions that schedule an ADSR envelope.
+ * Time constants are in seconds; sustain is a level [0..1].
+ */
+function makeADSR({attack=.01, decay=.1, sustain=.7, release=.2}={}){
+  const vca = audioCtx.createGain();
+  vca.gain.value = 0.0;
+  const gateOn = () => {
+    const now = audioCtx.currentTime;
+    vca.gain.cancelScheduledValues(now);
+    vca.gain.setValueAtTime(vca.gain.value, now);
+    vca.gain.linearRampToValueAtTime(1.0, now + attack);
+    vca.gain.linearRampToValueAtTime(sustain, now + attack + decay);
+  };
+  const gateOff = () => {
+    const now = audioCtx.currentTime;
+    vca.gain.cancelScheduledValues(now);
+    vca.gain.setValueAtTime(vca.gain.value, now);
+    vca.gain.linearRampToValueAtTime(0.0, now + release);
+  };
+  return { node: vca, gateOn, gateOff };
+}
+
+/**
+ * makeFilter({type, cutoff, Q}) → BiquadFilterNode
+ * Convenience for a classic subtractive lowpass/highpass/bandpass.
+ */
+function makeFilter({type='lowpass', cutoff=1200, Q=0.0001}={}){
+  const biq = audioCtx.createBiquadFilter();
+  biq.type = type;   // 'lowpass' | 'highpass' | 'bandpass' ...
+  biq.frequency.value = cutoff;
+  biq.Q.value = Q;
+  return biq;
+}
+
+/**
+ * wireSimpleMeter(barEl: HTMLElement)
+ * Hooks an analyser to display a very simple peak‑like meter (RMS-ish).
+ * Not sample accurate, just for teaching signal flow.
+ */
+function wireSimpleMeter(barEl){
+  const data = new Uint8Array(analyser.frequencyBinCount);
+  function loop(){
+    analyser.getByteTimeDomainData(data);
+    // Compute a quick RMS
+    let sum=0; for (let i=0;i<data.length;i++){ const v=(data[i]-128)/128; sum+=v*v; }
+    const rms = Math.sqrt(sum/data.length);
+    const pct = Math.min(100, Math.max(0, Math.round(rms*200)));
+    barEl.style.width = pct + '%';
+    meterRAF = requestAnimationFrame(loop);
+  }
+  cancelAnimationFrame(meterRAF);
+  loop();
+}
+
+/***********************
+ * UI / LAYOUT CONTROL *
+ ***********************/
+const grid = document.getElementById('grid');
+const divisionBar = document.getElementById('divisionBar');
+const fullscreenBtn = document.getElementById('fullscreenBtn');
+let currentDivisions = 3; // default startup with 3 panels as requested
+
+// Build division chips 1..8
+for (let n=1; n<=8; n++){
+  const chip = document.createElement('button');
+  chip.className = 'chip';
+  chip.textContent = n;
+  chip.setAttribute('aria-pressed', String(n===currentDivisions));
+  chip.addEventListener('click', () => setDivisions(n));
+  divisionBar.appendChild(chip);
+}
+
+function setDivisions(n){
+  currentDivisions = n;
+  // Update chip states
+  [...divisionBar.querySelectorAll('.chip')].forEach((c,i)=>{
+    c.setAttribute('aria-pressed', String(i+1===n));
+  });
+  // Configure grid columns: if n<=4, use n columns; else 4 columns + wrap
+  const cols = Math.min(4, n);
+  grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+  renderPanels(n);
+}
+
+/****************
+ * FULLSCREEN   *
+ ****************/
+fullscreenBtn.addEventListener('click', toggleFullscreen);
+// Also allow double‑click anywhere
+addEventListener('dblclick', toggleFullscreen);
+
+function toggleFullscreen(){
+  if (!document.fullscreenElement){
+    document.documentElement.requestFullscreen().catch(()=>{});
+  } else {
+    document.exitFullscreen().catch(()=>{});
+  }
+}
+
+/****************
+ * PANEL RENDER *
+ ****************/
+function renderPanels(n){
+  grid.innerHTML = '';
+  for (let i=1;i<=n;i++){
+    const panel = document.createElement('section');
+    panel.className = 'panel';
+    const h = document.createElement('h2');
+    const p = document.createElement('p');
+    h.textContent = `Lesson ${i}`;
+    // Populate each lesson's didactic content
+    const content = buildLesson(i);
+    p.textContent = content.desc;
+
+    // Compose panel
+    panel.appendChild(h);
+    panel.appendChild(p);
+    panel.appendChild(content.controls);
+    if (i===1){
+      // global meter shown in lesson 1 for simplicity
+      const meter = document.createElement('div');
+      meter.className='meter';
+      const fill = document.createElement('div');
+      meter.appendChild(fill);
+      panel.appendChild(meter);
+      // meter is wired upon first audio activation (lazy)
+      content.onFirstStart = () => wireSimpleMeter(fill);
+    }
+
+    grid.appendChild(panel);
+  }
+}
+
+/***********************
+ * LESSON DEFINITIONS  *
+ ***********************/
+function buildLesson(idx){
+  // Each lesson returns: { desc, controls (HTMLElement), onFirstStart? }
+  switch(idx){
+
+    case 1: return lesson1_basicNoise();
+    case 2: return lesson2_lowpassAndTwoKeys();
+    case 3: return lesson3_adsrEnvelope();
+    case 4: return lesson4_lfoOnCutoff();
+    // Stubs for future extension (5..8)
+    case 5: return stubLesson('Multimode filter & resonance sweep');
+    case 6: return stubLesson('Serial vs parallel filtering (HP+LP)');
+    case 7: return stubLesson('Noise color morphing (white/pink/brown)');
+    case 8: return stubLesson('Keyboard mapping + touch velocity');
+    default: return stubLesson('Coming next');
+  }
+}
+
+function stubLesson(title){
+  const controls = document.createElement('div');
+  controls.className='controls';
+  const span = document.createElement('span');
+  span.className='kv';
+  span.textContent = `Placeholder: ${title}`;
+  controls.appendChild(span);
+  return { desc: 'Work in progress. Use earlier lessons for now.', controls };
+}
+
+/************************
+ * LESSON 1 — BASIC NOISE
+ ************************/
+function lesson1_basicNoise(){
+  const controls = document.createElement('div');
+  controls.className = 'controls';
+
+  const bigKey = document.createElement('button');
+  bigKey.className = 'keybtn';
+  bigKey.textContent = 'NOISE';
+
+  // Internal state for this lesson
+  let started = false;     // Have we started audio + meter at least once?
+  let current = null;      // Holds the active source graph
+
+  function startNoise(){
+    ensureAudio().then(()=>{
+      if (!started){ started = true; lesson1.onFirstStart && lesson1.onFirstStart(); }
+      if (current) return; // already playing
+      const { source, outlet } = makeNoiseSource();
+      // Direct to master (no filter, no envelope): rawest subtractive starting point
+      outlet.connect(masterGain);
+      source.start();
+      current = { source, outlet };
+      bigKey.classList.add('active');
+    });
+  }
+  function stopNoise(){
+    if (!current) return;
+    try{ current.source.stop(); }catch(e){}
+    current.outlet.disconnect();
+    current = null;
+    bigKey.classList.remove('active');
+  }
+
+  // Mouse / touch gesture holds
+  bigKey.addEventListener('mousedown', startNoise);
+  bigKey.addEventListener('mouseup', stopNoise);
+  bigKey.addEventListener('mouseleave', stopNoise);
+  bigKey.addEventListener('touchstart', (e)=>{ e.preventDefault(); startNoise(); }, {passive:false});
+  bigKey.addEventListener('touchend', stopNoise);
+
+  // Keyboard: Space bar acts like press‑and‑hold
+  addEventListener('keydown', (e)=>{ if (e.code==='Space') startNoise(); });
+  addEventListener('keyup',   (e)=>{ if (e.code==='Space') stopNoise();  });
+
+  controls.appendChild(bigKey);
+  return (window.lesson1 = { desc: 'Press and hold to emit white noise; release to silence. This is the raw source we will later sculpt with filters and envelopes.', controls, onFirstStart:null });
+}
+
+/***********************************************
+ * LESSON 2 — LOWPASS FILTER + TWO TRIGGERS    *
+ ***********************************************/
+function lesson2_lowpassAndTwoKeys(){
+  const controls = document.createElement('div');
+  controls.className = 'controls';
+
+  // UI elements
+  const keyA = document.createElement('button');
+  keyA.className='keybtn'; keyA.textContent='A'; keyA.title='Key A or click: lowpass noise';
+  const keyS = document.createElement('button');
+  keyS.className='keybtn'; keyS.textContent='S'; keyS.title='Key S or click: brighter (higher cutoff)';
+
+  // Filter params controls
+  const sCutoff = document.createElement('div'); sCutoff.className='slider';
+  sCutoff.innerHTML = '<span class="kv">Cutoff</span>';
+  const cutoff = document.createElement('input'); cutoff.type='range'; cutoff.min='100'; cutoff.max='8000'; cutoff.value='1200'; cutoff.step='1';
+  const cutoffKV = document.createElement('span'); cutoffKV.className='kv'; cutoffKV.textContent = cutoff.value + ' Hz';
+  sCutoff.appendChild(cutoff); sCutoff.appendChild(cutoffKV);
+
+  const sQ = document.createElement('div'); sQ.className='slider';
+  sQ.innerHTML = '<span class="kv">Resonance</span>';
+  const q = document.createElement('input'); q.type='range'; q.min='0.0001'; q.max='30'; q.value='0.0001'; q.step='0.0001';
+  const qKV = document.createElement('span'); qKV.className='kv'; qKV.textContent = 'Q ' + q.value;
+  sQ.appendChild(q); sQ.appendChild(qKV);
+
+  // State
+  let activeA=null, activeS=null;
+
+  function trigger(key, brighter=false){
+    ensureAudio().then(()=>{
+      const { source, outlet } = makeNoiseSource();
+      const lp = makeFilter({type:'lowpass', cutoff: brighter ? Math.max(1500, parseFloat(cutoff.value)*2) : parseFloat(cutoff.value), Q: parseFloat(q.value)});
+      outlet.connect(lp).connect(masterGain);
+      source.start();
+      if (key==='A'){ activeA={source, out: outlet, lp}; keyA.classList.add('active'); }
+      else { activeS={source, out: outlet, lp}; keyS.classList.add('active'); }
+    });
+  }
+  function release(key){
+    const act = (key==='A') ? activeA : activeS;
+    if (!act) return;
+    try{ act.source.stop(); }catch(e){}
+    act.out.disconnect();
+    act.lp.disconnect();
+    if (key==='A'){ activeA=null; keyA.classList.remove('active'); }
+    else { activeS=null; keyS.classList.remove('active'); }
+  }
+
+  // Tie UI
+  keyA.addEventListener('mousedown', ()=>trigger('A', false));
+  keyA.addEventListener('mouseup', ()=>release('A'));
+  keyA.addEventListener('mouseleave', ()=>release('A'));
+  keyA.addEventListener('touchstart', (e)=>{e.preventDefault(); trigger('A', false);}, {passive:false});
+  keyA.addEventListener('touchend', ()=>release('A'));
+
+  keyS.addEventListener('mousedown', ()=>trigger('S', true));
+  keyS.addEventListener('mouseup', ()=>release('S'));
+  keyS.addEventListener('mouseleave', ()=>release('S'));
+  keyS.addEventListener('touchstart', (e)=>{e.preventDefault(); trigger('S', true);}, {passive:false});
+  keyS.addEventListener('touchend', ()=>release('S'));
+
+  // Keyboard mapping
+  addEventListener('keydown', (e)=>{
+    if (e.repeat) return;
+    if (e.key.toLowerCase()==='a') trigger('A', false);
+    if (e.key.toLowerCase()==='s') trigger('S', true);
+  });
+  addEventListener('keyup', (e)=>{
+    if (e.key.toLowerCase()==='a') release('A');
+    if (e.key.toLowerCase()==='s') release('S');
+  });
+
+  // Live update filter params
+  cutoff.addEventListener('input', ()=>{ cutoffKV.textContent = cutoff.value + ' Hz'; if (activeA) activeA.lp.frequency.value = parseFloat(cutoff.value); if (activeS) activeS.lp.frequency.value = Math.max(1500, parseFloat(cutoff.value)*2); });
+  q.addEventListener('input', ()=>{ qKV.textContent = 'Q ' + q.value; if (activeA) activeA.lp.Q.value = parseFloat(q.value); if (activeS) activeS.lp.Q.value = parseFloat(q.value); });
+
+  controls.append(keyA, keyS, sCutoff, sQ);
+  return { desc: 'Introduce a low‑pass filter. Press A for a darker noise; S for a brighter variant (twice the cutoff). Adjust cutoff and resonance to hear spectral sculpting.', controls };
+}
+
+/***********************************************
+ * LESSON 3 — ADSR ENVELOPE ON AMPLITUDE       *
+ ***********************************************/
+function lesson3_adsrEnvelope(){
+  const controls = document.createElement('div');
+  controls.className = 'controls';
+
+  const keyD = document.createElement('button');
+  keyD.className='keybtn'; keyD.textContent='D'; keyD.title='Gate with ADSR on amplitude';
+
+  // ADSR sliders
+  const mkSlider = (label, min, max, step, value) => {
+    const wrap = document.createElement('div'); wrap.className='slider';
+    wrap.innerHTML = `<span class="kv">${label}</span>`;
+    const r = document.createElement('input'); r.type='range'; r.min=min; r.max=max; r.step=step; r.value=value;
+    const kv = document.createElement('span'); kv.className='kv'; kv.textContent = r.value+'s';
+    r.addEventListener('input', ()=> kv.textContent = r.value+'s');
+    wrap.append(r, kv); return {wrap, r};
+  };
+  const A = mkSlider('Attack', '0.001', '1.0', '0.001', '0.02');
+  const D = mkSlider('Decay',  '0.001', '2.0', '0.001', '0.2');
+  const S = (()=>{ const o=mkSlider('Sustain', '0.0', '1.0', '0.001', '0.6'); o.wrap.querySelector('span.kv:last-child').textContent = o.r.value; o.r.addEventListener('input', ()=> o.wrap.querySelector('span.kv:last-child').textContent = o.r.value); return o; })();
+  const R = mkSlider('Release', '0.001', '2.0', '0.001', '0.3');
+
+  // Optional filter here too so the envelope shapes audible timbre as loudness changes
+  const cutoffWrap = document.createElement('div'); cutoffWrap.className='slider'; cutoffWrap.innerHTML = '<span class="kv">LP Cutoff</span>';
+  const cutoff = document.createElement('input'); cutoff.type='range'; cutoff.min='200'; cutoff.max='8000'; cutoff.step='1'; cutoff.value='1800';
+  const cutoffKV = document.createElement('span'); cutoffKV.className='kv'; cutoffKV.textContent = cutoff.value+' Hz';
+  cutoff.addEventListener('input', ()=> cutoffKV.textContent = cutoff.value+' Hz');
+  cutoffWrap.append(cutoff, cutoffKV);
+
+  let env, active=null;
+
+  function gateOn(){
+    ensureAudio().then(()=>{
+      if (active) return; // already held
+      const { source, outlet } = makeNoiseSource();
+      const lp = makeFilter({type:'lowpass', cutoff: parseFloat(cutoff.value), Q: 0.0001});
+      env = makeADSR({ attack: parseFloat(A.r.value), decay: parseFloat(D.r.value), sustain: parseFloat(S.r.value), release: parseFloat(R.r.value) });
+      outlet.connect(lp).connect(env.node).connect(masterGain);
+      source.start();
+      env.gateOn();
+      active = { source, out: outlet, lp };
+      keyD.classList.add('active');
+    });
+  }
+  function gateOff(){
+    if (!active) return;
+    env.gateOff();
+    // Schedule source stop a bit after release ends, to simplify
+    const stopAt = audioCtx.currentTime + parseFloat(R.r.value) + 0.05;
+    active.source.stop(stopAt);
+    // Disconnect later to avoid clicks
+    setTimeout(()=>{
+      try{ active.out.disconnect(); active.lp.disconnect(); }catch(e){}
+      active = null; keyD.classList.remove('active');
+    }, (parseFloat(R.r.value)+0.1)*1000);
+  }
+
+  // UI bindings
+  keyD.addEventListener('mousedown', gateOn);
+  keyD.addEventListener('mouseup', gateOff);
+  keyD.addEventListener('mouseleave', gateOff);
+  keyD.addEventListener('touchstart', (e)=>{e.preventDefault(); gateOn();}, {passive:false});
+  keyD.addEventListener('touchend', gateOff);
+  addEventListener('keydown', (e)=>{ if (e.repeat) return; if (e.key.toLowerCase()==='d') gateOn(); });
+  addEventListener('keyup',   (e)=>{ if (e.key.toLowerCase()==='d') gateOff(); });
+
+  controls.append(keyD, A.wrap, D.wrap, S.wrap, R.wrap, cutoffWrap);
+  return { desc: 'Add an ADSR envelope on amplitude. Press D (or touch) to gate. Adjust A/D/S/R to hear percussive vs pad‑like shapes. A simple low‑pass stays in the path.', controls };
+}
+
+/************************************************
+ * LESSON 4 — LFO MODULATING FILTER CUTOFF      *
+ ************************************************/
+function lesson4_lfoOnCutoff(){
+  const controls = document.createElement('div');
+  controls.className = 'controls';
+
+  const play = document.createElement('button');
+  play.className='keybtn'; play.textContent='LFO'; play.title='Toggle tone with LFO on cutoff';
+
+  // Rate & depth controls
+  const rateWrap = document.createElement('div'); rateWrap.className='slider'; rateWrap.innerHTML = '<span class="kv">LFO Rate</span>';
+  const rate = document.createElement('input'); rate.type='range'; rate.min='0.1'; rate.max='20'; rate.step='0.01'; rate.value='5';
+  const rateKV = document.createElement('span'); rateKV.className='kv'; rateKV.textContent = rate.value+' Hz'; rate.addEventListener('input', ()=> rateKV.textContent=rate.value+' Hz');
+  rateWrap.append(rate, rateKV);
+
+  const depthWrap = document.createElement('div'); depthWrap.className='slider'; depthWrap.innerHTML = '<span class="kv">Depth</span>';
+  const depth = document.createElement('input'); depth.type='range'; depth.min='50'; depth.max='6000'; depth.step='1'; depth.value='1200';
+  const depthKV = document.createElement('span'); depthKV.className='kv'; depthKV.textContent = depth.value+' Hz'; depth.addEventListener('input', ()=> depthKV.textContent=depth.value+' Hz');
+  depthWrap.append(depth, depthKV);
+
+  const baseCutWrap = document.createElement('div'); baseCutWrap.className='slider'; baseCutWrap.innerHTML = '<span class="kv">Base Cutoff</span>';
+  const baseCut = document.createElement('input'); baseCut.type='range'; baseCut.min='100'; baseCut.max='8000'; baseCut.step='1'; baseCut.value='800';
+  const baseCutKV = document.createElement('span'); baseCutKV.className='kv'; baseCutKV.textContent = baseCut.value+' Hz'; baseCut.addEventListener('input', ()=> baseCutKV.textContent=baseCut.value+' Hz');
+  baseCutWrap.append(baseCut, baseCutKV);
+
+  let active=null, lfoOsc=null, lfoGain=null, lp=null;
+
+  function start(){
+    ensureAudio().then(()=>{
+      if (active) return;
+      const { source, outlet } = makeNoiseSource();
+      lp = makeFilter({type:'lowpass', cutoff: parseFloat(baseCut.value), Q: 0.0001});
+      // LFO: low‑frequency oscillator modulates lp.frequency
+      lfoOsc = audioCtx.createOscillator();
+      lfoOsc.type = 'sine';
+      lfoOsc.frequency.value = parseFloat(rate.value);
+      lfoGain = audioCtx.createGain();
+      lfoGain.gain.value = parseFloat(depth.value);
+      lfoOsc.connect(lfoGain).connect(lp.frequency);
+      outlet.connect(lp).connect(masterGain);
+      lfoOsc.start();
+      source.start();
+      active = { source, out: outlet };
+      play.classList.add('active');
+    });
+  }
+  function stop(){
+    if (!active) return;
+    try{ active.source.stop(); lfoOsc.stop(); }catch(e){}
+    try{ active.out.disconnect(); lp.disconnect(); lfoGain.disconnect(); }catch(e){}
+    active=null; lfoOsc=null; lfoGain=null; lp=null;
+    play.classList.remove('active');
+  }
+
+  play.addEventListener('mousedown', ()=> active? stop(): start());
+  play.addEventListener('touchstart', (e)=>{e.preventDefault(); active? stop(): start();}, {passive:false});
+
+  // Live param updates
+  rate.addEventListener('input', ()=>{ if (lfoOsc) lfoOsc.frequency.setTargetAtTime(parseFloat(rate.value), audioCtx.currentTime, 0.02); });
+  depth.addEventListener('input', ()=>{ if (lfoGain) lfoGain.gain.setTargetAtTime(parseFloat(depth.value), audioCtx.currentTime, 0.02); });
+  baseCut.addEventListener('input', ()=>{ if (lp) lp.frequency.setTargetAtTime(parseFloat(baseCut.value), audioCtx.currentTime, 0.02); });
+
+  controls.append(play, rateWrap, depthWrap, baseCutWrap);
+  return { desc: 'Introduce slow modulation. A sine LFO moves the filter cutoff around a base value, creating motion from static noise.', controls };
+}
+
+/*****************
+ * BOOTSTRAPPING *
+ *****************/
+setDivisions(currentDivisions);
+
+// Start meter after first interaction with Lesson 1 button
+// (wired inside lesson1 when ensureAudio() resolves)
+
+</script>
+</body>
+</html>

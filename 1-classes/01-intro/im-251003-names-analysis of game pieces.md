@@ -144,7 +144,7 @@ $\blacksquare_c + \blacklozenge_s + \bullet_h + \leftrightarrow^p + \square_d \r
 - johannes kreidler
 - tobi pfeil
 - aaron cassidy
-- zztt spam, the whorl
+- zztt spam, the whorl, trawun
 
 ## philosophy
 - Graham Harman
@@ -167,6 +167,10 @@ $\blacksquare_c + \blacklozenge_s + \bullet_h + \leftrightarrow^p + \square_d \r
 	- curl
 	-  heavy data hacking
 - autopoiesis - varela maturana
+
+## games
+- the stanley parable
+
 # Tools
 - ci/cd
 - node.js
@@ -183,3 +187,5 @@ $\blacksquare_c + \blacklozenge_s + \bullet_h + \leftrightarrow^p + \square_d \r
 # tasks
 - read Galanter
 - **bring ideas** for  a first micro-studio for yourself as agent, white noise (probability, chaotic systems, randomicity)  a simple interface (touchpad, keyboard, mic, cam). Some clues: order - disorder - filtering - prediction - music expectation.
+
+

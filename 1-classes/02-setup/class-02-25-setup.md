@@ -1,7 +1,10 @@
+---
+theme: moon
+---
 
 | ![\|50](https://i.imgur.com/N8z2xP4.png) |                |                        |
 | ---------------------------------------- |:-------------- | ----------------------:|
-| **class 02**                             | Oct 14th, 2023 | *internet music 23/24* |
+| **class 02**                             | Oct 17th, 2025 | *internet music 25/26* |
 
 # JS SETUP
 ---
@@ -16,9 +19,9 @@ course materials are hosted on https://github.com/zzigo/internetmusic/tree/im24 
 
 |     |                            |
 | --- | -------------------------- |
-| 1   | Internet Culture           |
-| 2   | Introduction To JavaScript |
-| 3    | Code practice             |
+| 1   | Introduction To JavaScript |
+| 2   | Code practice              |
+| 3    |imi and works              |
 
 ---
 

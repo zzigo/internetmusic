@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hyperphone — Subtractive Synth</title>
+<style>
+  :root{ --bg:#000; --wire:rgba(255,255,255,.95); --fill:rgba(255,255,255,.66); }
+  html,body{height:100%;margin:0;background:var(--bg);color:transparent;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;overflow:hidden;-webkit-user-select:none;user-select:none}
+
+  .grid{display:flex;flex-wrap:wrap;gap:0;padding:0;height:100%;align-content:stretch}
+  .panel{background:transparent;border:1px solid var(--wire);padding:8px;display:flex;flex-direction:column;gap:8px;min-width:110px;min-height:110px;flex:1 1 calc(25% - 8px); transition: background-color 0.1s linear; cursor: pointer;}
+  .panel.active{box-shadow:0 0 12px var(--wire),0 0 0 2px var(--wire) inset}
+
+  .topbar{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch}
+  .keyshelf{display:flex;gap:8px;flex-wrap:wrap}
+
+  .keybtn{display:none;}
+
+  .vslider{--val:0%;position:relative;width:72px;height:72px}
+  .vslider::after{content:"";position:absolute;inset:0;border:1px solid var(--wire)}
+  .vslider .fill{position:absolute;left:0;bottom:0;width:100%;height:var(--val);background:var(--fill)}
+  
+  #spectrumCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    pointer-events: none;
+    z-index: -1;
+  }
+</style>
+</head>
+<body>
+  <main class="grid" id="grid" title="Workspace"></main>
+  <canvas id="spectrumCanvas"></canvas>
+
+<script>
+/***************************
+ * AUDIO ENGINE PRIMITIVES *
+ ***************************/
+let audioCtx; let masterGain; let globalAnalyser;
+async function ensureAudio(){
+  if(audioCtx && audioCtx.state!=='closed'){ if(audioCtx.state==='suspended') await audioCtx.resume(); return; }
+  audioCtx = new (window.AudioContext||window.webkitAudioContext)({latencyHint:'interactive'});
+  masterGain = audioCtx.createGain(); masterGain.gain.value=0.9;
+  globalAnalyser = audioCtx.createAnalyser();
+  masterGain.connect(globalAnalyser).connect(audioCtx.destination);
+}
+function createWhiteNoiseBuffer(ctx){
+  const length = ctx.sampleRate*2; const buffer=ctx.createBuffer(2,length,ctx.sampleRate);
+  for(let ch=0; ch<2; ch++){ const data=buffer.getChannelData(ch); for(let i=0;i<length;i++){ data[i]=Math.random()*2-1; } }
+  return buffer;
+}
+function makeNoiseSource(){
+  const source=audioCtx.createBufferSource(); source.buffer=createWhiteNoiseBuffer(audioCtx); source.loop=true;
+  const trim=audioCtx.createGain(); trim.gain.value=1; source.connect(trim); return {source,outlet:trim};
+}
+function makeADSR({attack=.01,decay=.1,sustain=.7,release=.2}={}){
+  const vca=audioCtx.createGain(); vca.gain.value=0;
+  const gateOn=()=>{ const now=audioCtx.currentTime; vca.gain.cancelScheduledValues(now);
+    vca.gain.setValueAtTime(vca.gain.value,now); vca.gain.linearRampToValueAtTime(1, now+attack);
+    vca.gain.linearRampToValueAtTime(sustain, now+attack+decay); };
+  const gateOff=()=>{ const now=audioCtx.currentTime; vca.gain.cancelScheduledValues(now);
+    vca.gain.setValueAtTime(vca.gain.value,now); vca.gain.linearRampToValueAtTime(0, now+release); };
+  return {node:vca, gateOn, gateOff};
+}
+function makeFilter({type='lowpass',cutoff=1200,Q=0.0001}={}){ const biq=audioCtx.createBiquadFilter(); biq.type=type; biq.frequency.value=cutoff; biq.Q.value=Q; return biq; }
+
+/***********************
+ * UI / LAYOUT CONTROL *
+ ***********************/
+const grid=document.getElementById('grid');
+let currentDivisions=3; // default
+let globalSliderList=[]; // ordered sliders (vertical squares)
+
+async function setDivisions(n){
+  await ensureAudio();
+  currentDivisions=n;
+  renderPanels(n);
+  const children=[...grid.children];
+  const cols=Math.min(4,n);
+  children.forEach((el,i)=>{ el.style.order=i; el.style.flexBasis = `calc(${100/cols}% - 8px)`; el.style.flexGrow=1; });
+  if([3,5,6,7].includes(n)){
+    children.forEach((el,i)=>{
+      if(n===3 && i===1){ el.style.flexBasis='calc(50% - 8px)'; }
+      if(n===5 && (i===0||i===3)){ el.style.flexBasis='calc(50% - 8px)'; }
+      if(n===6 && (i===2||i===5)){ el.style.flexBasis='calc(50% - 8px)'; }
+      if(n===7 && (i===1||i===4)){ el.style.flexBasis='calc(50% - 8px)'; }
+    });
+  }
+}
+
+addEventListener('dblclick', toggleFullscreen);
+function toggleFullscreen(){ if(!document.fullscreenElement){ document.documentElement.requestFullscreen?.(); } else { document.exitFullscreen?.(); } }
+
+/****************
+ * PANEL RENDER *
+ ****************/
+function renderPanels(n){
+  grid.innerHTML=''; globalSliderList=[];
+  for(let i=1;i<=n;i++){
+    const panel=document.createElement('section'); panel.className='panel'; panel.title=`Lesson ${i}`;
+    const panelAnalyser = audioCtx.createAnalyser();
+    const content=buildLesson(i, panelAnalyser, panel);
+    const topbar=document.createElement('div'); topbar.className='topbar';
+    const keyshelf=document.createElement('div'); keyshelf.className='keyshelf';
+    content.controls.querySelectorAll('.slider').forEach(s=>topbar.appendChild(s));
+    [...content.controls.childNodes].forEach(n=>{ if(!topbar.contains(n)) keyshelf.appendChild(n); });
+    replaceNativeRanges(topbar);
+    panel.append(topbar,keyshelf);
+    grid.appendChild(panel);
+    startPanelVisualization(panel, panelAnalyser);
+  }
+}
+
+function startPanelVisualization(panel, analyser) {
+    analyser.fftSize = 256;
+    const freqData = new Uint8Array(analyser.frequencyBinCount);
+    const timeData = new Uint8Array(analyser.frequencyBinCount);
+
+    function loop() {
+        requestAnimationFrame(loop);
+
+        analyser.getByteTimeDomainData(timeData);
+        let sum = 0;
+        for (let i = 0; i < timeData.length; i++) {
+            const v = (timeData[i] - 128) / 128;
+            sum += v * v;
+        }
+        const rms = Math.sqrt(sum / timeData.length);
+        const volume = Math.min(1, rms * 2.5);
+        panel.style.boxShadow = `inset 0 0 ${volume * 45}px var(--wire)`;
+
+        analyser.getByteFrequencyData(freqData);
+        let maxVal = -1;
+        let maxIndex = 0;
+        for (let i = 0; i < freqData.length; i++) {
+            if (freqData[i] > maxVal) {
+                maxVal = freqData[i];
+                maxIndex = i;
+            }
+        }
+        const freq = maxIndex * audioCtx.sampleRate / analyser.fftSize;
+        const hue = Math.min(240, (Math.log(freq) / Math.log(8000)) * 240);
+        if (maxVal > 10) { // Threshold to avoid color changes on silence
+             panel.style.backgroundColor = `hsla(${hue}, 100%, ${5 + volume * 15}%, 0.7)`;
+        } else {
+             panel.style.backgroundColor = 'transparent';
+        }
+    }
+    loop();
+}
+
+/***********************
+ * LESSON DEFINITIONS  *
+ ***********************/
+function buildLesson(idx, panelAnalyser, panel){
+  switch(idx){
+    case 1: return lesson1_basicNoise(panelAnalyser, panel);
+    case 2: return lesson2_lowpassAndTwoKeys(panelAnalyser, panel);
+    case 3: return lesson3_adsrEnvelope(panelAnalyser, panel);
+    case 4: return lesson4_lfoOnCutoff(panelAnalyser, panel);
+    case 5: return stubLesson('Multimode filter & resonance sweep');
+    case 6: return stubLesson('Serial vs parallel filtering (HP+LP)');
+    case 7: return stubLesson('Noise color morphing (white/pink/brown)');
+    case 8: return stubLesson('Keyboard mapping + touch velocity');
+    default: return stubLesson('Coming next');
+  }
+}
+function stubLesson(title){ const controls=document.createElement('div'); controls.className='controls'; return {desc:title, controls}; }
+
+/* L1 — Basic white noise (Space: hold) */
+function lesson1_basicNoise(panelAnalyser, panel){
+  const controls=document.createElement('div'); controls.className='controls';
+  let current=null;
+  function startNoise(){ ensureAudio().then(()=>{ if(current) return; const {source,outlet}=makeNoiseSource(); outlet.connect(panelAnalyser).connect(masterGain); source.start(); current={source,outlet}; panel.classList.add('active'); }); }
+  function stopNoise(){ if(!current) return; try{current.source.stop();}catch{} current.outlet.disconnect(); current=null; panel.classList.remove('active'); }
+  panel.addEventListener('mousedown',startNoise); panel.addEventListener('mouseup',stopNoise); panel.addEventListener('mouseleave',stopNoise);
+  panel.addEventListener('touchstart',(e)=>{e.preventDefault();startNoise();},{passive:false}); panel.addEventListener('touchend',stopNoise);
+  addEventListener('keydown',(e)=>{ if(e.code==='Space') startNoise(); });
+  addEventListener('keyup',(e)=>{ if(e.code==='Space') stopNoise(); });
+  return {desc:'Press and hold to emit white noise', controls};
+}
+
+/* L2 — Lowpass + A/S triggers */
+function lesson2_lowpassAndTwoKeys(panelAnalyser, panel){
+  const controls=document.createElement('div'); controls.className='controls';
+  const cutoff=sliderKV('Cutoff',{min:100,max:8000,step:1,value:1200}); cutoff.wrap.title='Cutoff';
+  const q=sliderKV('Resonance',{min:0.0001,max:30,step:0.0001,value:0.0001}); q.wrap.title='Resonance';
+  let active=null;
+  function trigger(){ ensureAudio().then(()=>{ const {source,outlet}=makeNoiseSource();
+    const lp=makeFilter({type:'lowpass', cutoff: parseFloat(cutoff.input.value), Q: parseFloat(q.input.value)});
+    outlet.connect(lp).connect(panelAnalyser).connect(masterGain); source.start();
+    active={source,outlet,lp}; panel.classList.add('active'); }); }
+  function release(){ if(!active) return; try{active.source.stop();}catch{} active.outlet.disconnect(); active.lp.disconnect(); active=null; panel.classList.remove('active'); }
+  panel.addEventListener('mousedown',()=>trigger()); panel.addEventListener('mouseup',()=>release()); panel.addEventListener('mouseleave',()=>release());
+  panel.addEventListener('touchstart',(e)=>{e.preventDefault();trigger()},{passive:false}); panel.addEventListener('touchend',()=>release());
+  addEventListener('keydown',(e)=>{ if(e.repeat) return; const k=e.key.toLowerCase(); if(k==='a') trigger(); });
+  addEventListener('keyup',(e)=>{ const k=e.key.toLowerCase(); if(k==='a') release(); });
+  cutoff.oninput(()=>{ if(active) active.lp.frequency.value=+cutoff.input.value; });
+  q.oninput(()=>{ if(active) active.lp.Q.value=+q.input.value; });
+  controls.append(cutoff.wrap,q.wrap); return {desc:'Lesson 2', controls};
+}
+
+/* L3 — ADSR amplitude (D gate) */
+function lesson3_adsrEnvelope(panelAnalyser, panel){
+  const controls=document.createElement('div'); controls.className='controls';
+  const A=sliderKV('Attack',{min:0.001,max:1.0,step:0.001,value:0.02}); A.wrap.title='Attack';
+  const D=sliderKV('Decay', {min:0.001,max:2.0,step:0.001,value:0.2}); D.wrap.title='Decay';
+  const S=sliderKV('Sustain',{min:0.0,max:1.0,step:0.001,value:0.6}); S.wrap.title='Sustain';
+  const R=sliderKV('Release',{min:0.001,max:2.0,step:0.001,value:0.3}); R.wrap.title='Release';
+  const cutoff=sliderKV('LP Cutoff',{min:200,max:8000,step:1,value:1800}); cutoff.wrap.title='LP Cutoff';
+  let env, active=null;
+  function gateOn(){ ensureAudio().then(()=>{ if(active) return; const {source,outlet}=makeNoiseSource();
+    const lp=makeFilter({type:'lowpass',cutoff:+cutoff.input.value,Q:0.0001});
+    env=makeADSR({attack:+A.input.value,decay:+D.input.value,sustain:+S.input.value,release:+R.input.value});
+    outlet.connect(lp).connect(env.node).connect(panelAnalyser).connect(masterGain); source.start(); env.gateOn(); active={source,outlet,lp}; panel.classList.add('active'); }); }
+  function gateOff(){ if(!active) return; env.gateOff(); const stopAt=audioCtx.currentTime + +R.input.value + 0.05; active.source.stop(stopAt);
+    setTimeout(()=>{ try{active.outlet.disconnect(); active.lp.disconnect();}catch{} active=null; panel.classList.remove('active'); }, (+R.input.value+0.1)*1000); }
+  panel.addEventListener('mousedown',gateOn); panel.addEventListener('mouseup',gateOff); panel.addEventListener('mouseleave',gateOff);
+  panel.addEventListener('touchstart',(e)=>{e.preventDefault();gateOn();},{passive:false}); panel.addEventListener('touchend',gateOff);
+  addEventListener('keydown',(e)=>{ if(e.repeat) return; if(e.key.toLowerCase()==='d') gateOn(); });
+  addEventListener('keyup',(e)=>{ if(e.key.toLowerCase()==='d') gateOff(); });
+  cutoff.oninput(()=>{ if(active) active.lp.frequency.value=+cutoff.input.value; });
+  controls.append(A.wrap,D.wrap,S.wrap,R.wrap,cutoff.wrap); return {desc:'Lesson 3', controls};
+}
+
+/* L4 — LFO→cutoff (F toggle) */
+function lesson4_lfoOnCutoff(panelAnalyser, panel){
+  const controls=document.createElement('div'); controls.className='controls';
+  const rate=sliderKV('LFO Rate',{min:0.1,max:20,step:0.01,value:5}); rate.wrap.title='LFO Rate';
+  const depth=sliderKV('Depth',{min:50,max:6000,step:1,value:1200}); depth.wrap.title='Depth';
+  const baseCut=sliderKV('Base Cutoff',{min:100,max:8000,step:1,value:800}); baseCut.wrap.title='Base Cutoff';
+  controls.append(rate.wrap, depth.wrap, baseCut.wrap);
+  let active=null, lfoOsc=null, lfoGain=null, lp=null;
+  function start(){ ensureAudio().then(()=>{ if(active) return; const {source,outlet}=makeNoiseSource();
+    lp=makeFilter({type:'lowpass',cutoff:+baseCut.input.value,Q:.0001});
+    lfoOsc=audioCtx.createOscillator(); lfoOsc.type='sine'; lfoOsc.frequency.value=+rate.input.value;
+    lfoGain=audioCtx.createGain(); lfoGain.gain.value=+depth.input.value;
+    lfoOsc.connect(lfoGain).connect(lp.frequency); outlet.connect(lp).connect(panelAnalyser).connect(masterGain);
+    lfoOsc.start(); source.start(); active={source,outlet}; panel.classList.add('active'); }); }
+  function stop(){ if(!active) return; try{active.source.stop(); lfoOsc.stop();}catch{} try{active.outlet.disconnect(); lp.disconnect(); lfoGain.disconnect();}catch{} active=null; lfoOsc=null; lfoGain=null; lp=null; panel.classList.remove('active'); }
+  panel.addEventListener('mousedown',()=> active?stop():start());
+  panel.addEventListener('touchstart',(e)=>{e.preventDefault(); active?stop():start();},{passive:false});
+  addEventListener('keydown',(e)=>{ if(e.repeat) return; if(e.key.toLowerCase()==='f'){ active?stop():start(); } });
+  rate.oninput(()=>{ if(lfoOsc) lfoOsc.frequency.setTargetAtTime(+rate.input.value, audioCtx.currentTime, .02); });
+  depth.oninput(()=>{ if(lfoGain) lfoGain.gain.setTargetAtTime(+depth.input.value, audioCtx.currentTime, .02); });
+  baseCut.oninput(()=>{ if(lp) lp.frequency.setTargetAtTime(+baseCut.input.value, audioCtx.currentTime, .02); });
+  return {desc:'Lesson 4', controls};
+}
+
+/********************
+ * Slider utilities *
+ ********************/
+function sliderKV(label, attrs){
+  const wrap=document.createElement('div'); wrap.className='slider'; wrap.title=label;
+  const input=document.createElement('input'); input.type='range'; Object.assign(input, attrs);
+  wrap.append(input);
+  globalSliderList.push(input);
+  return {wrap,input,oninput:(fn)=> input.addEventListener('input',fn)};
+}
+function replaceNativeRanges(scope){
+  scope.querySelectorAll('input[type=range]').forEach(r=>{
+    const vs=document.createElement('div'); vs.className='vslider'; vs.title=r.parentElement?.title||'Slider';
+    const fill=document.createElement('div'); fill.className='fill'; vs.append(fill);
+    const update=()=>{ const min=+r.min, max=+r.max, val=+r.value; const pct=((val-min)/(max-min))*100; vs.style.setProperty('--val', pct+'%'); };
+    r.addEventListener('input', update); update();
+    const setFromEvent=(e)=>{ const rect=vs.getBoundingClientRect();
+      const y=(e.clientY??(e.touches?.[0]?.clientY||0))-rect.top;
+      const pct=1 - Math.min(1,Math.max(0,y/rect.height));
+      const min=+r.min, max=+r.max; const val=min + pct*(max-min); const step=+r.step||1;
+      r.value=(Math.round(val/step)*step).toString(); r.dispatchEvent(new Event('input',{bubbles:true})); };
+    vs.addEventListener('mousedown',e=>{setFromEvent(e)});
+    vs.addEventListener('touchstart',e=>{e.preventDefault();setFromEvent(e)},{passive:false});
+    r.style.display='none'; r.insertAdjacentElement('afterend', vs);
+  });
+}
+
+/***********************
+ * Keyboard shortcuts  *
+ ***********************/
+const sliderKeyMap=[["q","1"],["w","2"],["e","3"],["r","4"],["t","5"],["y","6"],["u","7"],["i","8"],["o","9"],["p","0"],["[","-"]];
+function tweenSliderTo(sl, target, ms=300){
+  const start=+sl.value; const delta=target-start; const t0=performance.now();
+  function step(now){ const p=Math.min(1,(now-t0)/ms); const v=start+delta*p; sl.value=v; sl.dispatchEvent(new Event('input',{bubbles:true})); if(p<1) requestAnimationFrame(step); }
+  requestAnimationFrame(step);
+}
+
+const spectrumCanvas = document.getElementById('spectrumCanvas');
+const canvasCtx = spectrumCanvas.getContext('2d');
+let spectrumVisible = false;
+
+function startSpectrum() {
+    const analyser = globalAnalyser;
+    analyser.fftSize = 2048;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    function draw() {
+        if (!spectrumVisible) {
+            canvasCtx.clearRect(0, 0, spectrumCanvas.width, spectrumCanvas.height);
+            return;
+        }
+        requestAnimationFrame(draw);
+
+        analyser.getByteFrequencyData(dataArray);
+
+        canvasCtx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // Trail effect
+        canvasCtx.fillRect(0, 0, spectrumCanvas.width, spectrumCanvas.height);
+        
+        canvasCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+
+        const barWidth = (spectrumCanvas.width / bufferLength) * 1.5;
+        let x = 0;
+        for (let i = 0; i < bufferLength; i++) {
+            const barHeight = Math.pow(dataArray[i] / 255, 2) * spectrumCanvas.height;
+            canvasCtx.fillRect(x, spectrumCanvas.height - barHeight, barWidth, barHeight);
+            x += barWidth + 1;
+        }
+    }
+    draw();
+}
+
+function toggleSpectrum() {
+    spectrumVisible = !spectrumVisible;
+    if (spectrumVisible) {
+        document.body.style.backgroundColor = 'transparent';
+        spectrumCanvas.width = window.innerWidth;
+        spectrumCanvas.height = window.innerHeight;
+        spectrumCanvas.style.display = 'block';
+        if (!globalAnalyser) return;
+        startSpectrum();
+    } else {
+        document.body.style.backgroundColor = 'var(--bg)';
+        spectrumCanvas.style.display = 'none';
+    }
+}
+
+window.addEventListener('resize', () => {
+    if (spectrumVisible) {
+        spectrumCanvas.width = window.innerWidth;
+        spectrumCanvas.height = window.innerHeight;
+    }
+});
+
+addEventListener('keydown',(e)=>{
+  const k=e.key.toLowerCase();
+  if (k === '§') {
+    toggleSpectrum();
+  }
+  if (k === 'arrowleft') { setDivisions(Math.max(1, currentDivisions - 1)); return; }
+  if (k === 'arrowright') { setDivisions(Math.min(8, currentDivisions + 1)); return; }
+  if(['input','textarea'].includes(document.activeElement?.tagName?.toLowerCase())) return;
+  sliderKeyMap.forEach(([dec,inc],idx)=>{
+    const sl=globalSliderList[idx]; if(!sl) return;
+    const step = (+sl.max - +sl.min) / 5;
+    if(k===dec){ const v=Math.max(+sl.min, (+sl.value - step)); tweenSliderTo(sl, v, 300); }
+    if(k===inc){ const v=Math.min(+sl.max, (+sl.value + step)); tweenSliderTo(sl, v, 300); }
+  });
+});
+
+// Boot
+setDivisions(currentDivisions);
+</script>
+</body>
+</html>

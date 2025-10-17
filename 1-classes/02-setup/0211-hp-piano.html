@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyperphone</title>
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: monospace;
+    overflow: hidden;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  .piano {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    border-top: 1px solid #222;
+  }
+  .white-keys {
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
+  .key {
+    box-sizing: border-box;
+    background-color: transparent;
+    /* Transitions are now handled by JS */
+  }
+  .key.is-white {
+    flex: 1;
+    border-left: 1px solid #ccc;
+  }
+  .key.is-black {
+    position: absolute;
+    top: 0;
+    height: 60%;
+    width: calc(100% / 7 * 0.6);
+    border: 2px solid #fff;
+    z-index: 10;
+  }
+
+  #reverb-indicator, #vu-meter {
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background-color: #222; 
+  }
+  #reverb-indicator .fill, #vu-meter .fill {
+    width: 100%;
+    height: 100%;
+    transform-origin: bottom;
+    transform: scaleY(0);
+    transition: transform 50ms linear;
+  }
+  #reverb-indicator { left: 0; }
+  #reverb-indicator .fill { background-color: #00f; }
+  #vu-meter { right: 0; }
+  #vu-meter .fill { background-color: #0f0; }
+
+  #status {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    opacity: 0.4;
+    font-size: 12px;
+    background: #000;
+    padding: 4px;
+    border-radius: 3px;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+  <div id="upper-octave" class="piano"></div>
+  <div id="lower-octave" class="piano"></div>
+  <div id="reverb-indicator"><div class="fill"></div></div>
+  <div id="vu-meter"><div class="fill"></div></div>
+  <div id="status">Initializing...</div>
+
+<script>
+/* ===================== User-configurable roots ===================== */
+const SAMPLE_FILES = ['C1.mp3', 'C2.mp3', 'C3.mp3', 'C4.mp3', 'C5.mp3', 'C6.mp3', 'C7.mp3', 'C8.mp3'];
+const BASE_PATH = (location.protocol === 'file:') ? '../inc/' : '../inc/';
+
+/* ===================== Note tables ===================== */
+const NOTE_INDEX = { 'C':0,'C#':1,'Db':1,'D':2,'D#':3,'Eb':3,'E':4,'Fb':4,'E#':5,'F':5,'F#':6,'Gb':6,'G':7,'G#':8,'Ab':8,'A':9,'A#':10,'Bb':10,'B':11,'Cb':11,'B#':0 };
+const NAMES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+function midiFromName(s){ const m = /^([A-G](?:#|b)?)(-?\d+)$/.exec(s); if(!m) return null; const n = NOTE_INDEX[m[1]]; const o = parseInt(m[2],10); return 12*(o+1)+n; }
+function nameFromMidi(m){ const n = m%12; const o = Math.floor(m/12)-1; return NAMES[(n+12)%12]+o; }
+
+/* ===================== Keyboard mapping ===================== */
+const keyToNote = {
+  'z': [0, 0], 's': [0, 1], 'x': [0, 2], 'd': [0, 3], 'c': [0, 4], 'v': [0, 5], 'g': [0, 6], 'b': [0, 7], 'h': [0, 8], 'n': [0, 9], 'j': [0, 10], 'm': [0, 11],
+  'q': [1, 0], '2': [1, 1], 'w': [1, 2], '3': [1, 3], 'e': [1, 4], 'r': [1, 5], '5': [1, 6], 't': [1, 7], '6': [1, 8], 'y': [1, 9], '7': [1, 10], 'u': [1, 11],
+  ',': [1, 0], 'l': [1, 1], '.': [1, 2], ';': [1, 3], '/': [1, 4],
+  'i': [2, 0], '9': [2, 1], 'o': [2, 2], '0': [2, 3], 'p': [2, 4], '[': [2, 5], '-': [2, 6], ']': [2, 7], '=': [2, 8],
+};
+let currentOctave = 4;
+let audioContext;
+const roots = [];
+const activeNotes = new Map(); // MIDI Note -> { audio nodes }
+let reverbNode, dryGain, wetGain, masterOut, analyserNode;
+let wetDryRatio = 0.3;
+let pointerHeldKey = null; // { keyChar, midiNote }
+let temporaryOctaveShift = 0;
+let activeKeys = {};
+
+/* ===================== Color Modes ===================== */
+let isMulticolor = false;
+let octaveColors = [];
+const NEON_PALETTE = ['#39FF14', '#FF1493', '#14E7FF', '#FF6600', '#FFFF00', '#9D00FF', '#FF0000', '#00FF7F', '#FF4500', '#DA70D6', '#00BFFF', '#ADFF2F'];
+
+function assignRandomColors() {
+    let shuffled = [...NEON_PALETTE];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    octaveColors = shuffled;
+}
+function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '0, 255, 0';
+}
+
+/* ===================== UI / Hyperphone Build ===================== */
+function buildPiano(container, octaveOffsets) {
+    container.innerHTML = '';
+    const offsets = Array.isArray(octaveOffsets) ? octaveOffsets : [octaveOffsets];
+    const whiteKeyNotes = [0, 2, 4, 5, 7, 9, 11];
+    const blackKeyNotes = [1, 3, 6, 8, 10];
+    const blackKeyPositions = [0.65, 1.65, 3.65, 4.65, 5.65];
+
+    const keyCharMap = {};
+    for (const key in keyToNote) {
+        const [octave, semitone] = keyToNote[key];
+        if (!keyCharMap[octave]) keyCharMap[octave] = {};
+        if (!keyCharMap[octave][semitone]) keyCharMap[octave][semitone] = [];
+        keyCharMap[octave][semitone].push(key);
+    }
+
+    const whiteKeysContainer = document.createElement('div');
+    whiteKeysContainer.className = 'white-keys';
+    container.appendChild(whiteKeysContainer);
+
+    const totalWhiteKeys = whiteKeyNotes.length * offsets.length;
+    const whiteKeyWidth = 100 / totalWhiteKeys;
+
+    offsets.forEach((octaveOffset, octaveIndex) => {
+        whiteKeyNotes.forEach(semi => {
+            const keyDiv = document.createElement('div');
+            keyDiv.className = 'key is-white';
+            keyDiv.dataset.semitone = semi;
+            if (keyCharMap[octaveOffset] && keyCharMap[octaveOffset][semi]) {
+                keyDiv.dataset.keys = keyCharMap[octaveOffset][semi].join(' ');
+            }
+            whiteKeysContainer.appendChild(keyDiv);
+        });
+
+        blackKeyNotes.forEach((semi, i) => {
+            const keyDiv = document.createElement('div');
+            keyDiv.className = 'key is-black';
+            keyDiv.dataset.semitone = semi;
+            if (keyCharMap[octaveOffset] && keyCharMap[octaveOffset][semi]) {
+                keyDiv.dataset.keys = keyCharMap[octaveOffset][semi].join(' ');
+            }
+            const leftPosition = (octaveIndex * whiteKeyNotes.length + blackKeyPositions[i]) * whiteKeyWidth;
+            keyDiv.style.left = `${leftPosition}%`;
+            keyDiv.style.width = `calc(100% / ${totalWhiteKeys} * 0.6)`;
+            container.appendChild(keyDiv);
+        });
+    });
+}
+
+/* ===================== Audio loading & Setup ===================== */
+async function initAudio(){
+  audioContext = new (window.AudioContext||window.webkitAudioContext)();
+  
+  masterOut = audioContext.createGain();
+  analyserNode = audioContext.createAnalyser();
+  analyserNode.fftSize = 256;
+  analyserNode.smoothingTimeConstant = 0.6;
+  masterOut.connect(analyserNode);
+  analyserNode.connect(audioContext.destination);
+
+  dryGain = audioContext.createGain();
+  wetGain = audioContext.createGain();
+  reverbNode = audioContext.createConvolver();
+  
+  dryGain.connect(masterOut);
+  wetGain.connect(masterOut);
+  reverbNode.connect(wetGain);
+
+  updateReverbMix();
+  assignRandomColors();
+
+  setStatus('Loading samples...');
+  await loadRoots();
+  
+  setStatus('Generating reverb...');
+  await buildReverbImpulse();
+  
+  buildPiano(document.getElementById('lower-octave'), [0]);
+  buildPiano(document.getElementById('upper-octave'), [1, 2]);
+  drawVuMeter();
+  setupPointerEvents();
+  setupFullscreenToggle();
+  setupMIDI();
+}
+
+async function loadRoots(){
+  const loads = SAMPLE_FILES.map(async (file)=>{
+    try{
+      const res = await fetch(BASE_PATH + file);
+      if(!res.ok) { console.warn('Missing:', BASE_PATH + file); return; }
+      const arr = await res.arrayBuffer();
+      const buf = await audioContext.decodeAudioData(arr);
+      const m = /([A-G](?:#|b)?-?\d)/.exec(file);
+      if(!m){ console.warn('Name missing pitch:', file); return; }
+      const name = m[1];
+      const midi = midiFromName(name);
+      if(midi==null){ console.warn('Unparsable pitch:', file); return; }
+      roots.push({name, midi, buffer:buf});
+    }catch(e){ console.warn('Error loading', BASE_PATH + file, e); }
+  });
+  await Promise.all(loads);
+  roots.sort((a,b)=>a.midi-b.midi);
+}
+
+async function buildReverbImpulse() {
+    const reverbTime = 2.5;
+    const sampleRate = audioContext.sampleRate;
+    const length = sampleRate * reverbTime;
+    const tailContext = new OfflineAudioContext(2, length, sampleRate);
+    const noiseBuffer = tailContext.createBuffer(2, length, sampleRate);
+    for (let c = 0; c < 2; c++) {
+        const channelData = noiseBuffer.getChannelData(c);
+        for (let i = 0; i < length; i++) { channelData[i] = Math.random() * 2 - 1; }
+    }
+    const noiseSource = tailContext.createBufferSource();
+    noiseSource.buffer = noiseBuffer;
+    const gainNode = tailContext.createGain();
+    gainNode.gain.setValueAtTime(0.8, 0);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, reverbTime - 0.2);
+    const filter = tailContext.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 4000;
+    noiseSource.connect(filter); filter.connect(gainNode); gainNode.connect(tailContext.destination);
+    noiseSource.start(0);
+    try {
+        const renderedBuffer = await tailContext.startRendering();
+        reverbNode.buffer = renderedBuffer;
+        setStatus(roots.length ? 'Ready. Play with keyboard.' : 'No samples loaded.');
+    } catch(e) {
+        console.error('Failed to generate reverb impulse:', e);
+        setStatus('Error: Could not create reverb.');
+    }
+}
+
+/* ===================== Playback & Visuals ===================== */
+function drawVuMeter() {
+    const bufferLength = analyserNode.fftSize;
+    const dataArray = new Uint8Array(bufferLength);
+    const vuMeterFill = document.querySelector('#vu-meter .fill');
+    function draw() {
+        requestAnimationFrame(draw);
+        analyserNode.getByteTimeDomainData(dataArray);
+        let sumSquares = 0.0;
+        for (let i = 0; i < bufferLength; i++) {
+            const v = (dataArray[i] / 128.0) - 1.0;
+            sumSquares += v * v;
+        }
+        const rms = Math.sqrt(sumSquares / bufferLength);
+        const meterValue = Math.min(1, rms * 2.5);
+        vuMeterFill.style.transform = `scaleY(${meterValue})`;
+    }
+    draw();
+}
+
+function midiFromTarget(semiIndex, octave){ return 12*(octave+1) + semiIndex; }
+
+function pickNearestRoot(targetMIDI) {
+    if (roots.length === 0) return null;
+    let bestRoot = roots[0];
+    let minDistance = Math.abs(targetMIDI - bestRoot.midi);
+    for (let i = 1; i < roots.length; i++) {
+        const distance = Math.abs(targetMIDI - roots[i].midi);
+        if (distance < minDistance) {
+            minDistance = distance;
+            bestRoot = roots[i];
+        }
+    }
+    return bestRoot;
+}
+
+function playWithRoot(root, targetMIDI, velocity = 1.0){
+  const diff = targetMIDI - root.midi;
+  const rate = Math.pow(2, diff/12);
+  const now = audioContext.currentTime;
+  const src = audioContext.createBufferSource();
+  src.buffer = root.buffer;
+  src.playbackRate.value = rate;
+  const hp = audioContext.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=18;
+  const lp = audioContext.createBiquadFilter(); lp.type='lowpass';
+  const cut = Math.max(2200, 16000/Math.max(1, rate));
+  lp.frequency.setValueAtTime(cut, now);
+  const g = audioContext.createGain();
+  const attack=0.01;
+  const sustainLevel = 1.0 * velocity;
+  g.gain.setValueAtTime(0.0001, now);
+  g.gain.exponentialRampToValueAtTime(sustainLevel, now+attack);
+  src.connect(hp); hp.connect(lp); lp.connect(g);
+  g.connect(dryGain);
+  g.connect(reverbNode);
+  const startOffset = findNearZero(src.buffer, 2048) / src.buffer.sampleRate;
+  src.start(now, startOffset);
+  return {rate, diff, source: src, gain: g, adjustedDuration: root.buffer.duration / rate };
+}
+
+function findNearZero(buf, windowSamples){
+  const ch = buf.getChannelData(0);
+  let bestIdx = 0, bestVal = 1e9;
+  const N = Math.min(ch.length, windowSamples);
+  for(let i=1;i<N;i++){ const v = Math.abs(ch[i]); if(v < bestVal){ bestVal = v; bestIdx = i; if(v<1e-5) break; } }
+  return bestIdx;
+}
+
+/* ===================== Interaction ===================== */
+function setStatus(s){ document.getElementById('status').textContent=s; }
+
+function startKeyHighlight(key, duration, semitone, velocity) {
+    const baseMonoRgb = '0, 255, 0';
+    const baseRgb = isMulticolor ? hexToRgb(octaveColors[semitone]) : baseMonoRgb;
+    const highlightAlpha = velocity; // Direct mapping for stronger effect
+    
+    const color = `rgba(${baseRgb}, ${highlightAlpha})`;
+    const borderColor = `rgba(${baseRgb}, 1)`;
+
+    document.querySelectorAll(`.key[data-keys~="${key}"]`).forEach(el => {
+        el.style.transition = 'none';
+        el.style.backgroundColor = color;
+        el.style.borderColor = borderColor;
+
+        void el.offsetWidth; // Force browser reflow
+
+        const logarithmicCurve = 'cubic-bezier(0.1, 0.9, 0.2, 1)';
+        el.style.transition = `background-color ${duration}s ${logarithmicCurve}, border-color ${duration}s ${logarithmicCurve}`;
+        el.style.backgroundColor = 'transparent';
+        el.style.borderColor = '';
+    });
+}
+
+function updateReverbMix() {
+    wetGain.gain.value = wetDryRatio;
+    dryGain.gain.value = 1.0 - wetDryRatio;
+    const reverbIndicatorFill = document.querySelector('#reverb-indicator .fill');
+    if(reverbIndicatorFill) reverbIndicatorFill.style.transform = `scaleY(${wetDryRatio})`;
+}
+
+function triggerKeyOn(k, velocity = 1.0, dynamic = null){
+  if(!k) return; // Don't handle MIDI for now
+  if(!audioContext) return;
+  if(audioContext.state==='suspended') audioContext.resume();
+  
+  const map = keyToNote[k]; if(!map) return;
+  if (activeKeys[k]) return;
+
+  const [octOff, semi] = map;
+  const targetOct = Math.max(1, Math.min(8, currentOctave + octOff + temporaryOctaveShift));
+  const targetMIDI = midiFromTarget(semi, targetOct);
+
+  if (activeNotes.has(targetMIDI)) {
+      return;
+  }
+
+  if(!roots.length){ setStatus('No samples loaded.'); return; }
+  const root = pickNearestRoot(targetMIDI);
+  if (!root) { setStatus('Could not find a suitable sample.'); return; }
+  const playback = playWithRoot(root, targetMIDI, velocity);
+  activeNotes.set(targetMIDI, playback);
+  
+  const effectiveOctaveOffset = octOff + temporaryOctaveShift;
+  let keyToHighlight = k;
+  // Find a key that maps to the same note in the shifted octave
+  for (const key in keyToNote) {
+      if (keyToNote[key][0] === effectiveOctaveOffset && keyToNote[key][1] === semi) {
+          keyToHighlight = key;
+          break;
+      }
+  }
+  activeKeys[k] = { midi: targetMIDI, highlightKey: keyToHighlight };
+
+  let statusText = `Note ${nameFromMidi(targetMIDI)} from ${root.name} Δ=${playback.diff>=0?'+':''}${playback.diff} st (rate ${playback.rate.toFixed(3)})`;
+  if (dynamic) statusText += ` - ${dynamic}`;
+  setStatus(statusText);
+  startKeyHighlight(keyToHighlight, playback.adjustedDuration, semi, velocity);
+}
+
+function triggerKeyOff(k){
+  if(!k) return; // Don't handle MIDI for now
+  const activeKeyData = activeKeys[k];
+  if (!activeKeyData) return;
+
+  const { midi, highlightKey } = activeKeyData;
+  if (!activeNotes.has(midi)) return;
+
+  const { source, gain } = activeNotes.get(midi);
+  const now = audioContext.currentTime;
+  const releaseTime = 0.5;
+  gain.gain.cancelScheduledValues(now);
+  gain.gain.setTargetAtTime(0.0001, now, releaseTime / 5);
+  activeNotes.delete(midi);
+  delete activeKeys[k];
+
+  document.querySelectorAll(`.key[data-keys~="${highlightKey}"]`).forEach(el => {
+    el.style.transition = 'none';
+    el.style.backgroundColor = 'transparent';
+    el.style.borderColor = '';
+  });
+}
+
+function setupPointerEvents() {
+    function onPointerDown(e) {
+        e.preventDefault();
+        const targetKey = e.target.closest('.key');
+        if (!targetKey || !targetKey.dataset.keys) return;
+
+        const rect = targetKey.getBoundingClientRect();
+        const relativeY = (e.clientY || e.touches[0].clientY) - rect.top;
+        const keyHeight = rect.height;
+        const velocityZone = Math.floor((relativeY / keyHeight) * 4);
+
+        let velocity, dynamic;
+        if (velocityZone === 0) { velocity = 0.25; dynamic = 'p'; }
+        else if (velocityZone === 1) { velocity = 0.50; dynamic = 'mp'; }
+        else if (velocityZone === 2) { velocity = 0.75; dynamic = 'mf'; }
+        else { velocity = 1.0; dynamic = 'f'; }
+
+        const keyChar = targetKey.dataset.keys.split(' ')[0];
+        if (pointerHeldKey && activeNotes.has(pointerHeldKey.midiNote)) {
+            triggerKeyOff(pointerHeldKey.keyChar);
+        }
+        triggerKeyOn(keyChar, velocity, dynamic);
+        const map = keyToNote[keyChar];
+        const targetOct = Math.max(1, Math.min(8, currentOctave + map[0] + temporaryOctaveShift));
+        pointerHeldKey = { keyChar: keyChar, midiNote: midiFromTarget(map[1], targetOct) };
+    }
+
+    function onPointerUp(e) {
+        if (pointerHeldKey) {
+            if (activeNotes.has(pointerHeldKey.midiNote)) {
+                triggerKeyOff(pointerHeldKey.keyChar);
+            }
+            pointerHeldKey = null;
+        }
+    }
+
+    const pianos = document.querySelectorAll('.piano');
+    pianos.forEach(p => {
+        p.addEventListener('mousedown', onPointerDown);
+        p.addEventListener('touchstart', onPointerDown, { passive: false });
+    });
+    document.addEventListener('mouseup', onPointerUp);
+    document.addEventListener('touchend', onPointerUp);
+}
+
+function setupFullscreenToggle() {
+    document.body.addEventListener('dblclick', () => {
+        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
+                document.documentElement.webkitRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            }
+        }
+    });
+}
+
+function setupMIDI() {
+    if (navigator.requestMIDIAccess) {
+        navigator.requestMIDIAccess()
+            .then(onMIDISuccess, onMIDIFailure);
+    } else {
+        console.warn('WebMIDI is not supported in this browser.');
+    }
+
+    function onMIDISuccess(midiAccess) {
+        setStatus('MIDI Ready');
+        for (var input of midiAccess.inputs.values()) {
+            input.onmidimessage = onMIDIMessage;
+        }
+    }
+
+    function onMIDIFailure() {
+        setStatus('Could not access your MIDI devices.');
+    }
+
+    function onMIDIMessage(message) {
+        const [command, note, velocity] = message.data;
+        // Note On command
+        if (command === 144 && velocity > 0) {
+            const normalizedVelocity = velocity / 127;
+            let dynamic;
+            if (normalizedVelocity > 0.8) dynamic = 'f';
+            else if (normalizedVelocity > 0.6) dynamic = 'mf';
+            else if (normalizedVelocity > 0.4) dynamic = 'mp';
+            else dynamic = 'p';
+            
+            // Need a way to trigger visuals from MIDI note
+            triggerKeyOn(null, normalizedVelocity, dynamic, note);
+
+        } else if (command === 128 || (command === 144 && velocity === 0)) { // Note Off
+            triggerKeyOff(null, note);
+        }
+    }
+}
+
+
+document.addEventListener('keydown', (e)=>{
+  const k = e.key.toLowerCase();
+  
+  if (k === 'shift') temporaryOctaveShift = 1;
+  if (k === 'control') temporaryOctaveShift = -1;
+
+  if (keyToNote[k]){
+    e.preventDefault();
+    triggerKeyOn(k);
+  }
+  if (k === '§') {
+      isMulticolor = !isMulticolor;
+      setStatus(isMulticolor ? 'Multicolor Mode Activated' : 'Monochrome Mode Activated');
+  }
+  if (k === 'arrowup') {
+    e.preventDefault();
+    wetDryRatio = Math.min(1.0, wetDryRatio + 0.05);
+    updateReverbMix();
+  }
+  if (k === 'arrowdown') {
+    e.preventDefault();
+    wetDryRatio = Math.max(0.0, wetDryRatio - 0.05);
+    updateReverbMix();
+  }
+   if (k === 'arrowleft') { 
+       e.preventDefault(); 
+       currentOctave=Math.max(1,currentOctave-1); 
+       assignRandomColors();
+       setStatus(`Octave: ${currentOctave}`); 
+       return; 
+    }
+  if (k === 'arrowright') { 
+      e.preventDefault(); 
+      currentOctave=Math.min(8,currentOctave+1); 
+      assignRandomColors();
+      setStatus(`Octave: ${currentOctave}`); 
+      return; 
+    }
+});
+
+document.addEventListener('keyup', (e)=>{
+  const k = e.key.toLowerCase();
+
+  if (k === 'shift' || k === 'control') temporaryOctaveShift = 0;
+
+  if (keyToNote[k]){
+    e.preventDefault();
+    triggerKeyOff(k);
+  }
+});
+
+window.addEventListener('load', initAudio);
+</script>
+</body>
+</html>

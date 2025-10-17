@@ -8,7 +8,7 @@ theme: zztt
 
 | ![\|50](https://i.imgur.com/N8z2xP4.png) |                |                        |
 | ---------------------------------------- |:-------------- | ----------------------:|
-| **class 03**                             | Nov 3rd, 2023 | *internet music 23/24* |
+| **class 03**                             | 2025 | *internet music 25/26* |
 
 # Tone.js
 ---
@@ -165,17 +165,7 @@ What does listening to Generative Music mean?
    1. Generation and sound realization are synchronic.
    2. So Instantiation of Generative Music can be related to the computational powers of each age.
 
-## Introduction: Procedural Music
-
-The process of mechanization as “Automatic programming{ (Kyong Chun 2011, 41). It contributes both to a certain deskilling but also to the forming of craftsmanship where “ through automation, expertise is both created and called into question”.
-
-Creative intentions take shape during the activity of sound production and not only prior to it. By focusing on the operational as ‘on-going; the aim here is to explore conditions where one continuously engages with generative sound processes and how they are constructed.
-
-Work processes, composed in detail, are let to each other, and these relationships come into evidence at the surface of the sounds. Each sound is therefore not a blotch of colors but itself a form, as it owes its existence to a formal construction, to a form process; (Koening 1965, 8).
-
-Methods as emerging from the application, “figured within design and engineering discourses precisely not as already existing and independently agential, but as emerging from and dependent upon the actions of their (human) makers. (Suchman 2012, 55).
-
-The ephemeral nature of software, the distinction between system conception and realization, and the difference between “software as product and software as a process: (Fabretti 2015,104). where “writing, experimentation, “working out” are essential disciplines for the theoretician”&#x20;
+---
 
 ## Spatial and Procedural early examples
 
@@ -310,27 +300,4 @@ networked
 clapping 
 moshpit / pogo
 collective chant 
-
-# Jiwon Seo
-
-in the case of N.O. Nouvel ordre
-
-installation 
-aesthetics: costumes, make-up , cultural references: movies, books, internet memes/thinking (instagram/tiktok)
-
-experience
-arts numerique / posthuman / postinternet / postmusic
-concept music 
-extended musical instrument 
-	multimodal 
-	space
-
-	interactivity
-	ubiquitous experiences
-		remotness
-		networked performance
-
-space and history < 
-data sculpture <> embodiment 
-|
 

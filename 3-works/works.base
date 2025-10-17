@@ -41,3 +41,12 @@ views:
       - year
       - tags
     image: note.img
+  - type: list
+    name: full list
+    filters:
+      or:
+        - file.folder == "5-concepts"
+        - file.folder == "2-technologies"
+    nestedProperties: true
+    separator: " type"
+    markers: number
