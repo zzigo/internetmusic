@@ -20,7 +20,7 @@ course materials are hosted on https://github.com/zzigo/internetmusic/tree/im24 
 |     |                            |
 | --- | -------------------------- |
 | 1   | Introduction To JavaScript |
-| 2   | Code practice              |
+| 2   | generative examples        |
 | 3    |imi and works              |
 
 ---
@@ -684,18 +684,6 @@ for (note in notes) {
 ### Quiz 6
 
 ```js
-const notes = ["A", "C", "F"];
-
-for (note in notes) {
-  console.log(note);
-}
-```
-
----
-
-### Quiz 7 
-
-```js
 if (true || false) {
   console.log("i run");
 }
@@ -707,7 +695,7 @@ if (true && false) {
 
 ---
 
-### Quiz 8
+### Quiz 7
 
 ```js
 if (0.2 + 0.3 === 0.5) {
@@ -717,7 +705,7 @@ if (0.2 + 0.3 === 0.5) {
 
 ---
 
-### Quiz 8: Explanation
+### Quiz 9: Explanation
 
 - the binary system can't accurately represent 1/5
 - it is the same as 1/3 in decimal
@@ -803,6 +791,30 @@ const input = document.querySelector("input");
 
 input.value = 0.5;
 ```
+
+---
+
+## webaudio initialization
+
+
+![[webaudioapi-guitar-diagram.svg]]
+
+![[webaudioapi-diagram.svg]]
+
+---
+
+### 01. WA basic configuration
+
+```
+var actx = new AudioConext(); //create audiocontext
+oscillator = actx.createOscillator();
+oscillator.connect(context.destination); //first connection
+oscillator.start(context.currentTime); //start the WA thread
+
+```
+
+https://codepen.io/LucianoAzzigotti/pen/vYZeENd?editors=0012"
+
 
 ---
 

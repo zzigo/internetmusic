@@ -1,0 +1,33 @@
+/* Wide notes override — minimal, percent-based */
+:root{
+  --wide-note-width: 96vw;   /* pon 100vw si quieres ocupar toda la ventana */
+  --wide-note-pad: 160px;     /* padding lateral */
+}
+
+/*- editor line width - default 700px -*/ 
+body {
+  --file-line-width: 50px;  
+}
+
+/* Live/Source mode: ignora var(--file-line-width) cuando RLL está activo */
+body.wide-global .markdown-source-view.mod-cm6.is-readable-line-width .cm-sizer,
+.wide-page.markdown-source-view.mod-cm6.is-readable-line-width .cm-sizer{
+  max-width: var(--wide-note-width) !important;
+  width: 100% !important;
+  margin-inline: auto !important;
+  padding-inline: var(--wide-note-pad);
+}
+
+/* Reading mode: idem para el sizer de preview */
+body.wide-global .markdown-preview-view.is-readable-line-width .markdown-preview-sizer,
+.wide-page.markdown-preview-view.is-readable-line-width .markdown-preview-sizer{
+  max-width: var(--wide-note-width) !important;
+  width: 100% !important;
+  margin-inline: auto !important;
+  padding-inline: var(--wide-note-pad);
+}
+
+/* Opcional: cambia el valor que usa RLL en todo el vault al activar wide-global */
+body.wide-global{
+  --file-line-width: var(--wide-note-width);
+}

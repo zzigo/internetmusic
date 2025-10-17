@@ -1,0 +1,117 @@
+/* === Mermaid adaptive scaling (no giant fonts, no shrinking too far) === */
+
+/* Global control knobs */
+:root {
+  --mermaid-font-min: 0.9rem;   /* never smaller */
+  --mermaid-font-max: 1.6rem;   /* never larger */
+  --mermaid-scale: 80%;         /* overall diagram scale */
+}
+
+/* Match all Mermaid SVGs */
+svg[id^="m"][width][height][viewBox] {
+  width: var(--mermaid-scale);
+  height: auto;
+  max-width: 100%;
+  max-height: 80vh;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Font scaling stays readable across diagram sizes */
+svg[id^="m"][width][height][viewBox] text {
+  font-size: clamp(var(--mermaid-font-min), 1.2vw, var(--mermaid-font-max)) !important;
+  fill: #c5f6ff !important;
+  text-shadow: 0 0 4px #0ff, 0 0 8px #0ff;
+  font-family: var(--font-interface, monospace);
+}
+
+/* === Container === */
+.markdown-preview-view .mermaid,
+.markdown-rendered .mermaid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: var(--mermaid-max-width);
+  min-height: var(--mermaid-min-height);
+  max-height: var(--mermaid-max-height);
+  overflow-x: auto;
+  overflow-y: auto;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  background: var(--background-primary);
+  border-radius: 8px;
+  /* transition: max-height 0.2s ease-in-out;  background: radial-gradient(circle at 50% 50%, #0a0a0a 60%, #000000 100%); */
+  border-radius: 12px;
+}
+
+/* === SVG === */
+.markdown-preview-view .mermaid svg,
+.markdown-rendered .mermaid svg {
+  width: 100% !important;
+  height: auto !important;
+  background: transparent !important;
+}
+
+/* === Neon text === */
+/* === Neon text (with max size limit) === */
+.markdown-rendered .mermaid text,
+.markdown-preview-view .mermaid text {
+  fill: #c5f6ff !important;
+  font-family: var(--font-interface, monospace);
+  font-size: clamp(0.8rem, var(--mermaid-text-scale), 2rem) !important;
+  text-shadow: 0 0 4px #0ff, 0 0 8px #0ff;
+  line-height: 1.2;
+}
+
+
+/* === Neon node outlines === */
+.markdown-rendered .mermaid rect,
+.markdown-rendered .mermaid circle,
+.markdown-rendered .mermaid polygon {
+  fill: transparent !important;
+  stroke: #00ffff !important;
+  stroke-width: 1.5px !important;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.5));
+  transition: stroke 0.3s ease;
+}
+
+/* === Subgraphs === */
+.markdown-rendered .mermaid .cluster rect {
+  fill: transparent !important;
+  stroke: #ff00ff !important;
+  stroke-width: 1.3px !important;
+  filter: drop-shadow(0 0 8px rgba(255, 0, 255, 0.4));
+}
+
+/* === Edges === */
+.markdown-rendered .mermaid .edgePath path {
+  stroke: #05f8e1 !important;
+  stroke-width: 1.8px !important;
+  fill: none !important;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.5));
+}
+
+/* === Node glow when hovered === */
+.markdown-rendered .mermaid rect:hover,
+.markdown-rendered .mermaid circle:hover,
+.markdown-rendered .mermaid polygon:hover {
+  stroke: #ff4d00 !important;
+  filter: drop-shadow(0 0 10px rgb(255, 201, 5));
+  cursor: pointer;
+}
+
+/* === Scrollbar styling === */
+.markdown-preview-view .mermaid::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.markdown-preview-view .mermaid::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  border-radius: 3px;
+}
+
+/*mermaid*/
+
+
+

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+<button id="b">▶ start</button>
+
+<script>
+let a=null,o=null;
+
+document.getElementById("b").onclick=async()=>{
+  if(!a){
+    a=new (window.AudioContext||window.webkitAudioContext)();
+    await a.resume();
+    o=a.createOscillator();
+    o.type='sine';
+    o.frequency.value=220;
+    o.connect(a.destination);
+    o.start();
+    b.textContent='■ stop';
+  }else{
+    o.stop();
+    await a.close();
+    a=null;o=null;
+    b.textContent='▶ start';
+  }
+};
+</script>
+</body>
+</html>

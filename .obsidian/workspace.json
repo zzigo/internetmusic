@@ -4,41 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "e33359d8b5ae25b9",
+        "id": "1361a7afa3070209",
         "type": "tabs",
         "children": [
           {
-            "id": "0966b5cc7f343277",
+            "id": "fa03e1957651abfa",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1-classes/02-setup/generative principles.md",
-                "mode": "source",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "generative principles"
-            }
-          }
-        ]
-      },
-      {
-        "id": "96dd8926aca92090",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "412374ad32c9c93d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1-classes/02-setup/generative principles.md",
+                "file": "2-technologies/dataviewjs/03 melody randomic loop.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "generative principles"
+              "title": "03 melody randomic loop"
             }
           }
         ]
@@ -108,20 +88,20 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1-classes/02-setup/generative principles.md",
+                "file": "2-technologies/dataviewjs/03 melody randomic loop.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of generative principles"
+              "title": "Outline of 03 melody randomic loop"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 390.5
+    "width": 502.5
   },
   "right": {
     "id": "a1832bf0e47e7aee",
@@ -230,15 +210,30 @@
       "obsidian-book-search-plugin:Create new book note": false
     }
   },
-  "active": "412374ad32c9c93d",
+  "active": "fa03e1957651abfa",
   "lastOpenFiles": [
+    "2-technologies/dataviewjs/03 melody randomic loop.md",
+    "1-classes/02-setup/generative principles.md",
+    "9-obs/arc/im-23/class02-tonejs/class02-master.md",
+    "2-technologies/dataviewjs/01 hello webaudio.md",
+    "2-technologies/dataviewjs/02 webaudio random walk.md",
+    "1-classes/02-setup/class-02-25-setup.md",
+    "2-technologies/dataviewjs",
+    "README.md",
+    "9-obs/arc/im-book/webaudio/generators/README.md",
+    "9-obs/arc/im-book/webaudio/generators/snare.md",
+    "9-obs/arc/im-book/docs/class00/webaudioapi-diagram.svg",
+    "03 tea/wa/webaudio/generators/README.md",
+    "03 tea/wa/webaudio/generators",
+    "03 tea/wa/webaudio",
+    "03 tea/wa",
+    "03 tea",
+    "9-obs/arc/im-book/webaudio-initialization.md",
+    "1-classes/01-intro/test.html",
     "8-projects/JI WON/readme.md",
     "1-classes/03-tonejs/README.md",
     "8-projects/JI WON",
-    "1-classes/02-setup/generative principles.md",
-    "1-classes/02-setup/class-02-25-setup.md",
     "1-classes/02-setup/README.md",
-    "README.md",
     "2-technologies/wget.md",
     "2-technologies/www.md",
     "2-technologies/javascript.md",
@@ -251,27 +246,13 @@
     "home.md",
     "1-classes/02-setup/0212-substractive.html",
     "1-classes/02-setup/0212-substractive commented copy.html",
-    "1-classes/02-setup/0212-substractive commented.html",
-    "1-classes/02-setup/0211-hp-piano.html",
-    "1-classes/02-setup/0210-hp-piano.html",
-    "1-classes/02-setup/0210-hp-piano 3.html",
-    "1-classes/02-setup/0210-pianoKeys.html",
-    "1-classes/02-setup/0200-fmkeys-r.html",
     "3-works/hem/The Wonderful Johnny.md",
     "3-works/hem/welcome to the channel.md",
     "1-classes/21-gaming/212 game theory.md",
-    "1-classes/06-integration/06-integration-1.md",
-    "1-classes/21-gaming/superpowers.md",
     "4-maps/gamification.canvas",
-    "1-classes/21-gaming/211-gaming and music.md",
-    "1-classes/09-machine learning-text/AI resources.md",
     "4-maps/internet music-concert dictionaryUntitled.canvas",
-    "4-maps/gamification.md",
     "4-maps/internet music map.canvas",
     "4-maps/perceptual modes.canvas",
-    "8-projects/TOM/welcome the channel SKETCH.md",
-    "1-classes/21-gaming/aesthetic procedures.md",
-    "1-classes/21-gaming/game typologies.md",
     "4-maps/internet technologies.canvas",
     "4-maps/canvas sandbox.canvas",
     "3-works/p1/mega-instruments 42e2e66776e743db9efbff6f9e46bf43/Untitled.gif",
@@ -284,7 +265,6 @@
     "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/textures/cubemap/parliament/negy.jpg",
     "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/textures/cubemap/parliament/negx.jpg",
     "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/models/ogre/skins/skin.jpg",
-    "bib/3D/Dirksen J. g- Learning Three.j - the JavaScript 3D Library for WebGL_ Create stunning 3D graphics in your browser using the Three.js JavaScript library (/learning-threejs-master/assets/models/jessica/jessica/fmouth.png",
     "Untitled.canvas",
     "8-projects/TOM/Tom.canvas",
     "8-projects/Benoist.canvas"

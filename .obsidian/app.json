@@ -6,5 +6,6 @@
   "userIgnoreFilters": [
     "*Icon",
     "**Icon"
-  ]
+  ],
+  "readableLineLength": false
 }

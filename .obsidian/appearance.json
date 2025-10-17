@@ -1,9 +1,11 @@
 {
   "accentColor": "",
   "enabledCssSnippets": [
-    "canvas-candy"
+    "canvas-candy",
+    "mermaid"
   ],
   "theme": "obsidian",
   "cssTheme": "Arzaba",
-  "showRibbon": false
+  "showRibbon": false,
+  "baseFontSize": 16
 }

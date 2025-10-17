@@ -316,5 +316,23 @@
       ],
       "key": "ArrowUp"
     }
+  ],
+  "theme:toggle-light-dark": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "L"
+    }
+  ],
+  "theme:switch": [
+    {
+      "modifiers": [
+        "Alt",
+        "Shift"
+      ],
+      "key": "Z"
+    }
   ]
 }

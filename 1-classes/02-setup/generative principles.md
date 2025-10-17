@@ -28,7 +28,7 @@ addStartStop.call(this,(A)=>{ const v=A.mkVoice('sine',0.05,220); (function loop
 
 
 
-# 2. randomization (controlled disorder) — : chance as system 
+# 2. randomization (controlled disorder) — : radom walk
     
 
 ```dataviewjs
@@ -50,7 +50,7 @@ addStartStop.call(this,(A)=>{ const v=A.mkVoice('triangle',0.05,180); (function 
 ```
 
 
-# 3. effective complexity sweep (order↔disorder) — : effective complexity peak 
+# 3. effective complexity sweep (order <- ->disorder) — : effective complexity peak 
     
 
 ```dataviewjs
@@ -92,70 +92,201 @@ addStartStop.call(this,(A)=>{ const v=A.mkVoice('sawtooth',0.04,140); (function 
     
 
 ```dataviewjs
-// Canvas
-const W=520,H=300; const c=document.createElement('canvas'); c.width=W;c.height=H; c.style.border='1px solid #ccc'; this.container.appendChild(c);
+// Canvas setup
+const W=540, H=320;
+const c=document.createElement('canvas'); c.width=W; c.height=H; c.style.border='1px solid #ccc';
+this.container.appendChild(c);
 const ctx=c.getContext('2d');
 
-// Build an L-system string
-const axiom='F';
-const rules={ 'F':'F[+F]F[-F]F' };     // simple plant-like
-function iterate(s){ let out=''; for(const ch of s) out += (rules[ch]||ch); return out; }
-let str=axiom; for(let i=0;i<3;i++) str=iterate(str);
+// L-system (grammar)
+const axiom = 'F';
+const rules  = { 'F': 'F[+F]F[-F]F' };   // simple bush
+const iter   = 3;                         // grammar depth
+function expand(s){ let out=''; for(const ch of s) out += (rules[ch]||ch); return out; }
+let str = axiom; for(let i=0;i<iter;i++) str = expand(str);
 
 // Turtle parameters
-const step=14, dTheta=0.38;             // radians
-const origin={x:W/2, y:H-20}, startAngle=-Math.PI/2;
+const step  = 13;
+const dTh   = 0.40;                       // radians
+const origin= {x: W/2, y: H-16};
+const startAngle = -Math.PI/2;
 
-// Precompute segments for animation
-const segments=[]; {
-  const stack=[]; let x=origin.x, y=origin.y, ang=startAngle;
+// Precompute segments + token stream aligned to grammar
+const segments = [];   // [{x1,y1,x2,y2, depth, ang}]
+const tokens   = [];   // one entry per drawable/event step: 'F','+','-','[',']'
+{
+  const stack = [];
+  let x=origin.x, y=origin.y, ang=startAngle, depth=0;
   for(const ch of str){
-    if(ch==='F'){ const nx=x+Math.cos(ang)*step, ny=y+Math.sin(ang)*step; segments.push([x,y,nx,ny]); x=nx; y=ny; }
-    else if(ch==='+') ang+=dTheta;
-    else if(ch==='-') ang-=dTheta;
-    else if(ch==='[') stack.push({x,y,ang});
-    else if(ch===']'){ const s=stack.pop(); x=s.x; y=s.y; ang=s.ang; }
+    tokens.push(ch);
+    if(ch==='F'){
+      const nx = x + Math.cos(ang)*step, ny = y + Math.sin(ang)*step;
+      segments.push({x1:x,y1:y,x2:nx,y2:ny, depth, ang});
+      x=nx; y=ny;
+    } else if(ch==='+'){ ang += dTh; }
+      else if(ch==='-'){ ang -= dTh; }
+      else if(ch==='['){ stack.push({x,y,ang}); depth++; }
+      else if(ch===']'){ const s=stack.pop(); x=s.x; y=s.y; ang=s.ang; depth=Math.max(0,depth-1); }
   }
 }
 
-// Audio helper with Start/Stop that closes AudioContext
-function makeAudio(){ const AC=new (window.AudioContext||window.webkitAudioContext)();
-  // convolver IR
-  const mkIR=(sec=1.1)=>{const L=Math.floor(AC.sampleRate*sec), b=AC.createBuffer(2,L,AC.sampleRate);
-    for(let ch=0;ch<2;ch++){const d=b.getChannelData(ch); for(let i=0;i<L;i++) d[i]=(Math.random()*2-1)*Math.exp(-i/L*3);} return b;};
-  const conv=AC.createConvolver(); conv.buffer=mkIR(1.2);
-  const comp=AC.createDynamicsCompressor(); comp.connect(conv); conv.connect(AC.destination);
-  const mkVoice=(type='sine', gain=0.045, freq=220)=>{const o=AC.createOscillator(), g=AC.createGain(); o.type=type; o.frequency.value=freq; g.gain.value=gain; o.connect(g).connect(comp); o.start(); return {o,g};};
-  return {AC, mkVoice, destroy: async()=>{try{await AC.close();}catch{}}};
+// Draw static skeleton once
+function drawSkeleton(){
+  ctx.clearRect(0,0,W,H);
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = '#2e2e2e';
+  ctx.beginPath();
+  for(const s of segments){ ctx.moveTo(s.x1,s.y1); ctx.lineTo(s.x2,s.y2); }
+  ctx.stroke();
 }
-function addStartStop(onStart,onStop){ const b=document.createElement('button'); b.textContent='Start Audio'; b.style.margin='8px 0'; this.container.appendChild(b);
-  let A=null; b.onclick=async()=>{ if(!A){A=makeAudio(); await A.AC.resume(); b.textContent='Stop Audio'; onStart?.(A);} else {onStop?.(A); await A.destroy(); A=null; b.textContent='Start Audio';} }; }
+drawSkeleton();
 
-// Draw animated stroke and map branch density to pitch
-addStartStop.call(this,(A)=>{
-  const v=A.mkVoice('sine',0.045,220);
-  ctx.clearRect(0,0,W,H); ctx.lineWidth=1.2; ctx.strokeStyle='#6c6';
-  let i=0, acc=0;
-  (function draw(){
-    // draw a few segments per frame for motion
-    ctx.beginPath();
-    const BATCH=80;
-    for(let k=0;k<BATCH && i<segments.length; k++, i++){
-      const [x1,y1,x2,y2]=segments[i];
-      ctx.moveTo(x1,y1); ctx.lineTo(x2,y2);
-      // simple branch-density proxy: increment when a segment points away from gravity
-      if (y2<y1) acc++;
+// Sequencer state (visual progress)
+let segIndex = 0;
+function drawProgress(k=120){ // draw last k segments highlighted
+  drawSkeleton();
+  ctx.lineWidth = 1.4;
+  ctx.strokeStyle = '#6c6';
+  ctx.beginPath();
+  for(let i=Math.max(0, segIndex-k); i<Math.min(segIndex, segments.length); i++){
+    const s=segments[i]; ctx.moveTo(s.x1,s.y1); ctx.lineTo(s.x2,s.y2);
+  }
+  ctx.stroke();
+}
+
+// Audio: build/destroy per toggle. Events are tied to grammar tokens.
+function makeAudio(){
+  const AC = new (window.AudioContext||window.webkitAudioContext)();
+
+  // Reverb IR
+  function mkIR(sec=1.2){
+    const L = Math.floor(AC.sampleRate*sec);
+    const buf = AC.createBuffer(2,L,AC.sampleRate);
+    for(let ch=0; ch<2; ch++){
+      const d = buf.getChannelData(ch);
+      for(let i=0;i<L;i++) d[i] = (Math.random()*2-1)*Math.pow(1 - i/L, 2.0);
     }
-    ctx.stroke();
+    return buf;
+  }
+  const conv = AC.createConvolver(); conv.buffer = mkIR(1.4);
+  const comp = AC.createDynamicsCompressor();
+  comp.connect(conv); conv.connect(AC.destination);
 
-    // map density accumulator to pitch slowly
-    const ratio = acc / Math.max(1, i);
-    v.o.frequency.value = 180 + 140 * ratio;
+  // Noise grain voice factory: bandpassed burst, optional pan
+  function scheduleGrain(time, freq=400, dur=0.08, gain=0.06, type='band'){
+    const src = AC.createBufferSource();
+    const len = Math.max(1, Math.floor(AC.sampleRate*dur));
+    const nb  = AC.createBuffer(1, len, AC.sampleRate);
+    const data= nb.getChannelData(0);
+    for(let i=0;i<len;i++){ data[i] = (Math.random()*2-1) * Math.pow(1 - i/len, 1.8); }
+    src.buffer = nb;
 
-    if (i<segments.length) requestAnimationFrame(draw);
+    const g = AC.createGain(); g.gain.setValueAtTime(0, time);
+    g.gain.linearRampToValueAtTime(gain, time+0.005);
+    g.gain.exponentialRampToValueAtTime(1e-4, time+dur);
+
+    const pan = AC.createStereoPanner();
+
+    let node = src;
+    if(type==='band' || type==='high'){
+      const biq = AC.createBiquadFilter();
+      biq.type = (type==='high')?'highpass':'bandpass';
+      biq.frequency.setValueAtTime(freq, time);
+      biq.Q.value = 6;
+      node.connect(biq).connect(pan).connect(g).connect(comp);
+    } else {
+      node.connect(pan).connect(g).connect(comp);
+    }
+    // simple angle-to-pan mapping via freq proxy
+    pan.pan.setValueAtTime(Math.max(-1, Math.min(1, (freq-600)/600)), time);
+
+    src.start(time);
+  }
+
+  // Low woody click for branch junctions
+  function scheduleClick(time, depth){
+    scheduleGrain(time, 160 + depth*60, 0.035, 0.07, 'high');
+  }
+
+  // Whispery wind on rotations
+  function scheduleSwoosh(time, angSign){
+    // angle sign → pan direction
+    scheduleGrain(time, 1200, 0.06, 0.045, 'high');
+  }
+
+  return {
+    AC, comp, conv,
+    destroy: async ()=>{ try{ await AC.close(); } catch(e){} },
+    scheduleGrain, scheduleClick, scheduleSwoosh
+  };
+}
+
+// Transport toggle
+function addStartStop(onStart,onStop){
+  const b=document.createElement('button'); b.textContent='Start Audio'; b.style.margin='8px 0';
+  this.container.appendChild(b);
+  let A=null;
+  b.onclick=async()=>{
+    if(!A){ A=makeAudio(); await A.AC.resume(); b.textContent='Stop Audio'; onStart?.(A); }
+    else  { onStop?.(A); await A.destroy(); A=null; b.textContent='Start Audio'; }
+  };
+}
+let rafId=null, intervalId=null;
+
+// Sequencer: step through tokens at tempo, loop, and sonify grammar
+addStartStop.call(this, (A)=>{
+  const BPM = 110;              // tempo
+  const div = 2;                // events per beat (2 = eighths)
+  const stepDur = 60/BPM/div;   // seconds
+  let nextT = A.AC.currentTime + 0.05;
+  let iTok = 0;
+  let depth = 0;
+
+  // schedule-ahead loop
+  intervalId = setInterval(()=>{
+    while(nextT < A.AC.currentTime + 0.12){
+      const ch = tokens[iTok];
+      // Visual progress: advance segIndex when we hit 'F'
+      if(ch==='F'){
+        const s = segments[Math.min(segIndex, segments.length-1)];
+        // Map depth→band frequency; deeper branches = lower freq
+        const freq = 250 + depth*120;
+        A.scheduleGrain(nextT, freq, 0.07, 0.06, 'band');
+        A.scheduleClick(nextT, depth);
+        segIndex = Math.min(segIndex+1, segments.length);
+      } else if(ch==='+'){
+        A.scheduleSwoosh(nextT, +1);
+      } else if(ch==='-'){
+        A.scheduleSwoosh(nextT, -1);
+      } else if(ch==='['){
+        depth++;
+        // subtle junction tick
+        A.scheduleClick(nextT, depth);
+      } else if(ch===']'){
+        depth = Math.max(0, depth-1);
+        A.scheduleClick(nextT, depth);
+      }
+
+      // advance token and loop
+      iTok = (iTok + 1) % tokens.length;
+      if(iTok===0){ segIndex = 0; drawSkeleton(); } // restart visual sweep
+      nextT += stepDur;
+    }
+  }, 25);
+
+  // visual animation
+  (function loop(){
+    drawProgress(140);
+    rafId = requestAnimationFrame(loop);
   })();
-},(A)=>{ /* drawing stays; audio closed */ });
+
+}, (A)=>{
+  if(rafId){ cancelAnimationFrame(rafId); rafId=null; }
+  if(intervalId){ clearInterval(intervalId); intervalId=null; }
+  // AudioContext is closed in destroy(); nothing else to clean
+});
 ```
+
 
 
 
