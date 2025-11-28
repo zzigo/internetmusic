@@ -5,7 +5,7 @@ place:
 connections: 
 url: https://www.youtube.com/watch?v=cgxCkxn3qX4&t=3787s
 photo: https://websoundart.org/media/WSA_logo.svg
-year: "2024"
+year: 2024"
 ---
 <iframe title="WebSoundArt online festival" src="https://www.youtube.com/embed/cgxCkxn3qX4?start=3787&amp;feature=oembed" height="113" width="200" allowfullscreen="" allow="fullscreen" style="aspect-ratio: 1.76991 / 1; width: 100%; height: 100%;"></iframe>
 

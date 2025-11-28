@@ -4,7 +4,7 @@ photo: https://i.imgur.com/VDNCfMp.png
 tags:
   - person
 born in city: Austin
-born year: "1983"
+born year: 1983"
 dead year:
 city:
 country: USA

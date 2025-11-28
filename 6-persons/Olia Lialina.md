@@ -5,7 +5,7 @@ tags:
   - netart
   - person
 born in city: Moscow
-born year: "1971"
+born year: 1971"
 dead year: 
 city: 
 country: 

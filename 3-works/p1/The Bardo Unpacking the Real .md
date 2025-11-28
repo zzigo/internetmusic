@@ -1,7 +1,7 @@
 ---
 year: 2022
 URL: https://feralfile.com/artworks/earmark-jnw
-Tags: immersive, webaudio
+Tags: [immersive, webaudio]
 Created time: July 8, 2022 9:14 AM
 ---
 [](https://cdn.feralfileassets.com/thumbnails/7764ae91-0392-48fb-b68c-796d701bed08/1620412547)

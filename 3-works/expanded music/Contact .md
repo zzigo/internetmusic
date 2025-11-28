@@ -2,7 +2,7 @@
 type: work
 img: https://i.imgur.com/XthyXoY.png
 year: 2018
-tags: expandedmusic, automats
+tags: [expandedmusic, automats]
 person: "[[Marianthi Papalexandri Alexandri]]"
 premiereDate:
 materials: motors

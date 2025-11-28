@@ -1,45 +1,42 @@
 
 ```dataviewjs
-// Minimal Mixolydian random-walk melody with robust Stop
+// Minimal Mixolydian random-walk melody with robust Stop (fixed display + sound)
 const b=document.createElement('button'); b.textContent='▶ start'; this.container.appendChild(b);
-const l = document.createElement("span");; l.style.marginLeft='10px'; l.textContent= ' '; this.container.appendChild(l);
+const l=document.createElement('span'); l.style.marginLeft='10px'; l.textContent='—'; this.container.appendChild(l);
 
-let a=null, t=null, r=false;         // AudioContext, timeout id, running flag
-const V=[];                          // active voices to stop immediately
-const R=220;                         // root A3
-const S=[0,2,4,5,7,9,10];            // Mixolydian semitones
-let i=0;                             // current degree
+let a=null,t=null,r=false;            // AudioContext, timeout id, running flag
+const V=[];                           // active voices
+const R=220;                          // root A3
+const S=[0,2,4,5,7,9,10];             // Mixolydian semitones
+let i=0;                              // current degree
 
-const hz=n=>R*Math.pow(2,n/12); // from pitchclass to Hz
+const hz=n=>R*Math.pow(2,n/12);       // pitch class -> Hz
 
 function note(){
   if(!r||!a) return;
 
-  // random walk step (reflect at boundaries)
-  i += [-1,0,1][Math.floor(Math.random()*3)];  //  “Add randomly −1, 0, or +1 to i.”
+  // random step -1,0,+1 with boundary reflection
+  i += [-1,0,1][(Math.random()*3)|0];
   if(i<0) i=1; if(i>=S.length) i=S.length-2;
 
-  const d = 0.12 + Math.random()*0.38;  // seconds
-  const f=hz(S[i]); 
+  const d=0.12+Math.random()*0.38;    // seconds
+  const f=hz(S[i]);
+
   // voice
   const o=a.createOscillator(), g=a.createGain();
   o.type='sine'; o.frequency.value=f;
-  l.textContent=f.toFixed(f) + "Hz";  //toFixed to int round
-  g.gain.setValueAtTime(0, a.currentTime);
-  g.gain.linearRampToValueAtTime(0.12, a.currentTime+0.01);
-  g.gain.exponentialRampToValueAtTime(1e-4, a.currentTime+d*0.9);
+  l.textContent=Math.round(f)+' Hz';
+  g.gain.setValueAtTime(0,a.currentTime);
+  g.gain.linearRampToValueAtTime(0.12,a.currentTime+0.01);
+  g.gain.exponentialRampToValueAtTime(1e-4,a.currentTime+d*0.9);
   o.connect(g).connect(a.destination);
-  o.start();
-  o.stop(a.currentTime+d);
+  o.start(); o.stop(a.currentTime+d);
   V.push({o,g});
 
   // cleanup this voice after it ends
-  setTimeout(()=>{ 
-    try{o.stop();}catch{} 
-    try{g.disconnect();}catch{} 
-  }, d*1000+10);
+  setTimeout(()=>{ try{o.stop();}catch{} try{g.disconnect();}catch{} }, d*1000+10);
 
-  // schedule next note only if still running
+  // schedule next note if still running
   t=setTimeout(()=>{ if(r) note(); }, d*1000);
 }
 
@@ -48,18 +45,13 @@ b.onclick=async()=>{
     a=new (window.AudioContext||window.webkitAudioContext)(); await a.resume();
     r=true; i=0; b.textContent='■ stop'; note();
   }else{
-    // stop scheduling
-    r=false;
-    if(t){ clearTimeout(t); t=null; }
-    // kill any active voices immediately
-    while(V.length){
-      const v=V.pop(); try{v.o.stop();}catch{} try{v.g.disconnect();}catch{}
-    }
-    await a.close(); a=null;
-    b.textContent='▶ start';
+    r=false; if(t){clearTimeout(t); t=null;}
+    while(V.length){ const v=V.pop(); try{v.o.stop();}catch{} try{v.g.disconnect();}catch{} }
+    await a.close(); a=null; b.textContent='▶ start'; l.textContent='—';
   }
 };
 ```
+
 
 
 

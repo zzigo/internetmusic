@@ -1,8 +1,9 @@
 {
-  "snippets_file": "snippets : It is an obsidian plugin, that replaces your selected text.\n\n-> : ->",
+  "snippets_file": "snippets : It is an obsidian plugin, that replaces your selected text.\n\n-> : ->\nd : ```dataviewjs$nl$$end$$nl$```",
   "snippets": [
     "snippets : It is an obsidian plugin, that replaces your selected text.",
-    "-> : ->"
+    "-> : ->",
+    "d : ```dataviewjs$nl$$end$$nl$```"
   ],
   "endSymbol": "$end$",
   "newlineSymbol": "$nl$",

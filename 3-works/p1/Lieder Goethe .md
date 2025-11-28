@@ -1,5 +1,5 @@
 ---
 year: 1814
-Tags: romanticismo - obras iniciales
+Tags: [romanticismo, obrasiniciales]
 Created time: June 22, 2020 6:49 AM
 ---

@@ -24,7 +24,6 @@ b.onclick=async()=>{
 };
 ```
 
-
 ```html
 <!DOCTYPE html>
 <html>
