@@ -1,8 +1,8 @@
 {
 	"id": "css-editor",
 	"name": "CSS Editor",
-	"version": "1.10.2",
-	"minAppVersion": "0.15.0",
+	"version": "1.11.1",
+	"minAppVersion": "1.8.3",
 	"description": "Edit CSS snippet files.",
 	"author": "Zachatoo",
 	"authorUrl": "https://zachyoung.dev",

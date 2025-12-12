@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <script>
+        function formatFunctionName(instrumentName) {
+            const loadFunctionName = `load${instrumentName.replace(/-/g, '')}`;
+            return loadFunctionName;
+        }
+
+        console.log(formatFunctionName('hp-A'));
+        console.log(formatFunctionName('hp-B'));
+        console.log(formatFunctionName('hp-C'));
+    </script>
+</body>
+</html>

@@ -3,9 +3,7 @@ type: obra
 img: https://i.imgur.com/rYYhaD7.png
 year: 1986
 tags:
-  - músicaescrita
-  - orq
-  - vidaartificial
+  - writtenmusic
 person: "[[Iannis Xenakis]]"
 premiereDate:
 premierePlace:

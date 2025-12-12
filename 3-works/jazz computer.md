@@ -1,7 +1,7 @@
 ---
 type: work
 img: https://i.imgur.com/Qdl8m2s.png
-year: 2015"
+year: 2015
 tags:
   - internetmusic
 person: "[[Yotam Mann]]"

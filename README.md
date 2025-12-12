@@ -23,11 +23,11 @@ Ce cours explore l’Internet comme cadre culturel et technologique de la créat
 **2025**
 17/10
 31/10  game theory
-28/11  simulation 
-05/12
+28/11  code fmsynth 
+12/12  code  mic interface socket
 
 **2026** 
-23/01
+23/01 simulation
 27/02
 13/03
 17/04

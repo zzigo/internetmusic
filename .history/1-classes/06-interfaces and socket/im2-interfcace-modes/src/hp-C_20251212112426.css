@@ -1,0 +1,51 @@
+/* hp-C.css - GREEN THEME */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #003d00 0, #001a00 55%, #000d00 100%);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  color: #e0ffe0;
+  touch-action: none;
+}
+
+.hud {
+  position: fixed;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 3;
+}
+
+.hud-led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(80, 255, 80, 0.8);
+  box-shadow: 0 0 4px rgba(80, 255, 80, 0.5);
+  background: rgba(0, 30, 0, 0.4);
+}
+
+.line-x,
+.line-y {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  background: rgba(80, 255, 80, 0.9);
+  box-shadow: 0 0 8px rgba(80, 255, 80, 0.9);
+}
+
+.line-x {
+  width: 1px;
+  height: 100vh;
+  top: 0;
+}
+
+.line-y {
+  height: 1px;
+  width: 100vw;
+  left: 0;
+}

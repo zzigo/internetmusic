@@ -21,12 +21,12 @@
 		{"type":"text","text":">[!cc-header] MOUSE\n\n/hovering\n/x y coordinates\n/click\n/second button\n\n","id":"a8a60aa38f31f0e7","x":-232,"y":760,"width":240,"height":220,"color":"6"},
 		{"type":"text","text":">[!cc-header] KEYBOARD\n\n/key js\n/sandwich shortcuts\n/prompts\n/input box\n\n\n","id":"d7221ea393bd47ce","x":-540,"y":760,"width":240,"height":220,"color":"6"},
 		{"type":"text","text":">[!cc-header] MIDI\n\n/midinote\n/velocity\n/sysex\n\n","id":"7c538e40004d7398","x":-232,"y":1020,"width":240,"height":220,"color":"6"},
-		{"id":"c1b71287daa33715","type":"text","text":"# telematic space","x":-285,"y":-195,"width":260,"height":71,"color":"3"},
-		{"id":"012aba70799737f8","type":"text","text":"networking","x":-215,"y":-96,"width":140,"height":60},
 		{"id":"8064c196dbd8b7ea","type":"text","text":"spatial\npositionalAudio\n3d space","x":610,"y":-223,"width":223,"height":127},
 		{"id":"2663fb5a9ba6c2a8","type":"text","text":"# real space","x":180,"y":-196,"width":220,"height":72,"color":"1"},
-		{"type":"text","text":">[!cc-header] BIG DATA\n\n/LLM\n/databases\n/video\n/audio\n/movement files\n\n","id":"eea309cc4c0d9bd3","x":-265,"y":-560,"width":240,"height":220,"color":"3"},
-		{"type":"text","text":">[!cc-header] TEXT\n\n/regExp\n/js text process\n/IA\n/chatBots","id":"c7890e3a3af58a7f","x":160,"y":1280,"width":240,"height":220,"color":"4"}
+		{"type":"text","text":">[!cc-header] TEXT\n\n/regExp\n/js text process\n/IA\n/chatBots","id":"c7890e3a3af58a7f","x":160,"y":1280,"width":240,"height":220,"color":"4"},
+		{"type":"text","text":">[!cc-header] BIG DATA\n\n/LLM\n/databases\n/video\n/audio\n/movement files\n\n","id":"eea309cc4c0d9bd3","x":-275,"y":-560,"width":240,"height":220,"color":"3"},
+		{"id":"c1b71287daa33715","type":"text","text":"# telematic space","x":-285,"y":-267,"width":260,"height":71,"color":"3"},
+		{"id":"012aba70799737f8","type":"text","text":"networking","x":-225,"y":-124,"width":140,"height":60}
 	],
 	"edges":[
 		{"id":"5c6e1f4fcc2ee54a","fromNode":"94e9b37bb080a1b7","fromSide":"left","toNode":"c3a4a1db915309cf","toSide":"right"},

@@ -1,7 +1,7 @@
 ---
 type: work
 img: https://i.imgur.com/ZwCoDb7.png
-year: 1998"
+year: 1998
 tags:
   - hyperltext
 person: "[[Jogchem]]"

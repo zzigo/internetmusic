@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>IMI FM Synth 01</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="src/main.js"></script>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="hud">
+        <div class="title">IMI FM SYNTH 01</div>
+        <div class="subtitle">webAudio · js · from scratch</div>
+      </div>
+
+      <div class="controls">
+        <button id="start-audio">init / arm audio</button>
+
+        <div class="control-group">
+          <label>
+            carrier freq
+            <span id="carrier-value"></span> Hz
+          </label>
+          <input
+            id="carrier-slider"
+            type="range"
+            min="40"
+            max="2000"
+            step="1"
+            value="220"
+          />
+        </div>
+
+        <div class="control-group">
+          <label>
+            modulator freq
+            <span id="mod-value"></span> Hz
+          </label>
+          <input
+            id="mod-slider"
+            type="range"
+            min="0.1"
+            max="1000"
+            step="0.1"
+            value="110"
+          />
+        </div>
+
+        <div class="control-group">
+          <label>
+            modulation index I
+            <span id="index-value"></span>
+          </label>
+          <input
+            id="index-slider"
+            type="range"
+            min="0"
+            max="15"
+            step="0.1"
+            value="5"
+          />
+        </div>
+
+        <div class="control-group">
+          <label>
+            output gain
+            <span id="gain-value"></span>
+          </label>
+          <input
+            id="gain-slider"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.2"
+          />
+        </div>
+
+        <div class="status-line">
+          click and drag sliders / listen to spectral changes · no visuals yet
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

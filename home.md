@@ -12,6 +12,15 @@ list from #imi
 # expanded music
 ![[works.base#Expanded music]]
 
+# people
+![[people.base]]
 
 
+
+# knowledge base
+
+![[kb.base#concepts]]
+![[kb.base#technologies]]
+![[kb.base#designpatterns]]
+![[kb.base#glossary]]
 

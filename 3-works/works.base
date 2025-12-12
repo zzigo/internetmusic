@@ -7,15 +7,19 @@ views:
     filters:
       and:
         - file.folder == "3-works"
+    groupBy:
+      property: tags
+      direction: ASC
     order:
       - file.name
-      - year
       - person
-      - tags
+      - year
     sort:
       - property: year
         direction: ASC
     image: note.img
+    cardSize: 160
+    imageAspectRatio: 0.55
   - type: cards
     name: Expanded music
     filters:

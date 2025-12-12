@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #050810 0, #000000 55%, #020308 100%);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  color: #e0fff3;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* subtle wireframe grid */
+#app::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 255, 200, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 200, 0.12) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px;
+  mix-blend-mode: screen;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* cross-lines */
+
+.v-line,
+.h-line {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.v-line {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.h-line {
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.line-green {
+  background: rgba(0, 255, 120, 0.9);
+  box-shadow: 0 0 8px rgba(0, 255, 120, 0.9);
+}
+
+.line-red {
+  background: rgba(255, 80, 80, 0.9);
+  box-shadow: 0 0 8px rgba(255, 80, 80, 0.9);
+}
+
+/* offset slightly so we see both crosses */
+.line-orange {
+  background: rgba(255, 160, 40, 0.9);
+  box-shadow: 0 0 8px rgba(255, 160, 40, 0.9);
+}
+
+.line-violet {
+  background: rgba(190, 120, 255, 0.9);
+  box-shadow: 0 0 8px rgba(190, 120, 255, 0.9);
+}
+
+/* HUD bottom-left */
+
+.hud {
+  position: fixed;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 3;
+}
+
+.hud-led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 255, 140, 0.8);
+  box-shadow: 0 0 4px rgba(0, 255, 140, 0.5);
+  background: rgba(0, 40, 20, 1);
+}
+
+.hud-led.on {
+  background: rgba(0, 255, 140, 1);
+  box-shadow: 0 0 10px rgba(0, 255, 140, 1);
+}
+
+.hud-led.off {
+  background: rgba(0, 30, 20, 0.3);
+  box-shadow: 0 0 3px rgba(0, 80, 40, 0.6);
+}
+
+.hud-text {
+  font-size: 0.8rem;
+  opacity: 0.5; /* requested ~50% */
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* make sure clicks pass through lines, HUD still clickable via window listener */

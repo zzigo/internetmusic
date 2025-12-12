@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #050810 0, #000000 55%, #020308 100%);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  color: #e0fff3;
+}
+
+/* App root */
+#app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Subtle wireframe grid (for IMI aesthetics) */
+#app::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 255, 200, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 200, 0.12) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px;
+  mix-blend-mode: screen;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* -------------------------
+   Sliding screens container
+   ------------------------- */
+
+/* Two screens laid out horizontally; we slide this container */
+.screen-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  width: 200vw;  /* 2 screens × full viewport width */
+  height: 100vh;
+  transform: translateX(0);
+  transition: transform 0.35s cubic-bezier(0.35, 0.8, 0.25, 1);
+  z-index: 1;
+}
+
+/* One screen = full viewport */
+.screen {
+  flex: 0 0 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 2.4rem;
+}
+
+/* Screen A and B visual identity (placeholder, will later host FM / mic UIs) */
+.screen-a {
+  background: radial-gradient(circle at top left, rgba(0, 255, 150, 0.2), rgba(0, 0, 0, 0.97));
+}
+
+.screen-b {
+  background: radial-gradient(circle at top right, rgba(255, 150, 50, 0.2), rgba(0, 0, 0, 0.97));
+}
+
+/* Simple center label */
+.screen-label {
+  text-shadow: 0 0 12px rgba(0, 255, 200, 0.9);
+}
+
+/* -------------------------
+   HUD bottom-left
+   ------------------------- */
+
+.hud {
+  position: fixed;
+  left: 1.4rem;
+  bottom: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  opacity: 0.5; /* requested ~50% text opacity */
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  z-index: 3;
+}
+
+.hud-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* LED for which screen is active */
+.hud-led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 255, 140, 0.8);
+  box-shadow: 0 0 4px rgba(0, 255, 140, 0.5);
+  background: rgba(0, 30, 20, 0.4);
+}
+
+.hud-led.a {
+  background: rgba(0, 255, 140, 1);
+  box-shadow: 0 0 10px rgba(0, 255, 140, 1);
+}
+
+.hud-led.b {
+  background: rgba(255, 140, 90, 1);
+  box-shadow: 0 0 10px rgba(255, 140, 90, 1);
+}
+
+/* small hint text */
+.hud-hint {
+  opacity: 0.8;
+}

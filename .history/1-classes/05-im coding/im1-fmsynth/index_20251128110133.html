@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>IMI FM Synth Cross HUD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="src/main.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Cross 1: carrier (x, green) / modulator (y, red) -->
+      <div id="line-carrier-x" class="v-line line-green"></div>
+      <div id="line-mod-y" class="h-line line-red"></div>
+
+      <!-- Cross 2: index (x, orange) / gain (y, violet), only visible on SHIFT or 2nd touch -->
+      <div id="line-index-x" class="v-line line-orange"></div>
+      <div id="line-gain-y" class="h-line line-violet"></div>
+
+      <!-- Minimal HUD bottom-left -->
+      <div class="hud">
+        <div id="audio-led" class="hud-led off"></div>
+        <div class="hud-text">
+          imi fm 01 · click / tap to toggle audio · shift or 2nd touch → index / gain
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

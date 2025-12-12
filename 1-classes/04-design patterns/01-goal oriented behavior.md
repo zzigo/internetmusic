@@ -6,7 +6,7 @@ This design pattern unites **interactive spatiality**, **goal-oriented behavior*
 
 
 
-![[designpattern-tunnel 1 player]]
+![[tunnel 2]]
 
 
 ---

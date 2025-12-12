@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #111;
+  cursor: none;
+}
+
+.line-x,
+.line-y {
+  position: fixed;
+  z-index: 10;
+  pointer-events: none; /* This is important! */
+}
+
+.line-x {
+  width: 1px;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: green;
+}
+
+.line-y {
+  width: 100vw;
+  height: 1px;
+  left: 0;
+  top: 0; /* Start at the edge */
+  background-color: red;
+}
+
+.hud {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  color: #eee;
+  font-family: monospace;
+  font-size: 12px;
+  background-color: transparent;
+  padding: 5px 8px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.hud-led {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #333; /* Off by default */
+}
+}

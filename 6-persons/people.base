@@ -1,0 +1,11 @@
+filters:
+  and:
+    - type == "person"
+    - '!file.name.startsWith("t-")'
+views:
+  - type: cards
+    name: Table
+    order:
+      - file.name
+      - year
+    image: note.img

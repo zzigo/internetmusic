@@ -1,0 +1,13 @@
+filters:
+  or:
+    - file.folder.contains("01 prj")
+views:
+  - type: table
+    name: Table
+    order:
+      - file.name
+      - date
+      - status
+      - tags
+    columnSize:
+      file.name: 226

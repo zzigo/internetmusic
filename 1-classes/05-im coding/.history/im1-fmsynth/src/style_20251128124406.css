@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: black;
+}
+
+
+.line-x {
+  position: absolute;
+  background-color: rgba(27, 255, 6, 0.5);
+  pointer-events: none;
+  z-index: 10;
+}
+.line-y {
+  position: absolute;
+  background-color: rgba(255, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: ;
+}
+

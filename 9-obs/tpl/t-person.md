@@ -1,13 +1,13 @@
 ---
 type: person
-photo: 
+img:
 tags:
   - person
-born in city: 
-born year: 
-dead year: 
-city: 
-country: 
-connect: 
+born in city:
+year:
+dead year:
+city:
+country:
+connect:
 url:
 ---
